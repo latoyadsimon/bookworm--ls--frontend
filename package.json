@@ -8,8 +8,9 @@
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "test": "npm run test:unit && npm run test:e2e",
+    "test": "npm run test:unit && npm run test:rls && npm run test:e2e",
     "test:unit": "vitest run",
+    "test:rls": "vitest run --config vitest.rls.config.js",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:report": "playwright show-report"

@@ -1,7 +1,11 @@
 export const formatAuthors = (authors) => (authors?.length ? authors.join(', ') : 'Unknown author')
 
 const dateFormat = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-export const formatDate = (iso) => (iso ? dateFormat.format(new Date(iso)) : '')
+/** A blank string for a missing or unparsable date (format() throws on Invalid Date) */
+export const formatDate = (iso) => {
+  const date = iso ? new Date(iso) : null
+  return date && !Number.isNaN(date.getTime()) ? dateFormat.format(date) : ''
+}
 
 export const STATUS_LABELS = {
   want_to_read: 'Want to Read',

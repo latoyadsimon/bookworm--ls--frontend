@@ -113,7 +113,7 @@ describe('callFunction error mapping', () => {
     expect(invoke).not.toHaveBeenCalled()
   })
 
-  // QA-BUG: booksApi.js `wait()` only listens for a future 'abort' event; a signal that
+  // Regression (QA bug fixed 2026-10-26): booksApi.js `wait()` only listens for a future 'abort' event; a signal that
   // is already aborted is ignored, so ?simulate=timeout still waits 1.8 s and then throws a
   // BooksApiError(504) instead of an AbortError (hooks treat that as a real failure).
   it('a signal aborted before the call rejects with AbortError even under ?simulate=timeout', async () => {
@@ -123,7 +123,7 @@ describe('callFunction error mapping', () => {
     await expect(run(getBook('abc', { signal: controller.signal }))).rejects.toMatchObject({ name: 'AbortError' })
   })
 
-  // QA-BUG: a 200 response whose body is not the expected JSON (e.g. a proxy/captive-portal
+  // Regression (QA bug fixed 2026-10-26): a 200 response whose body is not the expected JSON (e.g. a proxy/captive-portal
   // HTML page, which supabase-js returns as a string, or null) makes getBooks throw a raw
   // TypeError ("Cannot read properties of undefined (reading 'map')"). BookGrid/BookRow
   // then print that internal message to the user instead of a BooksApiError(502).
@@ -257,7 +257,7 @@ describe('db adapter: scoping and errors', () => {
     expect(last().steps.find(([m]) => m === 'ilike')[1]).toEqual(['display_name', pattern])
   })
 
-  // QA-BUG: PostgREST treats `*` as an alias for `%` in like/ilike filters, and
+  // Regression (QA bug fixed 2026-10-26): PostgREST treats `*` as an alias for `%` in like/ilike filters, and
   // escapeLike (db.js:36) does not escape it. Verified against the live project:
   // `display_name=ilike.Book*` returns BookLover42. So signing up as "Book*" (or
   // "Q*") is wrongly refused with "That display name is taken."

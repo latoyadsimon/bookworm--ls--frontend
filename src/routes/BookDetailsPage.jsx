@@ -155,7 +155,8 @@ function BookView({ book }) {
       else await saveError(error, "Couldn't save your log. Please try again.")
       return false
     }
-    logs.setData((list) => [data, ...(list ?? [])])
+    // Skip it if the list already has it (a load that finished after the post)
+    logs.setData((list) => [data, ...(list ?? []).filter((l) => l.id !== data.id)])
     toast('Log posted.')
     return true
   }

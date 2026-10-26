@@ -141,7 +141,7 @@ test.describe('Keyboard', () => {
   test.describe('phone menu', () => {
     test.use({ viewport: { width: 375, height: 800 } })
 
-    // QA-BUG: NavBar.jsx:31 closes the mobile menu on Escape but never moves focus
+    // Regression (QA bug fixed 2026-10-26): NavBar.jsx:31 closes the mobile menu on Escape but never moves focus
     // back to the "Open menu" button. Focus was inside the removed panel, so it falls
     // to <body> and keyboard users lose their place (WCAG 2.4.3 Focus Order).
     test('Esc closes the phone menu and returns focus to the menu button', async ({ page }) => {
@@ -155,7 +155,7 @@ test.describe('Keyboard', () => {
   })
 })
 
-// QA-BUG (the two long-word cases): a query that is one long unbroken word (a pasted URL,
+// Regression (QA bug fixed 2026-10-26) (the two long-word cases): a query that is one long unbroken word (a pasted URL,
 // a run of characters) overflows the page sideways, by 1213px at 320 wide and still 269px
 // at 1280. `.state-message-title` (components/books.css:244) has no overflow-wrap, so
 // "No books found for “…”" sets the min-content width of the `.browse` grid
@@ -258,7 +258,7 @@ test.describe('Sign Up display names (sign-up is mocked: no account is saved to 
     await expect(page.getByRole('button', { name: 'Log Out' })).toBeVisible()
   })
 
-  // QA-BUG: PostgREST reads `*` in an ilike filter as `%`, and db.js escapeLike does
+  // Regression (QA bug fixed 2026-10-26): PostgREST reads `*` in an ilike filter as `%`, and db.js escapeLike does
   // not escape it, so "Book*" matches the saved reader "BookLover42" and the new
   // reader is told the name is taken.
   test('a name containing * is not treated as a wildcard', async ({ page }) => {

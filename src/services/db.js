@@ -30,7 +30,8 @@ async function query(build, opts) {
 }
 
 // ---------- profiles ----------
-const escapeLike = (s) => s.replace(/[\\%_]/g, '\\$&')
+// LIKE wildcards (% _ \) plus PostgREST's own: it reads * in like/ilike values as %
+const escapeLike = (s) => s.replace(/[\\%_*]/g, '\\$&')
 
 /** Public, unique display names (ignoring case). */
 export async function isDisplayNameTaken(name) {

@@ -1,6 +1,8 @@
 /* Search Results + Genre pages */
 .browse {
   display: grid;
+  /* One column that may shrink below its content, so a long search word can't widen the page */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-4);
   align-content: start;
 }
@@ -8,6 +10,7 @@
 .browse-title {
   margin-top: var(--space-4);
   justify-self: start;
+  max-width: 100%;
   overflow-wrap: anywhere;
 }
 

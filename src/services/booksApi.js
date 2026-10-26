@@ -28,11 +28,14 @@ const MESSAGES = {
 
 const wait = (ms, signal) =>
   new Promise((resolve, reject) => {
+    const aborted = () => reject(new DOMException('Aborted', 'AbortError'))
+    // An already-aborted signal never fires 'abort' again, so check it first
+    if (signal?.aborted) return aborted()
     const t = setTimeout(resolve, ms)
     signal?.addEventListener('abort', () => {
       clearTimeout(t)
-      reject(new DOMException('Aborted', 'AbortError'))
-    })
+      aborted()
+    }, { once: true })
   })
 
 function simulateMode() {
@@ -67,7 +70,7 @@ const ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', 
 export function cleanText(html) {
   if (typeof html !== 'string') return html ?? null
   const text = html
-    .replace(/<\s*(br|\/p|\/li|\/div|\/h[1-6])\s*\/?>/gi, '\n')
+    .replace(/<\s*(br|\/p|\/li|\/div|\/h[1-6])\b[^>]*>/gi, '\n') // attributes allowed: <br clear=all>
     .replace(/<[^>]*>/g, '')
     .replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (m, e) => {
       if (e[0] === '#') {
@@ -154,11 +157,15 @@ export async function getBooks({ source, topic, q, type, genre, page = 0, pageSi
   }
 
   const res = await callBooks({ ...body, page, pageSize, kids }, signal)
+  // A 200 that isn't our JSON (e.g. a Wi-Fi login page) is an upstream failure, not a crash
+  if (!Array.isArray(res?.items)) throw new BooksApiError(502, MESSAGES[502])
   return { items: res.items.map(shape), page: res.page, nextPage: res.nextPage ?? null, totalItems: res.totalItems }
 }
 
 /** One book by its Google Books volume ID. Throws 404 when it does not exist. */
 export async function getBook(id, { signal } = {}) {
   if (!id || !/^[A-Za-z0-9_-]{1,64}$/.test(id)) throw new BooksApiError(400, 'Invalid book ID.')
-  return shape(await callBooks({ id }, signal))
+  const book = await callBooks({ id }, signal)
+  if (typeof book?.id !== 'string') throw new BooksApiError(502, MESSAGES[502])
+  return shape(book)
 }

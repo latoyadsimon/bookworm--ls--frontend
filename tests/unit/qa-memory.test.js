@@ -35,7 +35,7 @@ describe('memoryDb: library_items', () => {
     expect((await run(mem.addToLibrary(A, { volume_id: 'ok-vol', title: '' }))).error.code).toBe('23514')
   })
 
-  // QA-BUG: memoryDb.addToLibrary only checks `!title`; the live schema has
+  // Regression (QA bug fixed 2026-10-26): memoryDb.addToLibrary only checks `!title`; the live schema has
   // library_items_title_length CHECK (char_length(title) between 1 and 500), so a
   // session reader can save a 501-char title that a seed reader could not.
   it('rejects a title over 500 characters, like the live CHECK constraint', async () => {

@@ -227,6 +227,7 @@
 /* ---------- State messages ---------- */
 .state-message {
   display: grid;
+  grid-template-columns: minmax(0, 1fr); /* may shrink: messages can quote a long search word */
   justify-items: start;
   gap: var(--space-2);
   max-width: 640px;
@@ -242,14 +243,18 @@
   padding: var(--space-4);
 }
 .state-message-title {
+  max-width: 100%;
   font-size: 1.125rem;
   font-weight: 700;
+  overflow-wrap: anywhere;
 }
 .state-message.is-error .state-message-title {
   color: var(--error);
 }
 .state-message-body {
+  max-width: 100%;
   color: var(--text-muted);
+  overflow-wrap: anywhere;
 }
 .state-message-action {
   margin-top: var(--space-2);

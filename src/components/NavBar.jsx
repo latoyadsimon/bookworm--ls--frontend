@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router'
 import Icon from './Icon'
 import SearchBar from './SearchBar'
@@ -16,6 +16,7 @@ export default function NavBar() {
   const { user, profile, signOut } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
+  const menuButton = useRef(null)
 
   // Close the mobile panels whenever the route changes
   const routeKey = location.pathname + location.search
@@ -28,7 +29,12 @@ export default function NavBar() {
 
   useEffect(() => {
     if (!menuOpen) return
-    const onKey = (e) => e.key === 'Escape' && setMenuOpen(false)
+    // Esc closes the menu and puts focus back on its button (focus was inside the removed panel)
+    const onKey = (e) => {
+      if (e.key !== 'Escape') return
+      setMenuOpen(false)
+      menuButton.current?.focus()
+    }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [menuOpen])
@@ -113,6 +119,7 @@ export default function NavBar() {
           </div>
           <button
             type="button"
+            ref={menuButton}
             className="icon-btn nav-mobile-only"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}

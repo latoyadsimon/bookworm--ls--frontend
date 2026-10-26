@@ -86,7 +86,7 @@ describe('format helpers', () => {
     expect(formatDate('2026-10-25T15:30:00.123456+00:00')).toMatch(/^Oct 2[456], 2026$/)
   })
 
-  // QA-BUG: formatDate throws "RangeError: Invalid time value" for an unparsable
+  // Regression (QA bug fixed 2026-10-26): formatDate throws "RangeError: Invalid time value" for an unparsable
   // timestamp (Intl.DateTimeFormat.format(Invalid Date)), which would crash LogList /
   // LibraryPage into the crash screen instead of showing a blank date.
   it('formatDate does not throw for an unparsable value', () => {
@@ -153,7 +153,7 @@ describe('cleanText edge cases', () => {
     expect(cleanText('a<BR/>b<br />c<P>d</P>e')).toBe('a\nb\ncd\ne')
   })
 
-  // QA-BUG: a <br> or </p> with attributes or extra spacing (e.g. <br clear="all">) is
+  // Regression (QA bug fixed 2026-10-26): a <br> or </p> with attributes or extra spacing (e.g. <br clear="all">) is
   // stripped without a newline, so "end.<br clear=all>Start" becomes "end.Start".
   it('treats <br> with attributes as a line break', () => {
     expect(cleanText('end.<br clear="all">Start')).toBe('end.\nStart')

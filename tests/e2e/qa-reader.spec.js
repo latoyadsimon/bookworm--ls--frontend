@@ -193,7 +193,7 @@ test.describe('320px wide', () => {
   })
 })
 
-// QA-BUG: posting a log while "Loading logs…" is still showing loses it from the list.
+// Regression (QA bug fixed 2026-10-26): posting a log while "Loading logs…" is still showing loses it from the list.
 // BookDetailsPage.jsx:158 prepends the new log with logs.setData(), but the in-flight
 // load in useLoad.js:115 resolves afterwards and replaces the list with the older
 // snapshot. The log IS saved (201), so the reader thinks it failed and may post it twice.

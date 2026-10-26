@@ -108,7 +108,7 @@ export async function addToLibrary(authUserId, { volume_id, title, authors = [],
   if (err) return { data: null, error: err }
   if (!authUserId) return fail('permission denied for table library_items', '42501')
   if (!volume_id || volume_id.length > 64) return fail('violates check constraint "library_items_volume_id_length"', '23514')
-  if (!title) return fail('violates check constraint "library_items_title_length"', '23514')
+  if (!title || title.length > 500) return fail('violates check constraint "library_items_title_length"', '23514')
   // Real covers must be https. Mock covers are inline SVG data URIs, which are allowed here only.
   if (thumbnail_url && !/^(https:\/\/|data:image\/)/.test(thumbnail_url)) {
     return fail('violates check constraint "library_items_thumbnail_https"', '23514')
