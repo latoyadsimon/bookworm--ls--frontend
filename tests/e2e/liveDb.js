@@ -1,11 +1,32 @@
 // Direct access to the live database for test cleanup only. Tests that write
-// (library status, logs, theme) snapshot one reader first and restore it after,
-// so the seed data stays 4 profiles / 10 library_items / 8 logs.
+// (library status, logs, theme) snapshot one seed reader first and restore it
+// after, so the seed data stays as it was. RLS applies here too: the client
+// signs in as that reader, so it can only touch that reader's rows.
 import { createClient } from '@supabase/supabase-js'
 import { loadEnv } from 'vite'
+import { seedReader } from './seedReaders.js'
 
 const env = loadEnv('development', process.cwd(), 'VITE_')
-const client = () => createClient(env.VITE_SUPABASE_URL, env.VITE_SUPABASE_ANON_KEY, { auth: { persistSession: false, autoRefreshToken: false } })
+
+// One signed-in client per seed reader per worker: Supabase Auth rate-limits sign-ins per IP,
+// so the session is reused (autoRefreshToken keeps it valid) instead of signing in per call.
+const sessions = new Map()
+
+export function signedInAs(userId) {
+  if (!sessions.has(userId)) {
+    const reader = seedReader(userId)
+    if (!reader) throw new Error(`liveDb: ${userId} is not a seed reader`)
+    const db = createClient(env.VITE_SUPABASE_URL, env.VITE_SUPABASE_ANON_KEY, { auth: { persistSession: false } })
+    sessions.set(userId, db.auth.signInWithPassword({ email: reader.email, password: reader.password }).then(({ error }) => {
+      if (error) {
+        sessions.delete(userId)
+        throw new Error(`liveDb: sign-in failed: ${error.message}`)
+      }
+      return db
+    }))
+  }
+  return sessions.get(userId)
+}
 
 const must = ({ data, error }) => {
   if (error) throw new Error(`live DB cleanup failed: ${error.message}`)
@@ -13,7 +34,7 @@ const must = ({ data, error }) => {
 }
 
 export async function snapshot(userId) {
-  const db = client()
+  const db = await signedInAs(userId)
   return {
     userId,
     profile: must(await db.from('profiles').select('*').eq('id', userId).single()),
@@ -28,7 +49,7 @@ export async function snapshot(userId) {
 const same = (a, b) => JSON.stringify(Object.entries(a).sort()) === JSON.stringify(Object.entries(b).sort())
 
 export async function restore({ userId, profile, items, logs }) {
-  const db = client()
+  const db = await signedInAs(userId)
   const snapItems = new Map(items.map((i) => [i.id, i]))
   const snapLogs = new Map(logs.map((l) => [l.id, l]))
 
@@ -44,7 +65,7 @@ export async function restore({ userId, profile, items, logs }) {
   const haveLogs = new Set(must(await db.from('logs').select('id').eq('user_id', userId)).map((l) => l.id))
   for (const log of logs) if (!haveLogs.has(log.id)) must(await db.from('logs').insert(log))
 
-  // anon may only UPDATE display_name and theme, so profiles.updated_at cannot be restored
+  // A reader may only UPDATE display_name and theme, so profiles.updated_at cannot be restored
   const now = must(await db.from('profiles').select('theme, display_name').eq('id', userId).single())
   if (now.theme !== profile.theme || now.display_name !== profile.display_name) {
     must(await db.from('profiles').update({ theme: profile.theme, display_name: profile.display_name }).eq('id', userId))

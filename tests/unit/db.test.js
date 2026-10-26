@@ -1,5 +1,5 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
-import * as db from '../../src/services/mock/memoryDb'
+import * as db from './support/memoryDb'
 import { run } from './helpers'
 
 // The in-memory store (readers who sign up during a session) enforces the same

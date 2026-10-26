@@ -207,7 +207,7 @@ describe('featuredApi edge cases', () => {
 describe('db adapter: scoping and errors', () => {
   const last = () => calls.at(-1)
 
-  it('every write and private read is scoped to the signed-in reader', async () => {
+  it('every private read, update and delete is scoped to the signed-in reader; inserts never send user_id', async () => {
     await db.getLibraryItem(ME, 'v')
     await db.listLibrary(ME)
     await db.updateLibraryStatus(ME, 'i', 'reading')
@@ -217,9 +217,9 @@ describe('db adapter: scoping and errors', () => {
     await db.deleteLog(ME, 'l')
     for (const c of calls) expect(stepsOf(c)).toContain(`eq(user_id,${ME})`)
     await db.addToLibrary(ME, { volume_id: 'v', title: 't' })
-    expect(last().steps[0][1][0].user_id).toBe(ME)
+    expect(last().steps[0][1][0]).not.toHaveProperty('user_id')
     await db.addLog(ME, { library_item_id: 'i', volume_id: 'v', body: 'b' })
-    expect(last().steps[0][1][0].user_id).toBe(ME)
+    expect(last().steps[0][1][0]).not.toHaveProperty('user_id')
   })
 
   it('updateProfile never sends a query for another reader’s row', async () => {
@@ -274,16 +274,11 @@ describe('db adapter: scoping and errors', () => {
     expect(await db.isDisplayNameTaken('nobody-has-this')).toBe(false)
   })
 
-  it('listLogsForVolume merges saved rows newest first and reports saved-store errors', async () => {
-    queueResult({
-      data: [
-        { id: 'b', created_at: '2026-10-02T00:00:00+00:00' },
-        { id: 'a', created_at: '2026-10-03T00:00:00.5+00:00' },
-      ],
-      error: null,
-    })
+  it('listLogsForVolume asks the database for newest first and reports errors', async () => {
+    queueResult({ data: [{ id: 'a' }, { id: 'b' }], error: null })
     const res = await run(db.listLogsForVolume('v'))
     expect(res.data.map((l) => l.id)).toEqual(['a', 'b'])
+    expect(stepsOf(last())).toContain('order(created_at,{"ascending":false})')
     queueResult({ data: null, error: { message: 'boom' } })
     expect((await run(db.listLogsForVolume('v'))).error.code).toBe('NETWORK')
   })

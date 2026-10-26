@@ -1,4 +1,4 @@
-import { BOOK_URL, DEMO_LOGIN, NEON_ID, expect, logIn, test } from './fixtures.js'
+import { BOOK_URL, DEMO_LOGIN, NEON_ID, expect, logIn, mockSignUp, test } from './fixtures.js'
 
 const submit = (page) => page.getByRole('button', { name: 'Log In', exact: true }).click()
 const createAccount = (page) => page.getByRole('button', { name: /Create Account|Creating/ }).click()
@@ -33,15 +33,25 @@ test.describe('Log In', () => {
     await expect(alertBox(page)).toHaveText('Email or password is incorrect.')
   })
 
-  test('slows down repeated failures', async ({ page }) => {
+  test('explains a rate limit from Supabase Auth', async ({ page }) => {
+    await page.route('**/auth/v1/token*', (route) =>
+      route.fulfill({ status: 429, json: { code: 429, error_code: 'over_request_rate_limit', msg: 'Request rate limit reached' } }),
+    )
     await page.goto('/login')
     await page.getByLabel('Email').fill(DEMO_LOGIN.email)
     await page.getByLabel('Password', { exact: true }).fill('wrongpass')
-    for (let i = 0; i < 6; i++) {
-      await submit(page)
-      await expect(page.locator('.auth-submit')).toBeEnabled()
-    }
+    await submit(page)
     await expect(alertBox(page)).toHaveText('Too many attempts. Please wait a minute and try again.')
+  })
+
+  test('stays signed in after a refresh and a deep link', async ({ page }) => {
+    await page.goto('/login')
+    await logIn(page)
+    await page.reload()
+    await expect(page.getByRole('button', { name: 'Log Out' })).toBeVisible()
+    await page.goto('/library')
+    await expect(page).toHaveURL(/\/library/)
+    await expect(page.locator('.nav-user')).toHaveText('BookLover42')
   })
 
   test('signed-in readers are sent away from Log In', async ({ page }) => {
@@ -102,6 +112,7 @@ test.describe('Sign Up', () => {
   })
 
   test('creates an account and signs in', async ({ page }) => {
+    await mockSignUp(page, { email: 'fresh@reader.dev', display_name: 'Fresh Reader' })
     await page.goto('/signup')
     await page.getByLabel(/Display name/).fill('Fresh Reader')
     await page.getByLabel('Email').fill('fresh@reader.dev')

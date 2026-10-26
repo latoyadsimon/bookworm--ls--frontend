@@ -1,9 +1,8 @@
 // QA audit: signed-in flows that write to the live database, as QuietReader only.
 // The `dbUser` fixture snapshots QuietReader before every test and restores it after,
 // and the file runs serially so the snapshots never overlap.
-import { createClient } from '@supabase/supabase-js'
-import { loadEnv } from 'vite'
 import { FEATURED, expect, logIn, sidewaysScroll, test, toast } from './fixtures.js'
+import { signedInAs } from './liveDb.js'
 
 // 'default' keeps the tests in order in one worker (no overlapping snapshots) but,
 // unlike 'serial', keeps going after a failure.
@@ -15,10 +14,9 @@ const OTHER_BOOK = { id: 'hjEFCAAAQBAJ', title: 'The Clean Code Handbook' }
 const LOG_BOX = 'What did you read? What do you think?'
 test.use({ dbUser: QR_ID })
 
-const env = loadEnv('development', process.cwd(), 'VITE_')
-const live = createClient(env.VITE_SUPABASE_URL, env.VITE_SUPABASE_ANON_KEY, { auth: { persistSession: false, autoRefreshToken: false } })
+// Reads QuietReader's own rows as QuietReader (RLS: a reader sees only their library)
 async function liveRows(table, filters) {
-  let q = live.from(table).select('*').eq('user_id', QR_ID)
+  let q = (await signedInAs(QR_ID)).from(table).select('*').eq('user_id', QR_ID)
   for (const [k, v] of Object.entries(filters)) q = q.eq(k, v)
   const { data, error } = await q
   if (error) throw new Error(error.message)

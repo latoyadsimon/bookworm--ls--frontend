@@ -11,12 +11,23 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     let active = true
-    const { data } = auth.onAuthStateChange(async (event, session) => {
-      const profile = session ? (await getProfile(session.user.id)).data : null
-      if (!active) return
-      // A reader's saved style mode wins when they log in
-      if (event === 'SIGNED_IN' && profile && findMode(profile.theme)) setMode(profile.theme)
-      setState({ ready: true, session, profile })
+    let loadedFor = null // the user whose profile is in state
+    const { data } = auth.onAuthStateChange((event, session) => {
+      const userId = session?.user.id ?? null
+      // A token refresh keeps the same reader: just swap the session
+      if (userId && userId === loadedFor && event !== 'SIGNED_IN') {
+        setState((s) => ({ ...s, session }))
+        return
+      }
+      // Deferred: awaiting another Supabase call inside this callback can deadlock supabase-js's auth lock
+      setTimeout(async () => {
+        const profile = userId ? (await getProfile(userId)).data : null
+        if (!active) return
+        loadedFor = userId
+        // A reader's saved style mode wins when they log in
+        if (event === 'SIGNED_IN' && profile && findMode(profile.theme)) setMode(profile.theme)
+        setState({ ready: true, session, profile })
+      }, 0)
     })
     return () => {
       active = false

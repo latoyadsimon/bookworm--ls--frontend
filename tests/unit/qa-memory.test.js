@@ -1,10 +1,6 @@
-// QA audit: memoryDb rules (the checklist for the real schema) and the auth mock.
+// QA audit: memoryDb rules (the checklist for the real schema).
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
-import { queueResult, resetMock } from './supabaseMock'
-
-vi.mock('../../src/lib/supabase.js', async () => (await import('./supabaseMock.js')).mockModule)
-import * as mem from '../../src/services/mock/memoryDb'
-import { auth } from '../../src/services/auth'
+import * as mem from './support/memoryDb'
 import { run } from './helpers'
 
 const A = 'qa-user-a'
@@ -14,14 +10,8 @@ beforeAll(() => {
   mem.createProfileForUser({ id: A, user_metadata: { display_name: 'QaAlpha' } })
   mem.createProfileForUser({ id: B, user_metadata: { display_name: 'QaBeta' } })
 })
-beforeEach(() => {
-  resetMock()
-  vi.useFakeTimers()
-})
-afterEach(async () => {
-  await run(auth.signOut())
-  vi.useRealTimers()
-})
+beforeEach(() => vi.useFakeTimers())
+afterEach(() => vi.useRealTimers())
 
 const add = async (user, volume_id, extra = {}) => (await run(mem.addToLibrary(user, { volume_id, title: volume_id, ...extra }))).data
 const log = (user, item, body = 'ok', rating = null) =>
@@ -156,67 +146,5 @@ describe('memoryDb: profiles', () => {
     expect(mem.updateProfile(A, A, { theme: 'hacker-green' }).error.code).toBe('23514')
     expect(mem.updateProfile(A, A, { display_name: 'x'.repeat(31) }).error.code).toBe('23514')
     expect(mem.updateProfile(A, A, { display_name: 'qabeta' }).error.code).toBe('23505')
-  })
-})
-
-describe('auth mock', () => {
-  const signIn = (email, password) => run(auth.signInWithPassword({ email, password }))
-  const signUp = (email, password, display_name) => run(auth.signUp({ email, password, options: { data: { display_name } } }))
-
-  it('treats a different-case copy of an existing email as already registered', async () => {
-    expect((await signUp('  DEMO@BookWorm.DEV ', 'secret1', 'QaCaseOne')).error.code).toBe('user_already_exists')
-  })
-
-  it('stores new emails lower-case, so login works with any casing', async () => {
-    expect((await signUp('QA.Mixed@Example.COM', 'secret1', 'QaMixed')).error).toBeNull()
-    await run(auth.signOut())
-    const { data, error } = await signIn('qa.mixed@example.com', 'secret1')
-    expect(error).toBeNull()
-    expect(data.user.email).toBe('qa.mixed@example.com')
-    expect(data.user).not.toHaveProperty('password')
-  })
-
-  it('password length boundary: 5 fails, 6 passes', async () => {
-    expect((await signUp('qa.five@example.com', '12345', 'QaFive')).error.code).toBe('weak_password')
-    expect((await signUp('qa.six@example.com', '123456', 'QaSix')).error).toBeNull()
-  })
-
-  it('a display name taken by a saved reader in another case aborts sign-up and creates nothing', async () => {
-    queueResult({ data: [{ id: 'seed' }], error: null }) // ilike match in profiles
-    expect((await signUp('qa.taken@example.com', 'secret1', 'quietREADER')).error.code).toBe('unexpected_failure')
-    expect((await signIn('qa.taken@example.com', 'secret1')).error.code).toBe('invalid_credentials')
-  })
-
-  it('the lockout blocks even the right password, then resets after a minute', async () => {
-    const email = 'pageturner@example.com'
-    for (let i = 0; i < 5; i++) expect((await signIn(email, 'wrong!')).error.code).toBe('invalid_credentials')
-    expect((await signIn(email, 'pageturner1')).error.code).toBe('over_request_rate_limit')
-    vi.advanceTimersByTime(61_000)
-    expect((await signIn(email, 'pageturner1')).error).toBeNull()
-  })
-
-  it('a success clears the failure count', async () => {
-    const email = 'neonnovelist@example.com'
-    for (let i = 0; i < 4; i++) await signIn(email, 'wrong!')
-    expect((await signIn(email, 'neonnovelist1')).error).toBeNull()
-    await run(auth.signOut())
-    for (let i = 0; i < 4; i++) expect((await signIn(email, 'wrong!')).error.code).toBe('invalid_credentials')
-    expect((await signIn(email, 'neonnovelist1')).error).toBeNull()
-  })
-
-  it('locks per email: one locked address does not block another', async () => {
-    for (let i = 0; i < 5; i++) await signIn('qa.locked@example.com', 'nope')
-    expect((await signIn('qa.locked@example.com', 'nope')).error.code).toBe('over_request_rate_limit')
-    expect((await signIn('quietreader@example.com', 'quietreader1')).error).toBeNull()
-  })
-
-  it('emits SIGNED_OUT and clears the session on sign-out', async () => {
-    await signIn('quietreader@example.com', 'quietreader1')
-    const events = []
-    const { data } = auth.onAuthStateChange((e, s) => events.push([e, s?.user?.email ?? null]))
-    await run(auth.signOut())
-    data.subscription.unsubscribe()
-    expect(events).toContainEqual(['SIGNED_OUT', null])
-    expect((await auth.getSession()).data.session).toBeNull()
   })
 })

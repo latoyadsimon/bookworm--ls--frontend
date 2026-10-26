@@ -11,6 +11,7 @@ export const resetMock = () => {
   calls.length = 0
   results = []
   invoke.mockReset()
+  for (const fn of Object.values(authApi)) fn.mockReset()
 }
 
 function builder(table) {
@@ -35,7 +36,14 @@ function builder(table) {
 }
 
 export const invoke = vi.fn()
-export const supabase = { from: vi.fn((table) => builder(table)), functions: { invoke } }
+export const authApi = {
+  signUp: vi.fn(),
+  signInWithPassword: vi.fn(),
+  signOut: vi.fn(),
+  getSession: vi.fn(),
+  onAuthStateChange: vi.fn(),
+}
+export const supabase = { from: vi.fn((table) => builder(table)), functions: { invoke }, auth: authApi }
 export const mockModule = { supabase, FUNCTION_REGION: 'us-east-2' }
 
 /** The steps of a recorded query as `method(args)` strings, e.g. `eq(user_id,u1)`. */

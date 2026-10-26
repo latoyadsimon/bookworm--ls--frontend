@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router'
 import FormField from '../components/FormField'
 import { returnPath, useAuth } from '../context/auth-context'
 import { EMAIL_PATTERN, friendlyAuthError } from '../lib/authErrors'
-import { DEMO_LOGIN } from '../services/mock/seed'
+import { DEMO_LOGIN } from '../lib/demoLogin'
 import './auth.css'
 
 function validate({ email, password }) {

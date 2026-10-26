@@ -1,14 +1,14 @@
-// In-memory database for readers who signed up this session (they are not saved
-// to Supabase). Functions return supabase-js style `{ data, error }` and enforce
-// the same rules the real constraints, RLS policies and grants do:
+// Test helper: an in-memory model of the BookWorm database. Functions return
+// supabase-js style `{ data, error }` and enforce the same rules the real
+// constraints, RLS policies and grants do (db.test.js documents them):
 //   - library_items: visible to and changeable by their owner only
 //   - logs: readable by everyone; written only by their author, and only for a
 //     book in the author's own library (composite foreign key)
 //   - removing a library item deletes its logs (ON DELETE CASCADE)
-// Everything resets on refresh. The seed readers live in Supabase (see ../db.js).
+// The app itself always uses Supabase (src/services/db.js).
 
-import { MODES } from '../../theme/modes'
-import { simulatedError } from '../simulate'
+import { MODES } from '../../../src/theme/modes'
+import { simulatedError } from '../../../src/services/simulate'
 
 const THEMES = MODES.map((m) => m.key)
 export const STATUSES = ['want_to_read', 'reading', 'finished']

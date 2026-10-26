@@ -1,4 +1,4 @@
-import { BOOK_URL, DEMO_ID, contentReady, expect, logIn, sidewaysScroll, test, toast } from './fixtures.js'
+import { BOOK_URL, DEMO_ID, contentReady, expect, logIn, mockSignUp, sidewaysScroll, test, toast } from './fixtures.js'
 
 // These tests write to the live database as the demo reader. The `dbUser`
 // fixture snapshots that reader first and restores it after every test, and
@@ -127,6 +127,7 @@ test.describe('My Library', () => {
 })
 
 test('a new reader sees an empty library with a way to browse', async ({ page }) => {
+  await mockSignUp(page, { email: 'newbie@reader.dev', display_name: 'Newbie' })
   await page.goto('/signup')
   await page.getByLabel(/Display name/).fill('Newbie')
   await page.getByLabel('Email').fill('newbie@reader.dev')

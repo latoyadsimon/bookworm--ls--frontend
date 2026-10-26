@@ -4,7 +4,7 @@ import { calls, queueResult, resetMock, stepsOf } from './supabaseMock'
 
 vi.mock('../../src/lib/supabase.js', async () => (await import('./supabaseMock.js')).mockModule)
 
-// Seed readers go through supabase-js, always scoped to their own user_id.
+// Every reader goes through supabase-js; RLS enforces ownership, and the user_id filters state the intent.
 const ME = '00000000-0000-4000-a000-000000000001'
 const last = () => calls.at(-1)
 
@@ -23,10 +23,10 @@ describe('library_items', () => {
     expect(stepsOf(last())).toEqual(['select(*)', `eq(user_id,${ME})`, 'eq(volume_id,vol1)', 'maybeSingle()'])
   })
 
-  it('inserts with an explicit user_id', async () => {
+  it('inserts without a user_id: the database fills it from the signed-in reader', async () => {
     await db.addToLibrary(ME, { volume_id: 'v', title: 't' })
     const [, [row]] = last().steps[0]
-    expect(row).toEqual({ user_id: ME, volume_id: 'v', title: 't', authors: [], thumbnail_url: null })
+    expect(row).toEqual({ volume_id: 'v', title: 't', authors: [], thumbnail_url: null })
   })
 
   it('scopes status updates and deletes by id and user_id', async () => {
@@ -61,9 +61,9 @@ describe('logs', () => {
     expect(stepsOf(calls[0])).toEqual(['select(*, profiles(display_name))', 'eq(volume_id,v)', 'order(created_at,{"ascending":false})'])
   })
 
-  it('inserts with user_id and the library item', async () => {
+  it('inserts the library item without a user_id (the database fills it from the session)', async () => {
     await db.addLog(ME, { library_item_id: 'i1', volume_id: 'v', body: '  hi ', rating: 4 })
-    expect(last().steps[0][1][0]).toEqual({ user_id: ME, library_item_id: 'i1', volume_id: 'v', body: 'hi', rating: 4 })
+    expect(last().steps[0][1][0]).toEqual({ library_item_id: 'i1', volume_id: 'v', body: 'hi', rating: 4 })
   })
 
   it('scopes log edits and deletes by id and user_id', async () => {
@@ -96,10 +96,9 @@ describe('profiles', () => {
   })
 })
 
-describe('in-memory readers never reach the database', () => {
-  it('routes a session-only reader to memory', async () => {
-    const res = await db.listLibrary(null)
-    expect(res.error.code).toBe('42501')
+describe('guests', () => {
+  it('a guest has no library item, and the database is not asked', async () => {
+    expect(await db.getLibraryItem(undefined, 'v')).toEqual({ data: null, error: null })
     expect(calls).toHaveLength(0)
   })
 })

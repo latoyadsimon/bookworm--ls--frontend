@@ -1,6 +1,6 @@
 // QA audit: guest-only (read-only) browser checks. No login, no database writes.
 // Books and featured picks come from the fixtures, so Google is never called.
-import { BOOK_URL, FEATURED, bookCards, contentReady, expect, sidewaysScroll, test } from './fixtures.js'
+import { BOOK_URL, FEATURED, bookCards, contentReady, expect, mockSignUp, sidewaysScroll, test } from './fixtures.js'
 import { CATALOG } from './booksFixture.js'
 
 const searchForm = (page) => page.getByRole('search').first()
@@ -200,7 +200,7 @@ test.describe('Navigation through every guest route', () => {
     await expect(page.locator('#book-title')).toBeVisible()
     await page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'Log In' }).click()
     await expect(page).toHaveURL(/\/login$/)
-    await page.getByRole('link', { name: 'Sign up' }).click()
+    await page.getByRole('link', { name: 'Sign up', exact: true }).click()
     await expect(page).toHaveURL(/\/signup$/)
     await page.getByRole('link', { name: 'BookWorm home' }).click()
     await expect(page).toHaveURL(/\/$/)
@@ -235,7 +235,7 @@ test.describe('Saved preferences', () => {
   })
 })
 
-test.describe('Sign Up display names (no account is saved to the database)', () => {
+test.describe('Sign Up display names (sign-up is mocked: no account is saved to the database)', () => {
   const fill = async (page, name, email) => {
     await page.getByLabel('Display name').fill(name)
     await page.getByLabel('Email').fill(email)
@@ -252,6 +252,7 @@ test.describe('Sign Up display names (no account is saved to the database)', () 
   })
 
   test('a name with SQL LIKE wildcards (_ and %) is not treated as a pattern', async ({ page }) => {
+    await mockSignUp(page, { email: 'qa-like@example.com', display_name: 'Q_ietReader' })
     await page.goto('/signup')
     await fill(page, 'Q_ietReader', `qa-like-${Date.now()}@example.com`)
     await expect(page.getByRole('button', { name: 'Log Out' })).toBeVisible()
@@ -259,8 +260,9 @@ test.describe('Sign Up display names (no account is saved to the database)', () 
 
   // QA-BUG: PostgREST reads `*` in an ilike filter as `%`, and db.js escapeLike does
   // not escape it, so "Book*" matches the saved reader "BookLover42" and the new
-  // reader is told the name is taken. (Session sign-ups live in memory only.)
+  // reader is told the name is taken.
   test('a name containing * is not treated as a wildcard', async ({ page }) => {
+    await mockSignUp(page, { email: 'qa-star@example.com', display_name: 'Book*' })
     await page.goto('/signup')
     await fill(page, 'Book*', `qa-star-${Date.now()}@example.com`)
     await expect(page.getByRole('button', { name: 'Log Out' }).or(page.locator('.field-error'))).toBeVisible()
