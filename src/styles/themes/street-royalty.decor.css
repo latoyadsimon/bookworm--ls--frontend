@@ -1,0 +1,168 @@
+/* 👑 Street Royalty components: stickers, spray paint and crowns. Decorative only. */
+
+[data-theme='street-royalty'] .site-header {
+  border-bottom: 2px solid rgb(255 46 147 / 0.45);
+}
+[data-theme='street-royalty'] .nav-logo-text {
+  color: #ff2e93;
+  text-shadow:
+    2px 2px 0 #000,
+    0 0 14px rgb(255 46 147 / 0.55);
+}
+/* Crown above the active nav link (also bold + underline, never color alone) */
+[data-theme='street-royalty'] .nav-link.is-active::before {
+  content: '';
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  width: 16px;
+  height: 10px;
+  transform: translateX(-50%);
+  background: #ffd23f;
+  clip-path: polygon(0 100%, 0 20%, 25% 60%, 50% 0, 75% 60%, 100% 20%, 100% 100%);
+}
+
+/* ---------- Buttons: die-cut stickers ---------- */
+[data-theme='street-royalty'] .btn-primary {
+  font-weight: 800;
+  box-shadow:
+    0 0 0 3px #ffffff,
+    6px 6px 0 3px #000000;
+}
+[data-theme='street-royalty'] .btn-primary:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow:
+    0 0 0 3px #ffffff,
+    9px 9px 0 3px #000000;
+}
+[data-theme='street-royalty'] .btn-secondary {
+  background: #1e1a22;
+  border-color: #ffd23f;
+  box-shadow: 4px 4px 0 #000000;
+}
+[data-theme='street-royalty'] .btn-secondary:hover:not(:disabled) {
+  background: #2a2430;
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0 #000000;
+}
+[data-theme='street-royalty'] :is(.hero-actions, .book-actions, .state-message) .btn:nth-of-type(odd) {
+  rotate: -1.5deg;
+}
+[data-theme='street-royalty'] :is(.hero-actions, .book-actions, .state-message) .btn:nth-of-type(even) {
+  rotate: 1deg;
+}
+
+/* ---------- Titles: spray-stenciled with drips ---------- */
+[data-theme='street-royalty'] .drip {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 16px;
+  rotate: -1deg;
+  text-shadow:
+    3px 3px 0 #000,
+    0 0 22px rgb(255 46 147 / 0.5);
+}
+[data-theme='street-royalty'] .drip::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 16px;
+  background:
+    linear-gradient(#ff2e93, #ff2e93) top / 100% 4px no-repeat,
+    radial-gradient(circle at 12% 0, #ff2e93 4px, transparent 5px),
+    radial-gradient(ellipse 3px 10px at 12% 4px, #ff2e93 99%, transparent),
+    radial-gradient(ellipse 2.5px 7px at 41% 3px, #ff2e93 99%, transparent),
+    radial-gradient(circle at 41% 0, #ff2e93 3px, transparent 4px),
+    radial-gradient(ellipse 3.5px 12px at 78% 5px, #ff2e93 99%, transparent),
+    radial-gradient(circle at 78% 0, #ff2e93 5px, transparent 6px);
+  pointer-events: none;
+}
+[data-theme='street-royalty'] .book-row-head h2 {
+  font-size: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
+}
+
+/* ---------- Covers: taped up on the wall, peel on hover ---------- */
+[data-theme='street-royalty'] .book-card::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  z-index: 2;
+  width: 52px;
+  height: 18px;
+  background: rgb(255 244 214 / 0.62);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
+  transform: translateX(-50%) rotate(-4deg);
+  pointer-events: none;
+}
+[data-theme='street-royalty'] .book-grid > li:nth-child(even) .book-card::before,
+[data-theme='street-royalty'] .book-row-scroller > li:nth-child(even) .book-card::before {
+  transform: translateX(-50%) rotate(5deg);
+}
+[data-theme='street-royalty'] .book-card .cover {
+  transform-origin: top center;
+}
+
+/* ---------- Hero: the Queen's Pick mural ---------- */
+[data-theme='street-royalty'] .hero {
+  margin-top: var(--space-4);
+  padding: var(--space-6) var(--space-5);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgb(255 46 147 / 0.2), rgb(0 229 212 / 0.08) 65%),
+    rgb(30 26 34 / 0.86);
+  box-shadow:
+    0 0 0 3px #ff2e93,
+    10px 10px 0 0 #000000;
+}
+@media (min-width: 768px) {
+  [data-theme='street-royalty'] .hero {
+    padding: var(--space-7);
+  }
+}
+[data-theme='street-royalty'] .hero-title,
+[data-theme='street-royalty'] .book-title {
+  color: #ffffff;
+  /* Scales with the type: about 4px/8px on a desktop headline, lighter on phones */
+  text-shadow:
+    0.08em 0.08em 0 #ff2e93,
+    0.16em 0.16em 0 #000000;
+}
+[data-theme='street-royalty'] .hero-badge {
+  transform: rotate(-4deg);
+  font-weight: 800;
+  box-shadow:
+    0 0 0 2px #000,
+    3px 3px 0 2px #000;
+}
+[data-theme='street-royalty'] .hero-badge::before {
+  content: '👑 ' / '';
+}
+
+/* ---------- Chips + panels ---------- */
+[data-theme='street-royalty'] .chips li:nth-child(odd) .chip {
+  transform: rotate(-2deg);
+}
+[data-theme='street-royalty'] .chips li:nth-child(even) .chip {
+  transform: rotate(1.5deg);
+}
+[data-theme='street-royalty'] .chip {
+  box-shadow: 3px 3px 0 #000;
+}
+[data-theme='street-royalty'] .chip:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+[data-theme='street-royalty'] .log-item {
+  border-left-color: #00e5d4;
+}
+[data-theme='street-royalty'] .log-item.is-mine {
+  border-left-color: #ff2e93;
+}
+[data-theme='street-royalty'] .status-art-code {
+  color: #ff2e93;
+  text-shadow:
+    4px 4px 0 #000,
+    0 0 30px rgb(255 46 147 / 0.55);
+}

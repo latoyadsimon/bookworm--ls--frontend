@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BookWorm Style Modes (v2)</title>
+<!-- v2 board: real frames of each mode's animated scene, captured from the running app.
+     The original palette board is kept as style_modes_board_v1.html/png for comparison. -->
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { width: 2160px; padding: 36px 40px 44px; background: #f1efea; color: #222; font-family: Inter, system-ui, sans-serif; }
+  .title { font-family: Kalam, cursive; font-size: 52px; }
+  .sub { color: #555; font-size: 20px; margin: 4px 0 26px; }
+  .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .tile { border-radius: 16px; overflow: hidden; background: var(--bg); color: var(--text); box-shadow: 0 8px 22px rgb(0 0 0 / 0.14); }
+  .head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 16px 20px 12px; }
+  .name { font-size: 26px; font-weight: 700; }
+  .vibe { font-size: 14px; opacity: 0.8; }
+  .swatches { display: flex; gap: 6px; }
+  .swatches span { width: 22px; height: 22px; border-radius: 6px; border: 1px solid rgb(127 127 127 / 0.35); }
+  .shot { display: block; width: 100%; aspect-ratio: 1280 / 860; object-fit: cover; object-position: top; border-block: 1px solid rgb(127 127 127 / 0.25); }
+  .notes { display: grid; gap: 6px; padding: 14px 20px 18px; font-size: 14.5px; line-height: 1.45; }
+  .notes b { color: var(--accent-text); }
+</style>
+</head>
+<body>
+<div class="title">BookWorm — Style Modes v2</div>
+<div class="sub">Real frames from the app. Every mode has an animated scene (calm behind text, paused by the 🎨 switch, reduced motion or a hidden tab) plus its own components. Compare with style_modes_board_v1.png.</div>
+<div class="board">
+
+  <section class="tile" style="--bg:#120F14;--text:#fff;--accent-text:#FF2E93">
+    <div class="head"><div><div class="name">👑 Street Royalty</div><div class="vibe">Graffiti wall meets princess power · default</div></div>
+      <div class="swatches"><span style="background:#FF2E93"></span><span style="background:#FFD23F"></span><span style="background:#00E5D4"></span></div></div>
+    <img class="shot" src="style_modes_board_assets/street-royalty.png" alt="Street Royalty home page">
+    <div class="notes"><div><b>Scene:</b> brick wall, drifting spray-paint clouds, paint drips running down, twinkling crowns, giant faded tags</div>
+      <div><b>Pops:</b> "Queen's Pick" mural hero, die-cut sticker buttons, covers taped to the wall, spray-stenciled titles</div></div>
+  </section>
+
+  <section class="tile" style="--bg:#1F1712;--text:#F3E9D7;--accent-text:#C9A227">
+    <div class="head"><div><div class="name">🕯️ Cozy Library</div><div class="vibe">Lamp-lit reading room</div></div>
+      <div class="swatches"><span style="background:#C9A227"></span><span style="background:#2F5D50"></span><span style="background:#8C2F39"></span></div></div>
+    <img class="shot" src="style_modes_board_assets/cozy-library.png" alt="Cozy Library home page">
+    <div class="notes"><div><b>Scene:</b> breathing lamp glow, dust motes in a light beam, rain on an arched window, a bookshelf along the floor</div>
+      <div><b>Pops:</b> leather-bound hero with gold stitching and ribbon, brass-plaque buttons, gold-leaf drop cap, wooden shelf rows</div></div>
+  </section>
+
+  <section class="tile" style="--bg:#FBF5EE;--text:#3B2A20;--accent-text:#8B4A2B">
+    <div class="head"><div><div class="name">☕ Little Cafe</div><div class="vibe">Sweet corner cafe</div></div>
+      <div class="swatches"><span style="background:#8B4A2B"></span><span style="background:#E8B4B8"></span><span style="background:#9CB59A"></span></div></div>
+    <img class="shot" src="style_modes_board_assets/little-cafe.png" alt="Little Cafe home page">
+    <div class="notes"><div><b>Scene:</b> a steaming latte, falling sprinkles and coffee beans, bokeh, swaying striped awnings, gingham tablecloth</div>
+      <div><b>Pops:</b> "Today's Special" menu-card hero, chalkboard section signs, macaron buttons, lace doily covers, notecard logs</div></div>
+  </section>
+
+  <section class="tile" style="--bg:#0A0A12;--text:#E8F7FF;--accent-text:#00F0FF">
+    <div class="head"><div><div class="name">🕹️ Neon Arcade</div><div class="vibe">Futuristic tech arcade</div></div>
+      <div class="swatches"><span style="background:#00F0FF"></span><span style="background:#FF00E5"></span><span style="background:#B8FF3C"></span></div></div>
+    <img class="shot" src="style_modes_board_assets/neon-arcade.png" alt="Neon Arcade home page">
+    <div class="notes"><div><b>Scene:</b> striped synthwave sun, perspective grid floor scrolling toward you, blinking pixel stars, scan beam</div>
+      <div><b>Pops:</b> "High Score" arcade-screen hero, neon-tube buttons, CRT-offset headings, cabinet bezels, "INSERT COIN"</div></div>
+  </section>
+
+  <section class="tile" style="--bg:#0B1026;--text:#EEF1FF;--accent-text:#F4C95D">
+    <div class="head"><div><div class="name">🌙 Midnight Observatory</div><div class="vibe">Stargazing night reads</div></div>
+      <div class="swatches"><span style="background:#F4C95D"></span><span style="background:#9D8CFF"></span><span style="background:#6FD3E8"></span></div></div>
+    <img class="shot" src="style_modes_board_assets/midnight-observatory.png" alt="Midnight Observatory home page">
+    <div class="notes"><div><b>Scene:</b> drifting starfield layers, twinkling bright stars, shooting stars, a turning constellation, glowing moon</div>
+      <div><b>Pops:</b> observatory-dome window hero, constellation underlines, starlight buttons, moon-phase reading statuses</div></div>
+  </section>
+
+  <section class="tile" style="--bg:#F4F1EA;--text:#26332A;--accent-text:#3F6B4F">
+    <div class="head"><div><div class="name">🌿 Greenhouse Botanical</div><div class="vibe">Airy plant shop</div></div>
+      <div class="swatches"><span style="background:#3F6B4F"></span><span style="background:#C46A4A"></span><span style="background:#E9D8A6"></span></div></div>
+    <img class="shot" src="style_modes_board_assets/greenhouse-botanical.png" alt="Greenhouse Botanical home page">
+    <div class="notes"><div><b>Scene:</b> glass panes, shifting sun rays, swaying corner vines, drifting petals, rustling potted plants</div>
+      <div><b>Pops:</b> arched glass-pane hero, arched window covers that sway, terracotta-pot buttons, leafy stem titles</div></div>
+  </section>
+
+  <section class="tile" style="--bg:#F5E6C8;--text:#3D2314;--accent-text:#B5461A">
+    <div class="head"><div><div class="name">🕺 Retro Paperback '70s</div><div class="vibe">Groovy pulp spinner rack</div></div>
+      <div class="swatches"><span style="background:#B5461A"></span><span style="background:#E1A730"></span><span style="background:#6B7A2E"></span></div></div>
+    <img class="shot" src="style_modes_board_assets/retro-paperback.png" alt="Retro Paperback home page">
+    <div class="notes"><div><b>Scene:</b> slowly turning sunburst, rolling groovy stripe waves, drifting lava-lamp blobs</div>
+      <div><b>Pops:</b> paperback-cover hero with stripes, round "Hot Pick" price sticker, stacked-shadow titles, chunky pill buttons</div></div>
+  </section>
+
+  <section class="tile" style="--bg:#FFFDF5;--text:#111;--accent-text:#E4002B">
+    <div class="head"><div><div class="name">💥 Comic Panel Pop</div><div class="vibe">Loud comic panels</div></div>
+      <div class="swatches"><span style="background:#E4002B"></span><span style="background:#FFD400"></span><span style="background:#0072CE"></span></div></div>
+    <img class="shot" src="style_modes_board_assets/comic-panel-pop.png" alt="Comic Panel Pop home page">
+    <div class="notes"><div><b>Scene:</b> drifting halftone dots, turning speed-line bursts, BAM!/ZAP!/WOW! sound effects popping in and out</div>
+      <div><b>Pops:</b> inked comic-panel hero, caption-box titles, speech-bubble logs, hard-shadow buttons, POW! on add</div></div>
+  </section>
+
+  <section class="tile" style="--bg:#FFF9E6;--text:#2B2D42;--accent-text:#6C3CE1">
+    <div class="head"><div><div class="name">🧒 Kid Korner</div><div class="vibe">Bright + friendly · mature books hidden</div></div>
+      <div class="swatches"><span style="background:#6C3CE1"></span><span style="background:#FFB703"></span><span style="background:#2EC4B6"></span></div></div>
+    <img class="shot" src="style_modes_board_assets/kid-korner.png" alt="Kid Korner home page">
+    <div class="notes"><div><b>Scene:</b> drifting clouds, a sun with turning rays, rising balloons and bubbles, confetti, the bookworm inching along the grass</div>
+      <div><b>Pops:</b> sticker-book hero, jelly buttons that squish, crayon-squiggle titles, star stickers, Yay! burst on add</div></div>
+  </section>
+
+</div>
+</body>
+</html>

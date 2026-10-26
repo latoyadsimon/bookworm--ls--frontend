@@ -1,0 +1,128 @@
+/* 🧒 Kid Korner components: jelly buttons, crayon titles, stickers, the mascot. Decorative only. */
+
+/* Chunky, friendly outlines */
+[data-theme='kid-korner'] .book-card .cover {
+  border: 3px solid #ffb703;
+}
+[data-theme='kid-korner'] .state-message,
+[data-theme='kid-korner'] .library-row,
+[data-theme='kid-korner'] .log-item,
+[data-theme='kid-korner'] .auth-card {
+  border: 3px solid #e4dcc2;
+  border-radius: 20px;
+}
+[data-theme='kid-korner'] .site-header {
+  border-bottom: 4px dotted #ffb703;
+}
+[data-theme='kid-korner'] .nav-logo-text {
+  color: #6c3ce1;
+}
+
+/* Active nav link: a gold star */
+[data-theme='kid-korner'] .nav-link.is-active::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  transform: translateX(-50%);
+  background: #ffb703;
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/* ---------- Titles: crayon squiggle underline ---------- */
+[data-theme='kid-korner'] .drip {
+  text-decoration: underline wavy #ff6b9a;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 8px;
+  padding-bottom: 6px;
+}
+[data-theme='kid-korner'] .book-row-head h2 {
+  font-size: clamp(1.625rem, 1.3rem + 1.3vw, 2.25rem);
+}
+
+/* ---------- Buttons: jelly! They squish when pressed ---------- */
+[data-theme='kid-korner'] .btn {
+  font-weight: 700;
+  transition:
+    transform 260ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color var(--t-base) var(--ease),
+    box-shadow var(--t-base) var(--ease);
+}
+[data-theme='kid-korner'] .btn-primary {
+  box-shadow:
+    inset 0 -5px 0 rgb(0 0 0 / 0.18),
+    0 5px 0 #4b25a8;
+}
+[data-theme='kid-korner'] .btn-secondary {
+  background: #ffffff;
+  border: 3px solid #ffb703;
+  box-shadow: 0 5px 0 #e0a000;
+}
+[data-theme='kid-korner'] .btn:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+[data-theme='kid-korner'] .btn:active:not(:disabled) {
+  transform: scale(1.06, 0.9);
+}
+
+/* ---------- Hero: a sticker-book page ---------- */
+[data-theme='kid-korner'] .hero {
+  margin-top: var(--space-4);
+  padding: var(--space-6) var(--space-5);
+  border-radius: 32px;
+  background: #ffffff;
+  border: 4px dashed #6c3ce1;
+  box-shadow: 0 10px 0 #e4dcc2;
+}
+@media (min-width: 768px) {
+  [data-theme='kid-korner'] .hero {
+    padding: var(--space-7);
+  }
+}
+/* The featured badge is a gold star sticker */
+[data-theme='kid-korner'] .hero-badge {
+  font-weight: 700;
+  rotate: -5deg;
+  box-shadow: 0 3px 0 #e0a000;
+}
+[data-theme='kid-korner'] .hero-badge::before {
+  content: '⭐ ' / '';
+}
+[data-theme='kid-korner'] .hero-title,
+[data-theme='kid-korner'] .book-title,
+[data-theme='kid-korner'] .status-art-code {
+  color: #6c3ce1;
+  text-shadow: 4px 4px 0 #ffb703;
+}
+
+/* The bookworm mascot waves from empty states (decorative: no alt text) */
+[data-theme='kid-korner'] .state-message:not(.is-error)::before {
+  content: '🐛' / '';
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+/* A star burst when a book is saved */
+[data-theme='kid-korner'] .book-actions.just-added::after {
+  content: '⭐ Yay!' / '';
+  position: absolute;
+  left: 0;
+  top: -54px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #ffb703;
+  color: #2b2d42;
+  font-family: 'Fredoka', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  pointer-events: none;
+  animation: kid-pop 520ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes kid-pop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.85);
+  }
+}

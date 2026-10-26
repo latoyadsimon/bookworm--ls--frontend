@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Genre Page Wireframe</title>
+<link rel="stylesheet" href="../_shared/wireframe.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><filter id="wobble">
+  <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/>
+  <feDisplacementMap in="SourceGraphic" scale="3.2"/></filter></svg>
+
+<div class="page-card rough">
+  <div class="page-title rough">3. Browse by Genre Page <span class="route">Route: /genre/:genre</span></div>
+  <div class="layout">
+
+    <div class="side">
+      <div class="box story rough">
+        <h2>User Story</h2>
+        As a visitor, I want to browse books by genre, so that I can find books that match what I'm in the
+        mood to read.
+      </div>
+      <div class="box elements rough">
+        <h2>Key Elements</h2>
+        <ul>
+          <li>Navigation bar (Genres ▾ menu)</li>
+          <li>Genre chips: Adventure, Technology, Horror, Sci-Fi, Fiction, Non-Fiction</li>
+          <li>Selected genre highlighted</li>
+          <li>Genre heading</li>
+          <li>Book grid (cover, title, author)</li>
+          <li>Load More button</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="screen rough">
+      <div class="topnav">
+        <b>BookWorm</b><span>Home</span><span class="on">Genres ▾</span>
+        <span class="search rough">🔍 Search books…</span>
+        <span>Log In</span><span class="sep">|</span><span>Sign Up</span>
+      </div>
+      <div class="screen-body">
+        <div class="chips">
+          <span class="chip rough">Adventure</span><span class="chip rough">Technology</span><span class="chip rough">Horror</span>
+          <span class="chip rough on">Sci-Fi</span><span class="chip rough">Fiction</span><span class="chip rough">Non-Fiction</span>
+        </div>
+        <div class="h" style="font-size:26px">Sci-Fi</div>
+        <div class="grid">
+          <div class="card"><div class="ph rough"></div>Title One<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Two<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Three<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Four<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Five<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Six<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Seven<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Eight<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Nine<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Ten<br><span class="muted">Author</span></div>
+        </div>
+        <div class="state"><span class="tag">load more failed</span>
+          Couldn't load more books. <span class="btn sm rough">[ Retry ]</span>
+          <div class="muted">the books above stay on screen</div></div>
+        <div class="center" style="margin-top:12px"><span class="btn rough">[ Load More ]</span>
+          <div class="muted" style="margin-top:4px">hides at the end → "You've reached the end"</div></div>
+
+        <div class="state"><span class="tag">unknown genre · /genre/cooking</span>
+          Genre not found. Try one of these:
+          <div class="chips" style="justify-content:center;margin-top:6px">
+            <span class="chip rough">Adventure</span><span class="chip rough">Technology</span><span class="chip rough">Horror</span>
+            <span class="chip rough">Sci-Fi</span><span class="chip rough">Fiction</span><span class="chip rough">Non-Fiction</span>
+          </div></div>
+      </div>
+    </section>
+
+    <div class="notes">
+      <div class="note yellow">Chips switch genre instantly; the URL changes so Back / Forward work</div>
+      <div class="note green">Each genre maps to a Google Books subject (e.g. Sci-Fi → subject:science fiction)</div>
+      <div class="note yellow">Same grid + Load More as Search Results</div>
+      <div class="note red"><b>States</b>
+        <ul>
+          <li>Loading → skeleton grid</li>
+          <li>Unknown genre → "Genre not found" + real genres</li>
+          <li>429 / timeout → banner + Retry</li>
+          <li>Load More fails → books stay, Retry</li>
+          <li>No books → "No books found in this genre"</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

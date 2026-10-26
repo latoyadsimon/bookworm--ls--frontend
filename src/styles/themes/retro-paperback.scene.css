@@ -1,0 +1,72 @@
+/* 🕺 Retro Paperback '70s scene: transform + opacity only. */
+[data-theme='retro-paperback'] {
+  --texture: none;
+  --reading-panel: rgb(255 244 220 / 0.92);
+  --reading-panel-pad: clamp(16px, 3vw, 32px);
+  --veil-color: rgb(245 230 200 / 0.55);
+  --veil-color-mobile: rgb(245 230 200 / 0.75);
+}
+
+.rp-paper {
+  inset: 0;
+  background:
+    repeating-linear-gradient(45deg, rgb(61 35 20 / 0.025) 0 2px, transparent 2px 6px),
+    radial-gradient(ellipse at 30% 20%, #fbeed2, #f5e6c8 60%, #eed7ae);
+}
+
+/* A big sunburst slowly turning in the corner */
+.rp-sunburst {
+  right: -45vmax;
+  top: -45vmax;
+  width: 110vmax;
+  height: 110vmax;
+  border-radius: 50%;
+  background: repeating-conic-gradient(rgb(225 167 48 / 0.32) 0 7.5deg, transparent 7.5deg 15deg);
+  -webkit-mask: radial-gradient(circle, #000 20%, transparent 70%);
+  mask: radial-gradient(circle, #000 20%, transparent 70%);
+  animation: rp-turn 180s infinite linear;
+}
+@keyframes rp-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Lava-lamp blobs drift up and down */
+.rp-blob {
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  height: calc(var(--s) * 1.2);
+  border-radius: 47% 53% 61% 39% / 45% 51% 49% 55%;
+  background: var(--c);
+  opacity: 0.32;
+  animation: rp-blob var(--t) var(--d) infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+}
+@keyframes rp-blob {
+  to {
+    transform: translateY(-14vh) rotate(25deg) scale(1.15, 0.92);
+  }
+}
+
+/* Three groovy stripe waves roll along the bottom */
+.rp-waves {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 13vh;
+  overflow: hidden;
+}
+.rp-wave {
+  position: absolute;
+  left: 0;
+  bottom: calc((2 - var(--i)) * 2.6vh);
+  width: 200%;
+  height: 8vh;
+  animation: rp-roll calc(18s + var(--i) * 7s) infinite linear;
+}
+@keyframes rp-roll {
+  to {
+    transform: translateX(-50%);
+  }
+}

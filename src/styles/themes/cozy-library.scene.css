@@ -1,0 +1,135 @@
+/* 🕯️ Cozy Library scene: transform + opacity only. */
+[data-theme='cozy-library'] {
+  --texture: none;
+  --reading-panel: rgb(44 33 25 / 0.92);
+  --reading-panel-pad: clamp(16px, 3vw, 32px);
+  --veil-color: rgb(31 23 18 / 0.6);
+  --veil-color-mobile: rgb(31 23 18 / 0.76);
+}
+
+/* Walnut wall panels */
+.cl-panels {
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgb(0 0 0 / 0.16) 0 3px, transparent 3px 140px),
+    repeating-linear-gradient(92deg, rgb(255 255 255 / 0.018) 0 2px, transparent 2px 13px),
+    radial-gradient(ellipse at 50% 30%, #2a1f17, #160f0b 80%);
+}
+
+/* The reading lamp's glow breathes softly (a slow, smooth change, never a flash) */
+.cl-lamp {
+  left: -14vw;
+  top: -26vh;
+  width: 80vmax;
+  height: 80vmax;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(255 200 120 / 0.34) 0%, rgb(255 170 90 / 0.12) 35%, transparent 62%);
+  will-change: opacity;
+  animation: cl-glow 7s infinite cubic-bezier(0.45, 0, 0.55, 1);
+}
+@keyframes cl-glow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0.82;
+  }
+  55% {
+    opacity: 0.95;
+  }
+  70% {
+    opacity: 0.86;
+  }
+}
+
+/* A beam of lamplight with dust floating in it */
+.cl-beam {
+  left: -6vw;
+  top: -10vh;
+  width: 62vw;
+  height: 120vh;
+  background: linear-gradient(118deg, rgb(255 214 150 / 0.13), transparent 62%);
+  clip-path: polygon(0 0, 38% 0, 100% 100%, 0 100%);
+}
+.cl-mote {
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  height: var(--s);
+  border-radius: 50%;
+  background: rgb(255 228 170 / 0.9);
+  box-shadow: 0 0 6px rgb(255 214 150 / 0.8);
+  opacity: 0;
+  animation: cl-mote var(--t) var(--d) infinite cubic-bezier(0.45, 0, 0.55, 1);
+}
+@keyframes cl-mote {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(34px, -80px);
+    opacity: 0;
+  }
+}
+
+/* A rainy window on the right wall */
+.cl-window {
+  right: 3vw;
+  top: 16vh;
+  width: clamp(110px, 12vw, 190px);
+  aspect-ratio: 3 / 4.2;
+  overflow: hidden;
+  border: 10px solid #4a3828;
+  border-radius: 90px 90px 4px 4px;
+  background: linear-gradient(#22344a, #101a26);
+  box-shadow:
+    inset 0 0 30px rgb(0 0 0 / 0.6),
+    0 10px 24px rgb(0 0 0 / 0.5);
+}
+.cl-rain {
+  position: absolute;
+  top: 0;
+  left: var(--x);
+  width: 1.5px;
+  height: var(--h);
+  background: linear-gradient(transparent, rgb(200 220 255 / 0.55));
+  animation: cl-rain var(--t) var(--d) infinite linear;
+}
+@keyframes cl-rain {
+  from {
+    transform: translateY(-120%);
+  }
+  to {
+    transform: translateY(420px);
+  }
+}
+.cl-window-frame {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 3px), #4a3828 calc(50% - 3px) calc(50% + 3px), transparent calc(50% + 3px)),
+    linear-gradient(transparent calc(55% - 3px), #4a3828 calc(55% - 3px) calc(55% + 3px), transparent calc(55% + 3px));
+}
+
+/* A bookshelf lines the bottom of the room */
+.cl-shelf {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 17vh;
+  opacity: 0.6;
+}
+
+@media (max-width: 767px) {
+  .cl-window {
+    display: none;
+  }
+}

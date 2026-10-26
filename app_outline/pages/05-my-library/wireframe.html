@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>My Library Wireframe</title>
+<link rel="stylesheet" href="../_shared/wireframe.css">
+<style>
+  .tabs { display: flex; gap: 22px; font-size: 17px; margin: 0 0 10px; }
+  .tabs .on { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 2px; }
+  .item { display: flex; gap: 14px; align-items: center; padding: 9px 0; border-bottom: 1.5px solid #d5d6d8; }
+  .item .ph { width: 56px; height: 78px; flex: none; }
+  .item .info { flex: 1; font-size: 16px; line-height: 1.3; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><filter id="wobble">
+  <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/>
+  <feDisplacementMap in="SourceGraphic" scale="3.2"/></filter></svg>
+
+<div class="page-card rough">
+  <div class="page-title rough">5. My Library Page <span class="route">Route: /library</span></div>
+  <div class="layout">
+
+    <div class="side">
+      <div class="box story rough">
+        <h2>User Story</h2>
+        As a reader, I want to see and manage the books I've saved, so that I can track what I want to
+        read, am reading, and have finished.
+      </div>
+      <div class="box elements rough">
+        <h2>Key Elements</h2>
+        <ul>
+          <li>Navigation bar (logged in)</li>
+          <li>Page title + book count</li>
+          <li>Status tabs: All / Want to Read / Reading / Finished</li>
+          <li>Book list: cover, title, author, date added</li>
+          <li>Status dropdown per book</li>
+          <li>Remove button + confirm dialog</li>
+          <li>Empty state</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="screen rough">
+      <div class="topnav">
+        <b>BookWorm</b><span>Home</span><span>Genres ▾</span>
+        <span class="search rough">🔍 Search books…</span>
+        <span class="on">My Library</span><span class="sep">|</span><span>BookLover42</span><span class="sep">|</span><span>Log Out</span>
+      </div>
+      <div class="screen-body">
+        <div class="spread"><div class="h" style="font-size:26px;margin-top:0">My Library</div><span class="muted">4 books</span></div>
+        <div class="tabs"><span class="on">All (4)</span><span>Want to Read (2)</span><span>Reading (1)</span><span>Finished (1)</span></div>
+        <div class="item"><div class="ph rough"></div>
+          <div class="info"><b>Book Title</b><br><span class="muted">Author · added Oct 1, 2026</span></div>
+          <span class="btn sm rough">Reading ▾</span><span class="btn sm rough">[ Remove ]</span></div>
+        <div class="item"><div class="ph rough"></div>
+          <div class="info"><b>Book Title</b><br><span class="muted">Author · added Sep 22, 2026</span></div>
+          <span class="btn sm rough">Want to Read ▾</span><span class="btn sm rough">[ Remove ]</span></div>
+        <div class="item"><div class="ph rough"></div>
+          <div class="info"><b>Book Title</b><br><span class="muted">Author · added Sep 3, 2026</span></div>
+          <span class="btn sm rough">Want to Read ▾</span><span class="btn sm rough">[ Remove ]</span></div>
+        <div class="item"><div class="ph rough"></div>
+          <div class="info"><b>Book Title</b><br><span class="muted">Author · added Aug 9, 2026</span></div>
+          <span class="btn sm rough">Finished ▾</span><span class="btn sm rough">[ Remove ]</span></div>
+
+        <div class="cols" style="margin-top:16px">
+          <div class="modal rough">
+            <b>Remove this book?</b>
+            <div style="font-size:15px">This will also delete your 2 logs about it.</div>
+            <div class="row" style="justify-content:flex-end;margin-top:8px"><span class="btn sm rough">[ Cancel ]</span><span class="btn sm rough">[ Remove ]</span></div>
+          </div>
+          <div class="state" style="margin-top:0"><span class="tag">empty library</span>📚<br>Your library is empty
+            <div style="margin-top:6px"><span class="btn rough">[ Browse Books ]</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="notes">
+      <div class="note yellow">Private: only you can see your library (Row Level Security)</div>
+      <div class="note green">Status dropdown saves instantly → small "Saved" check</div>
+      <div class="note yellow">Click a book → its Book Details page to read or write logs</div>
+      <div class="note blue">Guest visits /library → Log In, then back here</div>
+      <div class="note red"><b>States</b>
+        <ul>
+          <li>Loading → skeleton rows</li>
+          <li>Empty library → Browse Books</li>
+          <li>Empty tab → "No books marked Reading yet."</li>
+          <li>Remove → confirm (logs deleted too)</li>
+          <li>Session expired → Log In, then back</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

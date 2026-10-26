@@ -1,0 +1,209 @@
+/* Featured hero. Phones: one centered stack. Tablets: cover + text. Desktop: bigger cover and type.
+   The modes' .hero rules only add the panel (padding, border, shadow), so this layout works inside any of them. */
+.hero {
+  /* Sized like .container, so modes can turn it into a padded panel without it touching the screen edges */
+  width: min(100% - 2 * var(--gutter), var(--max-w) - 2 * var(--gutter));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: var(--space-5);
+  padding-block: var(--space-4) var(--space-5);
+  text-align: center;
+}
+
+.hero-cover-link {
+  display: block;
+  width: 140px;
+}
+.hero-cover {
+  transform: var(--hero-cover-transform, rotate(-2deg));
+  box-shadow: var(--card-hover-shadow);
+}
+
+.hero-body {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  min-width: 0;
+}
+
+.hero-badge {
+  max-width: 100%;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--accent-2);
+  color: var(--on-accent-2);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.hero-title {
+  max-width: 100%;
+  font-family: var(--font-hero, var(--font-display));
+  font-size: clamp(1.75rem, 6vw + 0.5rem, 2.5rem);
+  line-height: var(--hero-title-leading, 1.15);
+  letter-spacing: 0.01em;
+  /* Room inside the box for descenders and the modes' down-right text shadows */
+  margin-block: var(--space-1);
+  padding-block-end: var(--hero-title-pad-end, 0.12em);
+  padding-inline-end: 0.12em;
+  /* Whole words only; the title has the full width, so a word never needs splitting */
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+.hero-meta {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* The list the pick came from; shown from tablet width up */
+.hero-nyt {
+  display: none;
+  padding: 2px 12px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.hero-description {
+  max-width: 60ch;
+  margin-top: var(--space-2);
+  font-size: 1.0625rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hero-actions {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  margin-top: var(--space-3);
+}
+.hero-actions .btn {
+  width: 100%;
+  min-height: 48px;
+  justify-content: center;
+  text-align: center;
+}
+.hero-more {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: var(--space-2);
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+/* Loading skeleton, shaped like the loaded hero */
+.hero-skel-badge {
+  width: 55%;
+  height: 26px;
+}
+.hero-skel-title {
+  width: 80%;
+  height: 40px;
+}
+.hero-skel-meta {
+  width: 45%;
+}
+.hero-skel-text {
+  width: 90%;
+}
+.hero-skel-text.is-short {
+  width: 70%;
+}
+.hero-skel-button {
+  width: 100%;
+  height: 48px;
+  margin-top: var(--space-3);
+  border-radius: var(--radius-card);
+}
+.hero-skel-text:first-of-type {
+  margin-top: var(--space-3);
+}
+
+@media (min-width: 560px) {
+  .hero {
+    grid-template-columns: 180px minmax(0, 1fr);
+    justify-items: stretch;
+    align-items: center;
+    gap: var(--space-6);
+    text-align: left;
+  }
+  .hero-cover-link {
+    width: 180px;
+  }
+  .hero-body,
+  .hero-actions {
+    justify-items: start;
+  }
+  .hero-nyt {
+    display: block;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    width: auto;
+  }
+  .hero-actions .btn {
+    width: auto;
+  }
+  .hero-skel-badge {
+    width: 40%;
+  }
+  .hero-skel-title {
+    width: 70%;
+  }
+  .hero-skel-button {
+    width: 160px;
+  }
+  .hero-title {
+    font-size: clamp(2rem, 3vw + 1rem, 2.75rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: var(--space-7);
+    padding-block: var(--space-6) var(--space-7);
+  }
+  .hero-cover-link {
+    width: 240px;
+  }
+  /* Never clamped: the title is always shown in full */
+  .hero-title {
+    font-size: clamp(2.5rem, 1.5vw + 2rem, 3.25rem);
+  }
+  .hero-nyt {
+    font-size: 0.875rem;
+  }
+}
+
+/* Badge parts wrap as whole units. On narrow phones the month takes its own line and the dot goes. */
+.hero-badge-part {
+  display: inline-block;
+}
+.hero-more [aria-hidden] {
+  margin-left: 0.35em;
+}
+@media (max-width: 419px) {
+  .hero-badge {
+    border-radius: 18px;
+  }
+  .hero-badge-dot {
+    display: none;
+  }
+  .hero-badge-part {
+    display: block;
+  }
+}

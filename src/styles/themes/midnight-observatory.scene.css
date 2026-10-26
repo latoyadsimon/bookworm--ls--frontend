@@ -1,0 +1,181 @@
+/* 🌙 Midnight Observatory scene: transform + opacity only. */
+[data-theme='midnight-observatory'] {
+  --texture: none;
+  --reading-panel: rgb(20 27 58 / 0.9);
+  --reading-panel-pad: clamp(16px, 3vw, 32px);
+  --veil-color: rgb(11 16 38 / 0.55);
+  --veil-color-mobile: rgb(11 16 38 / 0.72);
+}
+
+.mo-sky {
+  inset: 0;
+  background: linear-gradient(#060a1b 0%, #0b1026 45%, #171a46 100%);
+}
+.mo-nebula {
+  width: 50vmax;
+  height: 50vmax;
+  border-radius: 50%;
+  animation: mo-nebula 40s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+}
+.mo-nebula-a {
+  left: -25vw;
+  bottom: -40vh;
+  background: radial-gradient(circle, rgb(157 140 255 / 0.22), transparent 62%);
+}
+.mo-nebula-b {
+  right: -30vw;
+  top: -35vh;
+  background: radial-gradient(circle, rgb(111 211 232 / 0.16), transparent 62%);
+  animation-delay: -20s;
+}
+@keyframes mo-nebula {
+  to {
+    transform: translate(6vw, -4vh);
+  }
+}
+
+/* Two star layers drift by exactly one tile (seamless).
+   No will-change here: measured slower in software rendering with extra layers. */
+.mo-stars {
+  inset: calc(var(--tile) * -1) 0 0 calc(var(--tile) * -1);
+  animation: mo-drift var(--drift) linear infinite;
+}
+.mo-stars-far {
+  --tile: 300px;
+  --drift: 150s;
+  background:
+    radial-gradient(1px 1px at 20px 30px, #ffffff, transparent),
+    radial-gradient(1px 1px at 120px 80px, #c9d2ff, transparent),
+    radial-gradient(1px 1px at 70px 160px, #ffffff, transparent),
+    radial-gradient(1px 1px at 170px 140px, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 250px 60px, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 230px 240px, #f4c95d, transparent),
+    radial-gradient(1.5px 1.5px at 40px 260px, #9d8cff, transparent);
+  background-size: 300px 300px;
+  opacity: 0.85;
+}
+.mo-stars-near {
+  --tile: 420px;
+  --drift: 80s;
+  background:
+    radial-gradient(2px 2px at 90px 120px, #ffffff, transparent),
+    radial-gradient(2.5px 2.5px at 330px 60px, #f4c95d, transparent),
+    radial-gradient(2px 2px at 260px 340px, #ffffff, transparent);
+  background-size: 420px 420px;
+}
+@keyframes mo-drift {
+  to {
+    transform: translate(var(--tile), calc(var(--tile) / 2));
+  }
+}
+
+/* The brightest stars twinkle individually (small, cheap layers) */
+.mo-bright {
+  left: var(--x);
+  top: var(--y);
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, #ffffff 0 1.5px, rgb(244 231 184 / 0.6) 2.5px, transparent 7px);
+  animation: mo-twinkle var(--t) var(--d) infinite cubic-bezier(0.45, 0, 0.55, 1);
+}
+@keyframes mo-twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+/* A constellation slowly turning in the corner */
+.mo-constellation {
+  left: 3vw;
+  bottom: 14vh;
+  width: clamp(140px, 16vw, 240px);
+  overflow: visible;
+  animation: mo-turn 160s infinite linear;
+}
+.mo-constellation line {
+  stroke: rgb(244 201 93 / 0.5);
+  stroke-width: 1.2;
+}
+.mo-constellation circle {
+  fill: #f4c95d;
+}
+/* Soft glow drawn as a second, larger circle (filters are costly on a rotating layer) */
+.mo-constellation .glow {
+  fill: rgb(244 201 93 / 0.25);
+}
+@keyframes mo-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* The moon and its breathing glow */
+.mo-moon {
+  right: 6vw;
+  top: 12vh;
+  width: clamp(56px, 6vw, 90px);
+  aspect-ratio: 1;
+}
+.mo-moon-halo {
+  position: absolute;
+  inset: -120%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(244 231 184 / 0.35), transparent 60%);
+  animation: mo-halo 8s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+}
+.mo-moon-disc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: inset 18px -8px 0 0 #f4e7b8;
+  rotate: -20deg;
+}
+@keyframes mo-halo {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Now and then, a shooting star */
+.mo-shooting {
+  left: var(--x);
+  top: var(--y);
+  width: 170px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #ffffff);
+  opacity: 0;
+  animation: mo-shoot var(--t) var(--d) infinite cubic-bezier(0.3, 0, 0.6, 1);
+}
+@keyframes mo-shoot {
+  0% {
+    transform: translate(0, 0) rotate(24deg);
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+  }
+  8% {
+    transform: translate(38vw, 17vw) rotate(24deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(38vw, 17vw) rotate(24deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .mo-constellation {
+    display: none;
+  }
+}

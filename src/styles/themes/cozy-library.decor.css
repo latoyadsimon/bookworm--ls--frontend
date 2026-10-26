@@ -1,0 +1,138 @@
+/* 🕯️ Cozy Library components: brass plaques, leather, gold leaf and shelves. Decorative only. */
+
+[data-theme='cozy-library'] .site-header {
+  border-bottom: 3px double #c9a227;
+}
+[data-theme='cozy-library'] .nav-logo-text {
+  color: #c9a227;
+  font-style: italic;
+  text-shadow: 0 0 18px rgb(255 200 120 / 0.35);
+}
+/* Active nav link: a glowing brass lamp pull */
+[data-theme='cozy-library'] .nav-link.is-active::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: #c9a227;
+  box-shadow: 0 0 10px rgb(255 200 120 / 0.8);
+}
+
+/* ---------- Titles: engraved brass rule with a flourish ---------- */
+[data-theme='cozy-library'] .drip {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+  border-bottom: 4px double #c9a227;
+  text-shadow: 0 2px 0 rgb(0 0 0 / 0.5);
+}
+[data-theme='cozy-library'] .drip::after {
+  content: '❦' / '';
+  position: absolute;
+  right: -1.4em;
+  bottom: -0.55em;
+  font-size: 0.7em;
+  color: #c9a227;
+}
+
+/* ---------- Buttons: brass plaques ---------- */
+[data-theme='cozy-library'] .btn-primary {
+  background: linear-gradient(#e3c158, #c9a227 45%, #a8841a);
+  color: #1f1712;
+  text-shadow: 0 1px 0 rgb(255 255 255 / 0.35);
+  border-color: #8a6b12;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.5),
+    0 3px 0 #6b520e,
+    0 6px 14px rgb(0 0 0 / 0.45);
+}
+[data-theme='cozy-library'] .btn-primary:hover:not(:disabled) {
+  background: linear-gradient(#ecd070, #d4ad30 45%, #b38e1f);
+}
+[data-theme='cozy-library'] .btn-secondary {
+  background: #2c2119;
+  border-color: #c9a227;
+  box-shadow: inset 0 0 0 1px rgb(201 162 39 / 0.35);
+}
+
+/* ---------- Covers on a wooden shelf; they tilt out like a pulled book ---------- */
+[data-theme='cozy-library'] .book-row-scroller {
+  border-bottom: 12px solid #4a3828;
+  box-shadow: 0 12px 16px -8px rgb(0 0 0 / 0.75);
+}
+[data-theme='cozy-library'] .book-card .cover {
+  transform-origin: bottom left;
+}
+
+/* ---------- Hero: a leather-bound volume with gold stitching ---------- */
+[data-theme='cozy-library'] .hero {
+  margin-top: var(--space-4);
+  padding: var(--space-6) var(--space-5);
+  border-radius: 6px;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgb(255 200 120 / 0.12), transparent 60%),
+    #3a2418;
+  border: 2px dashed rgb(201 162 39 / 0.65);
+  outline: 8px solid #3a2418;
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.55);
+}
+@media (min-width: 768px) {
+  [data-theme='cozy-library'] .hero {
+    padding: var(--space-7);
+  }
+}
+[data-theme='cozy-library'] .hero-title,
+[data-theme='cozy-library'] .book-title {
+  color: #f3e9d7;
+  text-shadow:
+    0 2px 0 #1f1712,
+    0 0 26px rgb(201 162 39 / 0.35);
+}
+[data-theme='cozy-library'] .hero-badge {
+  background: #2f5d50;
+  color: #ffffff;
+  border: 1px solid #c9a227;
+}
+/* An oxblood ribbon bookmark hangs from the featured cover */
+[data-theme='cozy-library'] .hero-cover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 18%;
+  width: 16px;
+  height: 56px;
+  background: #8c2f39;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+}
+
+/* ---------- A gold-leaf drop cap opens each description ---------- */
+[data-theme='cozy-library'] .book-about p::first-letter {
+  float: left;
+  margin: 6px 10px 0 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3.4em;
+  font-weight: 700;
+  line-height: 0.8;
+  color: #c9a227;
+  text-shadow: 0 0 12px rgb(255 200 120 / 0.4);
+}
+
+[data-theme='cozy-library'] .log-item {
+  border-left-color: #4a3828;
+  background: linear-gradient(90deg, rgb(201 162 39 / 0.06), transparent 40%), #2c2119;
+}
+[data-theme='cozy-library'] .log-item.is-mine {
+  border-left-color: #c9a227;
+}
+[data-theme='cozy-library'] .chip.active {
+  border-color: #c9a227;
+}
+[data-theme='cozy-library'] .status-art-code {
+  color: #c9a227;
+  font-style: italic;
+  text-shadow: 0 0 30px rgb(255 200 120 / 0.35);
+}

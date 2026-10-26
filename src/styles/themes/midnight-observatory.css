@@ -1,0 +1,48 @@
+/* 🌙 Midnight Observatory: stargazing night reads, dreamy + calm */
+[data-theme='midnight-observatory'] {
+  color-scheme: dark;
+
+  --bg: #0b1026;
+  --surface: #141b3a;
+  --surface-hover: #1e2750;
+  --text: #eef1ff;
+  --text-muted: #a7b0d6;
+  --accent: #f4c95d;
+  --accent-hover: #f8d77f;
+  --on-accent: #0b1026;
+  --accent-2: #9d8cff;
+  --on-accent-2: #111111;
+  --accent-3: #6fd3e8;
+  --on-accent-3: #111111;
+  --border: #2a3566;
+  --error: #ff7a8a;
+  --success: #7fe0b5;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --heading-weight: 700;
+  --font-body: 'Nunito Sans', system-ui, sans-serif;
+
+  --radius: 10px;
+  --radius-card: 10px;
+  --card-shadow: 0 4px 14px rgb(0 0 0 / 0.4);
+  --card-hover-shadow: 0 0 0 1px rgb(244 201 93 / 0.6), 0 0 28px rgb(244 201 93 / 0.35);
+  --card-hover-transform: translateY(-3px);
+  --hero-cover-transform: none;
+  --btn-secondary-border: #9d8cff;
+  --header-bg: rgb(11 16 38 / 0.9);
+
+  /* A sparse starfield */
+  --texture:
+    radial-gradient(1.5px 1.5px at 12% 18%, rgb(255 255 255 / 0.8), transparent),
+    radial-gradient(1px 1px at 30% 8%, rgb(255 255 255 / 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 55% 22%, rgb(244 201 93 / 0.8), transparent),
+    radial-gradient(1px 1px at 72% 12%, rgb(255 255 255 / 0.7), transparent),
+    radial-gradient(2px 2px at 88% 30%, rgb(255 255 255 / 0.8), transparent),
+    radial-gradient(1px 1px at 20% 70%, rgb(255 255 255 / 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 45% 90%, rgb(157 140 255 / 0.8), transparent),
+    radial-gradient(1px 1px at 80% 80%, rgb(255 255 255 / 0.6), transparent),
+    radial-gradient(1px 1px at 65% 55%, rgb(255 255 255 / 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 6% 45%, rgb(244 201 93 / 0.7), transparent),
+    radial-gradient(circle at 92% 6%, rgb(244 201 93 / 0.12), transparent 22%);
+}

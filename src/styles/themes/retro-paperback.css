@@ -1,0 +1,40 @@
+/* 🕺 Retro Paperback '70s: groovy pulp paperback spinner rack */
+[data-theme='retro-paperback'] {
+  color-scheme: light;
+
+  --bg: #f5e6c8;
+  --surface: #fff4dc;
+  --surface-hover: #f0d9ae;
+  --text: #3d2314;
+  --text-muted: #6e4a2f;
+  --accent: #b5461a;
+  --accent-hover: #9e3c15;
+  --on-accent: #ffffff;
+  --accent-2: #e1a730;
+  --on-accent-2: #111111;
+  --accent-3: #6b7a2e;
+  --on-accent-3: #ffffff;
+  --border: #d9bc8a;
+  --error: #a4161a;
+  --success: #4f6324;
+
+  --font-display: 'Shrikhand', Georgia, serif;
+  --hero-title-leading: 1.3; /* Shrikhand's tall swashes need more room than 1.15 */
+  --font-heading: 'Shrikhand', Georgia, serif;
+  --font-body: 'Karla', system-ui, sans-serif;
+
+  --radius: 10px;
+  --radius-card: 8px;
+  --radius-button: 999px;
+  --card-shadow: 0 3px 0 #d9bc8a, 0 6px 14px rgb(61 35 20 / 0.15);
+  --card-hover-shadow: 0 3px 0 #b5461a, 0 12px 22px rgb(61 35 20 / 0.25);
+  --card-hover-transform: perspective(600px) rotateY(-10deg) translateY(-4px);
+  --hero-cover-transform: perspective(600px) rotateY(8deg);
+  --btn-secondary-border: #e1a730;
+  --header-bg: rgb(245 230 200 / 0.94);
+
+  /* Paper grain + a sunburst in the corner */
+  --texture:
+    repeating-conic-gradient(from 0deg at 100% 0%, rgb(225 167 48 / 0.12) 0 6deg, transparent 6deg 12deg),
+    repeating-linear-gradient(45deg, rgb(61 35 20 / 0.02) 0 2px, transparent 2px 6px);
+}

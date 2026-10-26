@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Log In Wireframe</title>
+<link rel="stylesheet" href="../_shared/wireframe.css">
+<style>
+  .form { width: 400px; margin: 10px auto 0; padding: 22px 26px; }
+  .form .h { text-align: center; font-size: 28px; margin-top: 0; }
+  .alert { border: 2px dashed var(--warn); border-radius: 6px; color: var(--warn); padding: 8px 10px; margin-bottom: 12px; text-align: center; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><filter id="wobble">
+  <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/>
+  <feDisplacementMap in="SourceGraphic" scale="3.2"/></filter></svg>
+
+<div class="page-card rough">
+  <div class="page-title rough">6. Log In Page <span class="route">Route: /login</span></div>
+  <div class="layout">
+
+    <div class="side">
+      <div class="box story rough">
+        <h2>User Story</h2>
+        As a returning reader, I want to log in with my email and password, so that I can get back to my
+        library and logs.
+      </div>
+      <div class="box elements rough">
+        <h2>Key Elements</h2>
+        <ul>
+          <li>Navigation bar (guest)</li>
+          <li>Email field</li>
+          <li>Password field</li>
+          <li>Error message area</li>
+          <li>Log In button (shows "Signing in…")</li>
+          <li>Link to Sign Up</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="screen rough">
+      <div class="topnav">
+        <b>BookWorm</b><span>Home</span><span>Genres ▾</span>
+        <span class="search rough">🔍 Search books…</span>
+        <span class="on">Log In</span><span class="sep">|</span><span>Sign Up</span>
+      </div>
+      <div class="screen-body">
+        <div class="form rough">
+          <div class="h">Welcome back</div>
+          <div class="alert">Email or password is incorrect.</div>
+          <div class="label">Email</div>
+          <div class="field rough">you@example.com</div>
+          <div class="label">Password</div>
+          <div class="field rough">••••••••</div>
+          <span class="btn rough wide" style="margin-top:6px">[ Log In ]</span>
+          <div class="center muted" style="margin-top:6px">while sending → "Signing in…" (disabled)</div>
+          <div class="center" style="margin-top:14px">New here? <u>Sign up</u></div>
+        </div>
+        <div class="state" style="width:400px;margin:22px auto 0"><span class="tag">empty fields</span>
+          <div class="field rough" style="margin:4px 0 4px;text-align:left">&nbsp;</div>
+          <div style="color:var(--warn);font-size:14px;text-align:left">Email is required.</div></div>
+      </div>
+    </section>
+
+    <div class="notes">
+      <div class="note yellow">After login → back to the page you came from (or Home)</div>
+      <div class="note green">Supabase doesn't say if the email or the password was wrong, so nobody can find out who has an account</div>
+      <div class="note blue">Already logged in? Visiting /login redirects to Home</div>
+      <div class="note red"><b>States</b>
+        <ul>
+          <li>Wrong email/password → "Email or password is incorrect."</li>
+          <li>Empty → "Email is required" / "Password is required"</li>
+          <li>Too many tries → "Please wait a minute and try again."</li>
+          <li>Offline → "Can't reach the server."</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

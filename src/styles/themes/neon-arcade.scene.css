@@ -1,0 +1,128 @@
+/* 🕹️ Neon Arcade scene: transform + opacity only. */
+[data-theme='neon-arcade'] {
+  --texture: none;
+  --reading-panel: rgb(20 20 40 / 0.9);
+  --reading-panel-pad: clamp(16px, 3vw, 32px);
+  --veil-color: rgb(10 10 18 / 0.78);
+  --veil-color-mobile: rgb(10 10 18 / 0.7);
+}
+
+.na-sky {
+  inset: 0;
+  background: linear-gradient(#07070f 0%, #120a26 38%, #2a0b3d 58%, #3d0a4a 63%, #0a0a12 63.2%);
+}
+
+/* Pixel stars blink at different speeds */
+.na-star {
+  left: var(--x);
+  top: var(--y);
+  width: 3px;
+  height: 3px;
+  background: #e8f7ff;
+  box-shadow: 0 0 6px #00f0ff;
+  animation: na-blink var(--t) var(--d) infinite steps(2, jump-none);
+}
+@keyframes na-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+/* Striped synthwave sun, gently rising and settling */
+.na-sun {
+  left: 50%;
+  top: 30%;
+  width: min(44vmin, 420px);
+  aspect-ratio: 1;
+  margin-left: calc(min(44vmin, 420px) / -2);
+  border-radius: 50%;
+  background: linear-gradient(#ffd23f 0%, #ff8a00 35%, #ff00e5 85%);
+  box-shadow:
+    0 0 60px rgb(255 0 229 / 0.55),
+    0 0 140px rgb(255 138 0 / 0.3);
+  -webkit-mask: linear-gradient(#000 50%, transparent 50% 56%, #000 56% 64%, transparent 64% 70%, #000 70% 77%, transparent 77% 84%, #000 84% 89%, transparent 89%);
+  mask: linear-gradient(#000 50%, transparent 50% 56%, #000 56% 64%, transparent 64% 70%, #000 70% 77%, transparent 77% 84%, #000 84% 89%, transparent 89%);
+  animation: na-sun 9s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+}
+@keyframes na-sun {
+  to {
+    transform: translateY(-14px);
+  }
+}
+
+/* Perspective grid floor scrolling toward the viewer */
+.na-floor {
+  left: -50%;
+  right: -50%;
+  top: 63%;
+  bottom: -10%;
+  overflow: hidden;
+  transform: perspective(300px) rotateX(58deg);
+  transform-origin: top center;
+}
+.na-grid {
+  position: absolute;
+  inset: -80px 0 0 0;
+  background:
+    linear-gradient(rgb(0 240 255 / 0.65) 2px, transparent 2px) 0 0 / 80px 80px,
+    linear-gradient(90deg, rgb(255 0 229 / 0.55) 2px, transparent 2px) 0 0 / 80px 80px;
+  animation: na-scroll 1.6s infinite linear;
+}
+@keyframes na-scroll {
+  to {
+    transform: translateY(80px);
+  }
+}
+.na-horizon {
+  left: 0;
+  right: 0;
+  top: calc(63% - 40px);
+  height: 80px;
+  background: linear-gradient(transparent, rgb(255 0 229 / 0.35) 50%, transparent);
+}
+
+/* CRT texture + a slow scan beam */
+.na-scanlines {
+  inset: 0;
+  background: repeating-linear-gradient(0deg, rgb(255 255 255 / 0.035) 0 1px, transparent 1px 3px);
+}
+.na-beam {
+  left: 0;
+  right: 0;
+  top: -20vh;
+  height: 20vh;
+  background: linear-gradient(transparent, rgb(0 240 255 / 0.06), transparent);
+  animation: na-beam 7s infinite linear;
+}
+@keyframes na-beam {
+  to {
+    transform: translateY(140vh);
+  }
+}
+
+/* The logo's neon tube flickers twice, gently, every 9 seconds (well under 3 flashes per second).
+   It lives in the nav, so it follows the same motion switch as the scene. */
+[data-theme='neon-arcade'] .nav-logo-text {
+  animation: na-flicker 9s infinite;
+}
+:root[data-motion='off'] .nav-logo-text,
+:root[data-hidden] .nav-logo-text {
+  animation-play-state: paused;
+}
+@keyframes na-flicker {
+  0%,
+  90%,
+  92%,
+  95%,
+  100% {
+    opacity: 1;
+  }
+  91%,
+  94% {
+    opacity: 0.6;
+  }
+}

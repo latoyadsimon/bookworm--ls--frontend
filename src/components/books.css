@@ -1,0 +1,256 @@
+/* Shared book UI: covers, cards, rows, grids, skeletons, state messages. */
+
+/* ---------- Cover ---------- */
+.cover {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+}
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cover-placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 12px;
+  background: var(--surface-hover);
+  color: var(--accent);
+  border: 2px dashed var(--border);
+  border-radius: inherit;
+}
+.cover-placeholder-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  line-height: 1.2;
+  color: var(--text);
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- Card ---------- */
+.book-card {
+  /* Anchors the visually-hidden " by " so off-screen cards in a row can't widen the page */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  text-decoration: none;
+  border-radius: var(--radius-card);
+  outline-offset: 4px;
+}
+.book-card .cover {
+  margin-bottom: 6px;
+  /* Each mode sets its own hover move (--card-hover-transform) and may tune its feel */
+  transition:
+    transform var(--t-hover, var(--t-base)) var(--hover-ease, var(--ease)),
+    box-shadow var(--t-base) var(--ease);
+}
+.book-card:hover .cover,
+.book-card:focus-visible .cover {
+  transform: var(--card-hover-transform, translateY(-4px));
+  box-shadow: var(--card-hover-shadow);
+}
+.book-card-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.book-card-author {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Skeletons ---------- */
+.skeleton-block,
+.skeleton-line {
+  background: linear-gradient(90deg, var(--surface) 0%, var(--surface-hover) 50%, var(--surface) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+.skeleton-block {
+  box-shadow: none;
+}
+.skeleton-line {
+  display: block;
+  height: 12px;
+  margin-top: 4px;
+  border-radius: 6px;
+}
+.skeleton-line.is-short {
+  width: 60%;
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ---------- Horizontal row ---------- */
+.book-row {
+  margin-block: var(--space-6) var(--space-7);
+}
+.book-row-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.book-row-arrows {
+  display: none;
+  gap: var(--space-1);
+}
+.rot-left {
+  transform: rotate(90deg);
+}
+.rot-right {
+  transform: rotate(-90deg);
+}
+.book-row-scroller {
+  --row-pad: max(var(--gutter), calc((100vw - var(--max-w)) / 2 + var(--gutter)));
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 132px;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 8px var(--row-pad) var(--space-4);
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--row-pad);
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.book-row-scroller > li {
+  scroll-snap-align: start;
+}
+.book-row-empty {
+  grid-column: span 4;
+}
+.load-more-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  padding: var(--space-3);
+  border: 2px dashed var(--accent);
+  border-radius: var(--radius-card);
+  background: transparent;
+  color: var(--text);
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+.load-more-card:hover {
+  background: var(--surface-hover);
+}
+.load-more-card:active {
+  transform: scale(0.98);
+}
+.load-more-card-label {
+  font-size: 1.0625rem;
+}
+
+@media (min-width: 768px) {
+  .book-row-scroller {
+    grid-auto-columns: 160px;
+    gap: var(--space-5);
+  }
+  .book-row-arrows {
+    display: flex;
+  }
+}
+
+/* ---------- Grid ---------- */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 560px) {
+  .book-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 900px) {
+  .book-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-6) var(--space-5);
+  }
+}
+@media (min-width: 1200px) {
+  .book-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+.grid-footer {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+.load-more-btn {
+  min-width: 200px;
+}
+.grid-end {
+  font-weight: 600;
+}
+
+/* ---------- State messages ---------- */
+.state-message {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+  max-width: 640px;
+  padding: var(--space-5);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  border-left: 4px solid var(--border);
+}
+.state-message.is-error {
+  border-left-color: var(--error);
+}
+.state-message.is-compact {
+  padding: var(--space-4);
+}
+.state-message-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+.state-message.is-error .state-message-title {
+  color: var(--error);
+}
+.state-message-body {
+  color: var(--text-muted);
+}
+.state-message-action {
+  margin-top: var(--space-2);
+}

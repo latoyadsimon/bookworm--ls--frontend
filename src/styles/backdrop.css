@@ -1,0 +1,56 @@
+/* Shared frame for the animated background scenes (src/theme/backdrops/*).
+   Scenes animate transform and opacity only. */
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: layout paint;
+}
+.backdrop > * {
+  position: absolute;
+}
+
+/* Calm zone: a soft wash of the page color over the central reading column,
+   so the scene stays vivid at the edges and quiet behind text. */
+.scene-veil {
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--veil-color, transparent) 16%,
+    var(--veil-color, transparent) 84%,
+    transparent 100%
+  );
+}
+@media (max-width: 767px) {
+  .scene-veil {
+    background: var(--veil-color-mobile, var(--veil-color, transparent));
+  }
+}
+
+/* Stop the scene: the reader's switch, the device setting, or a hidden tab.
+   Scenes use negative animation delays, so a paused scene still looks lively. */
+:root[data-motion='off'] .backdrop *,
+:root[data-motion='off'] .backdrop *::before,
+:root[data-motion='off'] .backdrop *::after,
+:root[data-hidden] .backdrop *,
+:root[data-hidden] .backdrop *::before,
+:root[data-hidden] .backdrop *::after {
+  animation-play-state: paused !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .backdrop *,
+  .backdrop *::before,
+  .backdrop *::after {
+    animation-play-state: paused !important;
+  }
+}

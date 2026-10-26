@@ -1,0 +1,38 @@
+/* 💥 Comic Panel Pop: loud, playful comic + manga panels */
+[data-theme='comic-panel-pop'] {
+  color-scheme: light;
+
+  --bg: #fffdf5;
+  --surface: #ffffff;
+  --surface-hover: #fff3b0;
+  --text: #111111;
+  --text-muted: #4a4a4a;
+  --accent: #e4002b;
+  --accent-hover: #c8102e;
+  --on-accent: #ffffff;
+  --accent-2: #ffd400;
+  --on-accent-2: #111111;
+  --accent-3: #0072ce;
+  --on-accent-3: #ffffff;
+  --border: #111111;
+  --error: #c8102e;
+  --success: #00853e;
+
+  --font-display: 'Bangers', Impact, sans-serif;
+  --font-heading: 'Bangers', Impact, sans-serif;
+  --font-body: 'Comic Neue', 'Trebuchet MS', sans-serif;
+
+  --radius: 0;
+  --radius-card: 0;
+  --card-shadow: 4px 4px 0 #111111;
+  --card-hover-shadow: 8px 8px 0 #111111;
+  --card-hover-transform: translate(-3px, -3px);
+  --hero-cover-transform: rotate(-2deg);
+  --btn-primary-shadow: 3px 3px 0 #111111;
+  --btn-primary-hover-shadow: 5px 5px 0 #111111;
+  --btn-secondary-border: #111111;
+  --header-bg: rgb(255 253 245 / 0.96);
+
+  /* Halftone dots fading in from the top corner */
+  --texture: radial-gradient(rgb(0 114 206 / 0.14) 1.6px, transparent 2px) 0 0 / 14px 14px;
+}

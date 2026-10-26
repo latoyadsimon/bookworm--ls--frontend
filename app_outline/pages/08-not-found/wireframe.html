@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Not Found Wireframe</title>
+<link rel="stylesheet" href="../_shared/wireframe.css">
+<style>
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .mini { padding: 0 0 26px; }
+  .mini .topnav { margin-bottom: 30px; }
+  .big { font-size: 64px; line-height: 1; }
+  .msg { font-family: "Kalam"; font-weight: 700; font-size: 26px; margin: 10px 0 4px; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><filter id="wobble">
+  <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/>
+  <feDisplacementMap in="SourceGraphic" scale="3.2"/></filter></svg>
+
+<div class="page-card rough">
+  <div class="page-title rough">8. Not Found + Error Page <span class="route">Route: * (any unknown URL)</span></div>
+  <div class="layout">
+
+    <div class="side">
+      <div class="box story rough">
+        <h2>User Story</h2>
+        As a visitor, if I land on a broken link or something crashes, I want a friendly message and a way
+        home, so that I'm never stuck on a blank screen.
+      </div>
+      <div class="box elements rough">
+        <h2>Key Elements</h2>
+        <ul>
+          <li>Navigation bar (still works)</li>
+          <li>Friendly icon + heading</li>
+          <li>Short explanation</li>
+          <li>Go Home button</li>
+          <li>Crash version from the Error Boundary</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cols">
+      <section class="screen rough mini center">
+        <div class="topnav">
+          <b>BookWorm</b><span>Home</span><span>Genres ▾</span><span class="grow"></span><span>Log In</span>
+        </div>
+        <div class="muted">404 · /some/broken-link</div>
+        <div class="big" style="margin-top:20px">📖❓</div>
+        <div class="msg">Page not found</div>
+        <div>This page wandered off the shelf.</div>
+        <div style="margin-top:16px"><span class="btn rough">[ Go Home ]</span></div>
+      </section>
+      <section class="screen rough mini center">
+        <div class="topnav">
+          <b>BookWorm</b><span>Home</span><span>Genres ▾</span><span class="grow"></span><span>Log In</span>
+        </div>
+        <div class="muted">unexpected crash · any page</div>
+        <div class="big" style="margin-top:20px">⚠</div>
+        <div class="msg">Something went wrong</div>
+        <div>Please try again, or head back home.</div>
+        <div class="row" style="justify-content:center;margin-top:16px"><span class="btn rough">[ Try Again ]</span><span class="btn rough">[ Go Home ]</span></div>
+      </section>
+    </div>
+
+    <div class="notes">
+      <div class="note yellow">Catch-all route * shows the 404 page for any unknown URL</div>
+      <div class="note green">A React Error Boundary shows the crash screen instead of a white page</div>
+      <div class="note blue">Error details go to the console, never on screen</div>
+      <div class="note red"><b>Not this page</b>
+        <ul>
+          <li>Unknown book ID → handled on Book Details</li>
+          <li>Unknown genre → handled on Genre page</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

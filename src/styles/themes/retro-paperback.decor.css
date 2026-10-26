@@ -1,0 +1,125 @@
+/* 🕺 Retro Paperback '70s components: stripes, stacked shadows, price stickers. Decorative only. */
+
+/* Triple stripes along the bottom of the header */
+[data-theme='retro-paperback'] .site-header {
+  border-bottom: 0;
+  box-shadow:
+    0 4px 0 #b5461a,
+    0 8px 0 #e1a730,
+    0 12px 0 #6e4a2f;
+}
+[data-theme='retro-paperback'] main {
+  padding-top: calc(var(--space-6) + 12px);
+}
+[data-theme='retro-paperback'] .nav-logo-text {
+  color: #b5461a;
+  text-shadow: 2px 2px 0 #e1a730;
+}
+/* Active nav link: a little daisy */
+[data-theme='retro-paperback'] .nav-link.is-active::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, #e1a730 0 30%, #fff4dc 32% 60%, transparent 62%);
+}
+
+/* ---------- Titles: groovy stacked drop shadows + stripes ---------- */
+[data-theme='retro-paperback'] :is(h1, h2) {
+  color: #3d2314;
+  text-shadow:
+    2px 2px 0 #e1a730,
+    4px 4px 0 #b5461a;
+}
+[data-theme='retro-paperback'] .drip {
+  padding-bottom: 14px;
+  background:
+    linear-gradient(#b5461a, #b5461a) left calc(100% - 8px) / 100% 3px no-repeat,
+    linear-gradient(#e1a730, #e1a730) left calc(100% - 4px) / 100% 3px no-repeat,
+    linear-gradient(#6e4a2f, #6e4a2f) left bottom / 100% 3px no-repeat;
+}
+
+/* ---------- Buttons: chunky pills with a stripe stack ---------- */
+[data-theme='retro-paperback'] .btn {
+  font-weight: 800;
+}
+[data-theme='retro-paperback'] .btn-primary {
+  box-shadow:
+    0 4px 0 #e1a730,
+    0 8px 0 #6e4a2f;
+}
+[data-theme='retro-paperback'] .btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 0 #e1a730,
+    0 10px 0 #6e4a2f;
+}
+[data-theme='retro-paperback'] .btn-secondary {
+  background: #fff4dc;
+  border-color: #e1a730;
+  box-shadow: 0 4px 0 #b5461a;
+}
+
+/* ---------- Covers turn on a spinner rack around their spine ---------- */
+[data-theme='retro-paperback'] .book-card .cover {
+  transform-origin: left center;
+  border: 3px solid #fff4dc;
+}
+
+/* ---------- Hero: a 1970s paperback cover ---------- */
+[data-theme='retro-paperback'] .hero {
+  margin-top: var(--space-4);
+  padding: var(--space-6) var(--space-5);
+  border-radius: 14px;
+  background:
+    linear-gradient(#b5461a, #b5461a) top / 100% 10px no-repeat,
+    linear-gradient(#e1a730, #e1a730) 0 10px / 100% 10px no-repeat,
+    linear-gradient(#6b7a2e, #6b7a2e) 0 20px / 100% 10px no-repeat,
+    #fff4dc;
+  border: 3px solid #6e4a2f;
+  box-shadow: 8px 8px 0 #6e4a2f;
+}
+@media (min-width: 768px) {
+  [data-theme='retro-paperback'] .hero {
+    padding: var(--space-8) var(--space-7) var(--space-7);
+  }
+}
+/* The featured badge is a round red price sticker */
+[data-theme='retro-paperback'] .hero-badge {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  padding: 0 8px;
+  border-radius: 50%;
+  background: #a4161a;
+  color: #ffffff;
+  font-family: 'Shrikhand', serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.1;
+  text-align: center;
+  rotate: -12deg;
+  box-shadow: 3px 3px 0 #6e4a2f;
+}
+[data-theme='retro-paperback'] .hero-title,
+[data-theme='retro-paperback'] .book-title,
+[data-theme='retro-paperback'] .status-art-code {
+  color: #b5461a;
+  text-shadow:
+    3px 3px 0 #e1a730,
+    6px 6px 0 #6e4a2f;
+}
+[data-theme='retro-paperback'] .log-item {
+  border-left-color: #e1a730;
+}
+[data-theme='retro-paperback'] .log-item.is-mine {
+  border-left-color: #b5461a;
+}
+[data-theme='retro-paperback'] .chip {
+  border-color: #6e4a2f;
+}

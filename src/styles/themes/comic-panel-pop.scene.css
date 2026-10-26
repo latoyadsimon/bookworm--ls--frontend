@@ -1,0 +1,120 @@
+/* 💥 Comic Panel Pop scene: transform + opacity only. */
+[data-theme='comic-panel-pop'] {
+  --texture: none;
+  --reading-panel: #ffffff;
+  --reading-panel-pad: clamp(16px, 3vw, 32px);
+  --veil-color: rgb(255 253 245 / 0.6);
+  --veil-color-mobile: rgb(255 253 245 / 0.8);
+}
+
+.cp-paper {
+  inset: 0;
+  background: #fffdf5;
+}
+
+/* Halftone dots drifting, strongest in the corners */
+.cp-dots {
+  inset: -28px 0 0 -28px;
+  background: radial-gradient(rgb(0 114 206 / 0.22) 2px, transparent 2.5px) 0 0 / 14px 14px;
+  -webkit-mask: radial-gradient(ellipse at 0% 0%, #000, transparent 55%), radial-gradient(ellipse at 100% 100%, #000, transparent 55%);
+  mask: radial-gradient(ellipse at 0% 0%, #000, transparent 55%), radial-gradient(ellipse at 100% 100%, #000, transparent 55%);
+  animation: cp-dots 10s infinite linear;
+}
+@keyframes cp-dots {
+  to {
+    transform: translate(28px, 28px);
+  }
+}
+
+/* Speed-line bursts slowly turning in two corners */
+.cp-burst {
+  width: 80vmax;
+  height: 80vmax;
+  border-radius: 50%;
+  background: repeating-conic-gradient(#111111 0 1.2deg, transparent 1.2deg 9deg);
+  opacity: 0.09;
+  -webkit-mask: radial-gradient(circle, transparent 18%, #000 30%, transparent 70%);
+  mask: radial-gradient(circle, transparent 18%, #000 30%, transparent 70%);
+  animation: cp-turn 120s infinite linear;
+}
+.cp-burst-a {
+  left: -40vmax;
+  top: -40vmax;
+}
+.cp-burst-b {
+  right: -40vmax;
+  bottom: -40vmax;
+  animation-direction: reverse;
+}
+@keyframes cp-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Sound effects pop in, hold, and fade (a reader-paced rhythm, not a flash) */
+.cp-sfx {
+  left: var(--x);
+  top: var(--y);
+  display: grid;
+  place-items: center;
+  width: 150px;
+  height: 104px;
+  opacity: 0;
+  animation: cp-pop var(--t) var(--d) infinite cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cp-sfx::before,
+.cp-sfx::after {
+  content: '';
+  position: absolute;
+  clip-path: polygon(0 22%, 16% 18%, 10% 0, 32% 12%, 50% 0, 64% 14%, 88% 2%, 84% 22%, 100% 30%, 88% 50%, 100% 72%, 82% 76%, 86% 100%, 62% 86%, 46% 100%, 34% 84%, 10% 96%, 14% 74%, 0 62%, 10% 44%);
+}
+.cp-sfx::before {
+  inset: 0;
+  background: #111111;
+}
+.cp-sfx::after {
+  inset: 5px;
+  background: var(--c);
+}
+.cp-sfx-word {
+  position: relative;
+  z-index: 1;
+  font-family: 'Bangers', Impact, sans-serif;
+  font-size: 1.9rem;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  -webkit-text-stroke: 1.5px #111111;
+  text-shadow: 2px 2px 0 #111111;
+}
+@keyframes cp-pop {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--r)) scale(0.5);
+  }
+  6% {
+    opacity: 1;
+    transform: rotate(var(--r)) scale(1.1);
+  }
+  10% {
+    transform: rotate(var(--r)) scale(1);
+  }
+  58% {
+    opacity: 1;
+    transform: rotate(var(--r)) scale(1);
+  }
+  68%,
+  100% {
+    opacity: 0;
+    transform: rotate(var(--r)) scale(0.8);
+  }
+}
+
+@media (max-width: 767px) {
+  .cp-sfx {
+    scale: 0.6;
+  }
+  .cp-sfx:nth-of-type(n + 3) {
+    display: none;
+  }
+}

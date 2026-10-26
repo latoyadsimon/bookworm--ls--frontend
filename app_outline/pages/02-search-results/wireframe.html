@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Search Results Wireframe</title>
+<link rel="stylesheet" href="../_shared/wireframe.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><filter id="wobble">
+  <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/>
+  <feDisplacementMap in="SourceGraphic" scale="3.2"/></filter></svg>
+
+<div class="page-card rough">
+  <div class="page-title rough">2. Search Results Page <span class="route">Route: /search?q=:query&amp;type=:type</span></div>
+  <div class="layout">
+
+    <div class="side">
+      <div class="box story rough">
+        <h2>User Story</h2>
+        As a visitor, I want to search for books by title, author, ISBN, or keyword, so that I can quickly
+        find a specific book or books like it.
+      </div>
+      <div class="box elements rough">
+        <h2>Key Elements</h2>
+        <ul>
+          <li>Navigation bar</li>
+          <li>Search box (pre-filled from URL)</li>
+          <li>Type dropdown: All / Title / Author / ISBN</li>
+          <li>Results heading with query</li>
+          <li>Results grid (cover, title, author)</li>
+          <li>Load More button</li>
+          <li>No-results + validation messages</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="screen rough">
+      <div class="topnav">
+        <b>BookWorm</b><span>Home</span><span>Genres ▾</span>
+        <span class="search rough">🔍 Search books…</span>
+        <span>Log In</span><span class="sep">|</span><span>Sign Up</span>
+      </div>
+      <div class="screen-body">
+        <div class="row">
+          <div class="field rough" style="flex:1;margin:0;color:var(--ink)">🔍 the pragmatic programmer &nbsp;&nbsp;✕</div>
+          <span class="btn rough">Title ▾</span><span class="btn rough">[ Search ]</span>
+        </div>
+        <div class="spread" style="margin-top:6px">
+          <div class="h">Results for "the pragmatic programmer"</div><span class="muted">Type: Title</span>
+        </div>
+        <div class="grid">
+          <div class="card"><div class="ph rough"></div>Title One<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Two<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Three<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Four<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Five<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Six<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Seven<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Eight<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Nine<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Title Ten<br><span class="muted">Author</span></div>
+        </div>
+        <div class="center" style="margin-top:14px"><span class="btn rough">[ Load More ]</span></div>
+
+        <div class="row" style="align-items:stretch;margin-top:4px">
+          <div class="state" style="flex:1"><span class="tag">no results</span>
+            🔍<br>No books found for "xyzzy".<br><span class="muted">Try a different search or search type.</span>
+            <div style="margin-top:6px"><span class="btn sm rough">[ Back to Home ]</span></div></div>
+          <div class="state" style="flex:1"><span class="tag">validation</span>
+            <div class="field rough" style="margin:4px 0 6px;font-size:14px">🔍 12345 &nbsp; ISBN ▾</div>
+            <div style="color:var(--warn);font-size:14px">ISBN must be 10 or 13 digits.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="notes">
+      <div class="note yellow">Search bar keeps your query + type so you can tweak and search again</div>
+      <div class="note green">Query lives in the URL → refresh or share the link and get the same results</div>
+      <div class="note yellow">Type ▾ maps to Google operators: intitle: / inauthor: / isbn: (All = keyword)</div>
+      <div class="note red"><b>States</b>
+        <ul>
+          <li>Loading → skeleton grid</li>
+          <li>Empty search → not sent: "Please enter a search term."</li>
+          <li>Over 200 chars → "Search is too long"</li>
+          <li>429 / timeout → banner + Retry</li>
+          <li>Load More fails → books stay, Retry below</li>
+          <li>End of results → "You've reached the end"</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

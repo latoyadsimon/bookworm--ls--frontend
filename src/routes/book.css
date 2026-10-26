@@ -1,0 +1,179 @@
+/* Book Details page */
+.book {
+  display: grid;
+  gap: var(--space-7);
+}
+
+/* Modes with busy animated scenes set --reading-panel so book info sits on a near-solid surface */
+.book-top,
+.book-about {
+  border-radius: var(--radius-card);
+  background: var(--reading-panel, transparent);
+  padding: var(--reading-panel-pad, 0);
+}
+.book-top {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
+}
+.book-cover {
+  width: min(220px, 60vw);
+  justify-self: center;
+  box-shadow: var(--card-hover-shadow);
+}
+@media (min-width: 720px) {
+  .book-top {
+    grid-template-columns: 240px 1fr;
+    gap: var(--space-7);
+    align-items: start;
+  }
+  .book-cover {
+    width: 100%;
+  }
+}
+
+.book-info {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  min-width: 0;
+}
+.book-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.5rem);
+  line-height: 1;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+.book-authors {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.book-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-3) var(--space-5);
+  margin: var(--space-3) 0 0;
+  padding: var(--space-4) 0;
+  border-block: 1px solid var(--border);
+}
+.book-facts dt {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.book-facts dd {
+  margin: 2px 0 0;
+  font-weight: 600;
+}
+
+.book-actions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-3) var(--space-4);
+  margin-top: var(--space-3);
+}
+.book-actions-note {
+  align-self: center;
+}
+
+.book-about {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 72ch;
+}
+.book-about p {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.book-logs {
+  display: grid;
+  gap: var(--space-7);
+}
+@media (min-width: 960px) {
+  .book-logs {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+  }
+  .book-write {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+  }
+}
+.book-write,
+.book-readers {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.book-write h2,
+.book-readers h2 {
+  justify-self: start;
+}
+.log-total {
+  margin-top: calc(var(--space-2) * -1);
+}
+
+/* ---------- Log list ---------- */
+.log-list {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.log-item {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  border-left: 4px solid var(--border);
+}
+.log-item.is-mine {
+  border-left-color: var(--accent);
+}
+.log-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-3);
+}
+.log-author {
+  font-weight: 800;
+}
+.log-you {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.log-meta {
+  font-size: 0.875rem;
+}
+.log-head .stars,
+.log-norating {
+  margin-left: auto;
+  font-size: 0.875rem;
+}
+.log-head .stars {
+  font-size: 1.0625rem;
+}
+.log-body {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+.log-actions {
+  display: flex;
+  gap: var(--space-2);
+  margin-left: calc(var(--space-3) * -1);
+}
+
+.book-missing {
+  display: grid;
+  gap: var(--space-5);
+  justify-items: start;
+}

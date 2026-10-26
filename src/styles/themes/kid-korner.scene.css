@@ -1,0 +1,173 @@
+/* 🧒 Kid Korner scene: transform + opacity only. */
+[data-theme='kid-korner'] {
+  --texture: none;
+  --reading-panel: rgb(255 255 255 / 0.94);
+  --reading-panel-pad: clamp(16px, 3vw, 32px);
+  --veil-color: rgb(255 249 230 / 0.5);
+  --veil-color-mobile: rgb(255 249 230 / 0.72);
+}
+
+.kk-sky {
+  inset: 0;
+  background: linear-gradient(#d6efff 0%, #ecf7ff 30%, #fff9e6 65%);
+}
+
+/* A smiling sun whose rays slowly turn */
+.kk-sun {
+  right: -7vmax;
+  top: -7vmax;
+  width: 28vmax;
+  height: 28vmax;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffd166 0 34%, transparent 35%);
+}
+.kk-sun::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(rgb(255 183 3 / 0.45) 0 8deg, transparent 8deg 22deg);
+  -webkit-mask: radial-gradient(circle, transparent 36%, #000 37%, transparent 70%);
+  mask: radial-gradient(circle, transparent 36%, #000 37%, transparent 70%);
+  animation: kk-turn 60s infinite linear;
+}
+@keyframes kk-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Puffy clouds drifting across */
+.kk-cloud {
+  top: var(--y);
+  left: 0;
+  width: 160px;
+  height: 46px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow:
+    30px -20px 0 6px #ffffff,
+    74px -28px 0 14px #ffffff,
+    112px -10px 0 4px #ffffff;
+  opacity: 0.95;
+  animation: kk-drift var(--t) var(--d) infinite linear;
+}
+@keyframes kk-drift {
+  from {
+    transform: translateX(-30vw) scale(var(--s));
+  }
+  to {
+    transform: translateX(120vw) scale(var(--s));
+  }
+}
+
+/* Bubbles float up and wobble */
+.kk-bubble {
+  bottom: -5vh;
+  left: var(--x);
+  width: var(--s);
+  height: var(--s);
+  border-radius: 50%;
+  border: 2px solid rgb(108 60 225 / 0.35);
+  background: radial-gradient(circle at 30% 30%, rgb(255 255 255 / 0.95) 0 18%, rgb(46 196 182 / 0.12) 40%, transparent 70%);
+  animation: kk-rise var(--t) var(--d) infinite linear;
+}
+@keyframes kk-rise {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(18px, -30vh);
+  }
+  50% {
+    transform: translate(-14px, -60vh);
+  }
+  75% {
+    transform: translate(16px, -90vh);
+  }
+  100% {
+    transform: translate(0, -118vh);
+  }
+}
+
+/* Balloons rise with a gentle sway */
+.kk-balloon {
+  bottom: -22vh;
+  left: var(--x);
+  animation: kk-balloon var(--t) var(--d) infinite linear;
+}
+@keyframes kk-balloon {
+  0% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-70vh) rotate(5deg);
+  }
+  100% {
+    transform: translateY(-140vh) rotate(-5deg);
+  }
+}
+
+/* Confetti falling */
+.kk-confetti {
+  top: -4vh;
+  left: var(--x);
+  width: 9px;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--c);
+  animation: kk-fall var(--t) var(--d) infinite linear;
+}
+@keyframes kk-fall {
+  from {
+    transform: translateY(0) rotate(var(--r));
+  }
+  to {
+    transform: translateY(112vh) rotate(calc(var(--r) + 540deg));
+  }
+}
+
+/* Grass along the bottom, and the bookworm inching along it */
+.kk-grass {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 6vh;
+  background:
+    radial-gradient(circle at 20px 100%, #8ac926 18px, transparent 19px) 0 0 / 40px 100%,
+    linear-gradient(transparent 60%, #8ac926 60%);
+  opacity: 0.85;
+}
+.kk-worm {
+  left: 0;
+  bottom: 2.5vh;
+  animation: kk-crawl 42s infinite linear;
+}
+.kk-worm-body {
+  display: block;
+  transform-origin: left bottom;
+  animation: kk-inch 0.9s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+}
+@keyframes kk-crawl {
+  from {
+    transform: translateX(-170px);
+  }
+  to {
+    transform: translateX(100vw);
+  }
+}
+@keyframes kk-inch {
+  to {
+    transform: scale(0.88, 1.08);
+  }
+}
+
+@media (max-width: 767px) {
+  .kk-balloon {
+    scale: 0.7;
+  }
+  .kk-worm {
+    scale: 0.7;
+    transform-origin: left bottom;
+  }
+}

@@ -1,0 +1,39 @@
+/* 🕯️ Cozy Library: lamp-lit reading room, leather + walnut */
+[data-theme='cozy-library'] {
+  color-scheme: dark;
+
+  --bg: #1f1712;
+  --surface: #2c2119;
+  --surface-hover: #3a2c21;
+  --text: #f3e9d7;
+  --text-muted: #bfae95;
+  --accent: #c9a227;
+  --accent-hover: #d9b43a;
+  --on-accent: #1f1712;
+  --accent-2: #2f5d50;
+  --on-accent-2: #ffffff;
+  --accent-3: #8c2f39;
+  --on-accent-3: #ffffff;
+  --border: #4a3828;
+  --error: #ef8a80;
+  --success: #9ccc65;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --heading-weight: 700;
+  --font-body: 'Lora', Georgia, serif;
+
+  --radius: 4px;
+  --radius-card: 2px;
+  --card-shadow: inset 6px 0 0 rgb(0 0 0 / 0.28), 0 4px 10px rgb(0 0 0 / 0.5);
+  --card-hover-shadow: inset 6px 0 0 rgb(0 0 0 / 0.28), 0 14px 24px rgb(0 0 0 / 0.55), 0 0 22px rgb(255 200 120 / 0.18);
+  --card-hover-transform: translateY(-8px) rotate(-3deg);
+  --hero-cover-transform: rotate(-2deg);
+  --btn-secondary-border: #c9a227;
+  --header-bg: rgb(31 23 18 / 0.92);
+
+  /* Warm lamp glow over walnut grain */
+  --texture:
+    radial-gradient(ellipse at 50% -10%, rgb(255 200 120 / 0.16), transparent 55%),
+    repeating-linear-gradient(92deg, rgb(0 0 0 / 0.1) 0 3px, transparent 3px 17px, rgb(255 255 255 / 0.015) 17px 19px, transparent 19px 31px);
+}

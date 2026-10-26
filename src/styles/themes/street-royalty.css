@@ -1,0 +1,42 @@
+/* 👑 Street Royalty: graffiti wall meets princess power (DEFAULT mode) */
+[data-theme='street-royalty'] {
+  color-scheme: dark;
+
+  --bg: #120f14;
+  --surface: #1e1a22;
+  --surface-hover: #2a2430;
+  --text: #ffffff;
+  --text-muted: #bdb3c7;
+  --accent: #ff2e93;
+  --accent-hover: #ff4fa5;
+  --on-accent: #120f14;
+  --accent-2: #ffd23f;
+  --on-accent-2: #120f14;
+  --accent-3: #00e5d4;
+  --on-accent-3: #120f14;
+  --border: #3a3242;
+  --error: #ff6b6b;
+  --success: #3ddc97;
+
+  --font-display: 'Rubik Spray Paint', 'Permanent Marker', system-ui, sans-serif;
+  /* The hero headline: block signage letters stay readable at a glance; spray paint stays on the logo */
+  --font-hero: 'Bungee', 'Permanent Marker', system-ui, sans-serif;
+  --font-heading: 'Permanent Marker', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius: 6px;
+  --radius-card: 6px;
+  --card-shadow: 0 2px 10px rgb(0 0 0 / 0.45);
+  --card-hover-shadow: 0 0 0 2px #ff2e93, 0 8px 24px rgb(255 46 147 / 0.35);
+  --card-hover-transform: translateY(-4px) rotate(-1deg);
+  --hero-cover-transform: rotate(-3deg);
+  --btn-secondary-border: #ffd23f;
+  --header-bg: rgb(18 15 20 / 0.86);
+
+  /* Concrete wall: faint mortar lines + two spray-paint glows */
+  --texture:
+    radial-gradient(circle at 88% 6%, rgb(255 46 147 / 0.16), transparent 34%),
+    radial-gradient(circle at 6% 96%, rgb(0 229 212 / 0.1), transparent 38%),
+    repeating-linear-gradient(0deg, rgb(255 255 255 / 0.022) 0 2px, transparent 2px 26px),
+    repeating-linear-gradient(90deg, rgb(255 255 255 / 0.018) 0 2px, transparent 2px 54px);
+}

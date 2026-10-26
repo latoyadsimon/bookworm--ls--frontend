@@ -1,0 +1,148 @@
+/* 💥 Comic Panel Pop components: ink outlines, caption boxes, speech bubbles. Decorative only. */
+
+/* Ink outlines everywhere */
+[data-theme='comic-panel-pop'] .book-card .cover,
+[data-theme='comic-panel-pop'] .state-message,
+[data-theme='comic-panel-pop'] .auth-card,
+[data-theme='comic-panel-pop'] .library-row,
+[data-theme='comic-panel-pop'] .btn,
+[data-theme='comic-panel-pop'] .chip,
+[data-theme='comic-panel-pop'] .search-row,
+[data-theme='comic-panel-pop'] .book-top,
+[data-theme='comic-panel-pop'] .book-about {
+  border: 3px solid #111111;
+}
+[data-theme='comic-panel-pop'] .book-top,
+[data-theme='comic-panel-pop'] .book-about {
+  box-shadow: 6px 6px 0 #111111;
+}
+[data-theme='comic-panel-pop'] .site-header {
+  border-bottom: 4px solid #111111;
+}
+[data-theme='comic-panel-pop'] .btn-secondary {
+  box-shadow: 3px 3px 0 #111111;
+}
+[data-theme='comic-panel-pop'] .btn-primary {
+  font-family: 'Bangers', Impact, sans-serif;
+  font-weight: 400;
+  font-size: 1.125rem;
+  letter-spacing: 0.06em;
+}
+[data-theme='comic-panel-pop'] .btn:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+}
+
+/* Active nav link: a little burst */
+[data-theme='comic-panel-pop'] .nav-link.is-active::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 16px;
+  height: 14px;
+  transform: translateX(-50%);
+  background: #ffd400;
+  clip-path: polygon(50% 0, 62% 30%, 98% 20%, 74% 50%, 100% 78%, 62% 70%, 50% 100%, 38% 70%, 0 78%, 26% 50%, 2% 20%, 38% 30%);
+}
+
+/* ---------- Titles live in yellow caption boxes ---------- */
+[data-theme='comic-panel-pop'] .drip {
+  padding: 2px 12px;
+  background: #ffd400;
+  border: 3px solid #111111;
+  box-shadow: 4px 4px 0 #111111;
+  letter-spacing: 0.04em;
+  transform: rotate(-1deg);
+}
+[data-theme='comic-panel-pop'] h1,
+[data-theme='comic-panel-pop'] h2,
+[data-theme='comic-panel-pop'] h3 {
+  letter-spacing: 0.04em;
+}
+[data-theme='comic-panel-pop'] .nav-logo-text,
+[data-theme='comic-panel-pop'] .hero-title,
+[data-theme='comic-panel-pop'] .book-title,
+[data-theme='comic-panel-pop'] .status-art-code {
+  color: #e4002b;
+  -webkit-text-stroke: 1.5px #111111;
+  text-shadow: 3px 3px 0 #111111;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Hero: a comic panel ---------- */
+[data-theme='comic-panel-pop'] .hero {
+  margin-top: var(--space-4);
+  padding: var(--space-6) var(--space-5);
+  background: #ffffff;
+  border: 4px solid #111111;
+  box-shadow: 10px 10px 0 #111111;
+  rotate: -0.6deg;
+}
+@media (min-width: 768px) {
+  [data-theme='comic-panel-pop'] .hero {
+    padding: var(--space-7);
+  }
+}
+[data-theme='comic-panel-pop'] .hero-badge {
+  border: 2px solid #111;
+  border-radius: 0;
+  transform: rotate(-4deg);
+  font-family: 'Bangers', Impact, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- Logs are speech bubbles ---------- */
+[data-theme='comic-panel-pop'] .log-item {
+  position: relative;
+  border: 3px solid #111111;
+  border-radius: 18px;
+  margin-bottom: 10px;
+}
+[data-theme='comic-panel-pop'] .log-item::after {
+  content: '';
+  position: absolute;
+  left: 28px;
+  bottom: -16px;
+  width: 22px;
+  height: 16px;
+  background: #ffffff;
+  border-left: 3px solid #111111;
+  border-bottom: 3px solid #111111;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  transform: skewX(-20deg);
+}
+
+/* POW! when a book is added. Triggered by the reader's own action, so it is
+   allowed to be loud; reduced motion turns the burst into a static label. */
+[data-theme='comic-panel-pop'] .book-actions.just-added::after {
+  content: 'POW!';
+  position: absolute;
+  left: 4px;
+  top: -64px;
+  padding: 10px 18px;
+  background: #ffd400;
+  border: 3px solid #111111;
+  font-family: 'Bangers', Impact, sans-serif;
+  font-size: 2rem;
+  color: #e4002b;
+  -webkit-text-stroke: 1px #111111;
+  clip-path: polygon(0 20%, 15% 15%, 10% 0, 32% 12%, 50% 0, 64% 14%, 88% 2%, 84% 22%, 100% 30%, 88% 50%, 100% 72%, 82% 76%, 86% 100%, 62% 86%, 46% 100%, 34% 84%, 10% 96%, 14% 74%, 0 62%, 10% 44%);
+  pointer-events: none;
+  animation: comic-pow 700ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes comic-pow {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) rotate(-14deg);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.08) rotate(-6deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-8deg);
+  }
+}

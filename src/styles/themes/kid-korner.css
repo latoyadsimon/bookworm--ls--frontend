@@ -1,0 +1,51 @@
+/* 🧒 Kid Korner: bright + friendly for school-age readers */
+[data-theme='kid-korner'] {
+  color-scheme: light;
+
+  --bg: #fff9e6;
+  --surface: #ffffff;
+  --surface-hover: #e6f7ff;
+  --text: #2b2d42;
+  --text-muted: #5c5f7a;
+  --accent: #6c3ce1;
+  --accent-hover: #5a2fc4;
+  --on-accent: #ffffff;
+  --accent-2: #ffb703;
+  --on-accent-2: #111111;
+  --accent-3: #2ec4b6;
+  --on-accent-3: #111111;
+  --border: #e4dcc2;
+  --error: #c1121f;
+  --success: #1f7a70;
+
+  --font-display: 'Fredoka', system-ui, sans-serif;
+  --font-heading: 'Fredoka', system-ui, sans-serif;
+  --heading-weight: 600;
+  --font-body: 'Lexend', system-ui, sans-serif;
+
+  /* Bigger text and touch targets for young readers */
+  --base-size: 18px;
+  --touch: 48px;
+
+  --radius: 16px;
+  --radius-card: 20px;
+  --radius-button: 16px;
+  --card-shadow: 0 5px 0 #e4dcc2;
+  --card-hover-shadow: 0 8px 0 #ffb703;
+  --card-hover-transform: translateY(-6px) scale(1.03);
+  --hero-cover-transform: rotate(-3deg);
+  --btn-secondary-border: #ffb703;
+  --header-bg: rgb(255 249 230 / 0.95);
+  /* A small, kid-friendly overshoot on hover */
+  --hover-ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --t-hover: 260ms;
+
+  /* Confetti dots */
+  --texture:
+    /* kept to the outer page edges so they never sit behind text */
+    radial-gradient(circle at 8px 22%, #ff6b9a 5px, transparent 6px),
+    radial-gradient(circle at calc(100% - 9px) 30%, #2ec4b6 6px, transparent 7px),
+    radial-gradient(circle at calc(100% - 10px) 84%, #ffb703 7px, transparent 8px),
+    radial-gradient(circle at 7px 68%, #6c3ce1 4px, transparent 5px),
+    radial-gradient(circle at 9px 92%, #ffb703 4px, transparent 5px);
+}

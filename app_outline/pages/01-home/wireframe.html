@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home Page Wireframe</title>
+<link rel="stylesheet" href="../_shared/wireframe.css">
+<style>
+  .hero { display: flex; gap: 18px; padding: 16px; background: #f1f1ef; }
+  .hero .ph { width: 130px; height: 182px; flex: none; }
+  .hero .t { font-size: 25px; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><filter id="wobble">
+  <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/>
+  <feDisplacementMap in="SourceGraphic" scale="3.2"/></filter></svg>
+
+<div class="page-card rough">
+  <div class="page-title rough">1. Home Page <span class="route">Route: /</span></div>
+  <div class="layout">
+
+    <div class="side">
+      <div class="box story rough">
+        <h2>User Story</h2>
+        As a visitor, I want to see featured technology books in Netflix-style rows, so that I can quickly
+        discover something worth reading without logging in.
+      </div>
+      <div class="box elements rough">
+        <h2>Key Elements</h2>
+        <ul>
+          <li>Navigation bar + search</li>
+          <li>Featured book hero</li>
+          <li>View Details / + Library buttons</li>
+          <li>Programming row</li>
+          <li>Artificial Intelligence row</li>
+          <li>Computers &amp; Technology row</li>
+          <li>"Load More ›" card per row</li>
+          <li>Placeholder for missing covers</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="screen rough">
+      <div class="topnav">
+        <b>BookWorm</b><span class="on">Home</span><span>Genres ▾</span>
+        <span class="search rough">🔍 Search books…</span>
+        <span>Log In</span><span class="sep">|</span><span>Sign Up</span>
+      </div>
+      <div class="screen-body">
+        <div class="hero rough">
+          <div class="ph rough">Cover</div>
+          <div style="flex:1">
+            <div class="muted">FEATURED</div>
+            <div class="t">FEATURED TECH BOOK</div>
+            <div class="muted" style="font-size:16px">by Author Name</div>
+            <div class="lines"><span style="width:92%"></span><span style="width:85%"></span><span style="width:55%"></span></div>
+            <div class="row" style="margin-top:12px"><span class="btn rough">[ View Details ]</span><span class="btn rough">[ + Library ]</span></div>
+          </div>
+        </div>
+
+        <div class="spread"><div class="h">Programming</div><span class="muted">scrolls sideways →</span></div>
+        <div class="cards">
+          <div class="card"><div class="ph rough"></div>Book Title<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Book Title<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Book Title<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough">no cover<br>→ title</div>Book Title<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Book Title<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Book Title<br><span class="muted">Author</span></div>
+          <div class="card more"><div class="ph rough">Load<br>More ›</div>&nbsp;</div>
+        </div>
+
+        <div class="h">Artificial Intelligence</div>
+        <div class="cards">
+          <div class="card"><div class="ph rough"></div>Book Title<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Book Title<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Book Title<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Book Title<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Book Title<br><span class="muted">Author</span></div>
+          <div class="card"><div class="ph rough"></div>Book Title<br><span class="muted">Author</span></div>
+          <div class="card more"><div class="ph rough">Load<br>More ›</div>&nbsp;</div>
+        </div>
+
+        <div class="h">Computers &amp; Technology</div>
+        <div class="state" style="margin-top:6px"><span class="tag">error state</span>
+          We couldn't load these books right now.&nbsp; <span class="btn sm rough">[ Retry ]</span>
+          <div class="muted">the other rows keep working</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="notes">
+      <div class="note yellow">Hero shows one featured technology book with quick actions</div>
+      <div class="note green">Horizontal rows of tech topics, each with cover, title + author(s)</div>
+      <div class="note yellow">"Load More ›" at the end of a row fetches the next batch (API returns max 40 per request)</div>
+      <div class="note blue">Guest clicks "+ Library" → Log In, then back to Home</div>
+      <div class="note red"><b>States</b>
+        <ul>
+          <li>Loading → skeleton cards</li>
+          <li>No cover → placeholder with title</li>
+          <li>429 / timeout / down → row error + Retry</li>
+          <li>No more results → Load More card hides</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

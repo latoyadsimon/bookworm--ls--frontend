@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BookWorm ERD</title>
+<!-- Diagram text is copied from the mermaid block in erd.md; keep them in sync. -->
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body { display: inline-block; min-width: 1500px; box-sizing: border-box; margin: 0; padding: 32px 40px 40px; background: #f8f7f3; color: #2b2f36; font-family: Inter, system-ui, sans-serif; }
+  h1 { font-family: Kalam, cursive; font-size: 46px; margin: 0; }
+  .sub { color: #6b7078; font-size: 18px; margin: 2px 0 18px; }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+  .legend span { background: #fff; border: 1.5px solid #d5d6d8; border-radius: 8px; padding: 8px 12px; font-size: 15px; }
+  .legend b { color: #cf2b2b; }
+  .mermaid { background: #fff; border: 2px solid #2b2f36; border-radius: 10px; padding: 20px; }
+</style>
+</head>
+<body>
+<h1>BookWorm — Entity Relationship Diagram</h1>
+<p class="sub">Supabase Postgres · RLS on every table · SQL in schema_draft.sql</p>
+<div class="legend">
+  <span>🔒 <b>library_items</b>: private, owner-only RLS, no guest access</span>
+  <span>🌐 <b>logs</b>: anyone can read, only the author can write</span>
+  <span>🔗 composite FK <b>(library_item_id, user_id, volume_id)</b>: logs need a book in the author's own library, and are deleted with it</span>
+  <span>🪪 <b>profiles</b>: public display names (unique, ignoring case)</span>
+</div>
+<pre class="mermaid">
+erDiagram
+    AUTH_USERS ||--|| PROFILES : "creates"
+    PROFILES ||--o{ LIBRARY_ITEMS : "saves"
+    PROFILES ||--o{ LOGS : "writes"
+    LIBRARY_ITEMS ||--o{ LOGS : "has"
+
+    AUTH_USERS["auth.users (Supabase managed)"] {
+        uuid id PK
+        text email "never shown in the UI"
+        jsonb raw_user_meta_data "display_name from sign up"
+    }
+    PROFILES {
+        uuid id PK,FK "= auth.users.id"
+        text display_name UK "2-30 chars, unique ignoring case"
+        text theme "default street-royalty, 9 modes"
+        timestamptz created_at
+        timestamptz updated_at
+    }
+    LIBRARY_ITEMS {
+        uuid id PK
+        uuid user_id FK "default auth.uid()"
+        text volume_id "Google Books ID"
+        text title "cached"
+        text[] authors "cached"
+        text thumbnail_url "cached, https only"
+        text status "want_to_read, reading, finished"
+        timestamptz created_at
+        timestamptz updated_at
+    }
+    LOGS {
+        uuid id PK
+        uuid user_id FK "default auth.uid()"
+        uuid library_item_id FK "composite FK"
+        text volume_id FK "composite FK, copied for public reads"
+        text body "1-5000 chars"
+        smallint rating "optional, 1-5"
+        timestamptz created_at
+        timestamptz updated_at
+    }
+</pre>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: false, theme: 'neutral', er: { layoutDirection: 'LR', minEntityWidth: 120, useMaxWidth: false, fontSize: 18 }, fontFamily: 'Inter, system-ui, sans-serif', themeVariables: { fontSize: '20px' } });
+  await mermaid.run();
+  document.body.dataset.ready = '1';
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+/* Search Results + Genre pages */
+.browse {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.browse-title {
+  margin-top: var(--space-4);
+  justify-self: start;
+  overflow-wrap: anywhere;
+}
+
+.browse-count {
+  margin-top: calc(var(--space-2) * -1);
+  margin-bottom: var(--space-2);
+  font-weight: 500;
+}
+
+/* Bigger search form at the top of the Search page. On desktop the nav
+   search is already visible and pre-filled, so this one is mobile-only. */
+.search-lg {
+  max-width: 720px;
+}
+@media (min-width: 960px) {
+  .search-lg {
+    display: none;
+  }
+}
+.search-lg .search-row {
+  height: 52px;
+}
+.search-lg .search-input {
+  font-size: 1.0625rem;
+}
+.search-lg .search-submit {
+  width: 52px;
+}
+
+/* Genre chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-chip, 999px);
+  background: var(--surface);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+.chip:hover {
+  background: var(--surface-hover);
+}
+.chip.active {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+  color: var(--on-accent-2);
+  font-weight: 800;
+}
+.chip.active::before {
+  content: '✓';
+  margin-right: 6px;
+}
+
+/* Featured Picks page + Featured search results */
+.browse-sub {
+  margin-top: calc(var(--space-3) * -1);
+  max-width: 60ch;
+}
+.featured-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.featured-month {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px var(--space-2);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+.featured-now {
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--accent-2);
+  color: var(--on-accent-2);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.featured-label {
+  font-size: 0.8125rem;
+}
+.featured-credit {
+  margin-top: var(--space-5);
+  font-size: 0.875rem;
+}

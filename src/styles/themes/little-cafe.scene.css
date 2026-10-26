@@ -1,0 +1,151 @@
+/* ☕ Little Cafe scene: transform + opacity only. */
+[data-theme='little-cafe'] {
+  --texture: none;
+  --reading-panel: rgb(255 255 255 / 0.88);
+  --reading-panel-pad: clamp(16px, 3vw, 32px);
+  --veil-color: rgb(251 245 238 / 0.5);
+  --veil-color-mobile: rgb(251 245 238 / 0.78);
+}
+
+/* Gingham tablecloth along the bottom */
+.lc-table {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 22vh;
+  background:
+    linear-gradient(90deg, rgb(232 180 184 / 0.35) 50%, transparent 50%) 0 0 / 44px 44px,
+    linear-gradient(rgb(232 180 184 / 0.35) 50%, transparent 50%) 0 0 / 44px 44px,
+    #fbf5ee;
+  -webkit-mask: linear-gradient(transparent, #000 60%);
+  mask: linear-gradient(transparent, #000 60%);
+}
+
+/* Candy-striped cafe awnings down the page edges, gently swaying */
+.lc-awning {
+  top: -2vh;
+  bottom: -2vh;
+  width: 5.5vw;
+  max-width: 84px;
+  background: repeating-linear-gradient(90deg, #e8b4b8 0 14px, #fff7f0 14px 28px);
+  border-bottom: 0;
+  opacity: 0.9;
+  animation: lc-sway 9s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+}
+.lc-awning-left {
+  left: 0;
+  transform-origin: top left;
+  -webkit-mask: linear-gradient(90deg, #000 70%, transparent);
+  mask: linear-gradient(90deg, #000 70%, transparent);
+}
+.lc-awning-right {
+  right: 0;
+  transform-origin: top right;
+  animation-delay: -4.5s;
+  -webkit-mask: linear-gradient(270deg, #000 70%, transparent);
+  mask: linear-gradient(270deg, #000 70%, transparent);
+}
+@keyframes lc-sway {
+  from {
+    transform: skewY(-1.5deg);
+  }
+  to {
+    transform: skewY(1.5deg);
+  }
+}
+@media (max-width: 767px) {
+  .lc-awning {
+    width: 10px;
+  }
+}
+
+/* Soft bokeh light drifting */
+.lc-bokeh {
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  height: var(--s);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(var(--c) / 0.8) 0%, rgb(var(--c) / 0.35) 45%, transparent 70%);
+  animation: lc-float var(--t) var(--d) infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+}
+@keyframes lc-float {
+  to {
+    transform: translate(4vw, 5vh) scale(1.12);
+  }
+}
+
+/* Sprinkles and beans drift down, turning slowly */
+.lc-sprinkle {
+  top: -4vh;
+  left: var(--x);
+  width: 7px;
+  height: 22px;
+  border-radius: 999px;
+  box-shadow: inset -2px -2px 0 rgb(0 0 0 / 0.12);
+  background: var(--c);
+  animation: lc-fall var(--t) var(--d) infinite linear;
+}
+.lc-bean {
+  top: -5vh;
+  left: var(--x);
+  opacity: 0.75;
+  animation: lc-fall var(--t) var(--d) infinite linear;
+}
+@keyframes lc-fall {
+  from {
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+  to {
+    transform: translateY(112vh) rotate(calc(var(--r, 0deg) + 300deg));
+  }
+}
+
+/* The latte in the corner, with three curls of steam */
+.lc-cup {
+  right: 3vw;
+  bottom: 2vh;
+  width: clamp(110px, 12vw, 170px);
+  aspect-ratio: 160 / 200;
+}
+.lc-mug {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  filter: drop-shadow(0 8px 12px rgb(59 42 32 / 0.18));
+}
+.lc-steam {
+  position: absolute;
+  bottom: 52%;
+  left: calc(28% + var(--i) * 16%);
+  width: 18%;
+  opacity: 0;
+  animation: lc-steam 5.5s calc(var(--i) * -1.8s) infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+.lc-steam path {
+  stroke: rgb(255 255 255 / 0.95);
+  filter: drop-shadow(0 0 2px rgb(139 74 43 / 0.25));
+}
+@keyframes lc-steam {
+  0% {
+    transform: translateY(20px) scaleX(0.8);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-50px) scaleX(1.25);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .lc-cup {
+    width: 84px;
+    right: 8px;
+    bottom: 8px;
+  }
+}

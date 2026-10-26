@@ -1,0 +1,113 @@
+/* 🌙 Midnight Observatory components: starlight gold, constellations, moon phases. Decorative only. */
+
+/* Cormorant has a small x-height: give headings a little more size */
+[data-theme='midnight-observatory'] h1,
+[data-theme='midnight-observatory'] h2 {
+  letter-spacing: 0.01em;
+}
+[data-theme='midnight-observatory'] .book-row-head h2,
+[data-theme='midnight-observatory'] .book-write h2,
+[data-theme='midnight-observatory'] .book-readers h2,
+[data-theme='midnight-observatory'] .book-about h2 {
+  font-size: clamp(1.75rem, 1.35rem + 1.5vw, 2.25rem);
+}
+[data-theme='midnight-observatory'] .site-header {
+  border-bottom: 1px solid rgb(244 201 93 / 0.35);
+}
+[data-theme='midnight-observatory'] .nav-logo-text {
+  color: #f4c95d;
+  font-size: 1.85rem;
+  text-shadow: 0 0 16px rgb(244 201 93 / 0.45);
+}
+/* Active nav link: a tiny crescent moon */
+[data-theme='midnight-observatory'] .nav-link.is-active::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: inset -3px 1px 0 0 #f4c95d;
+}
+
+/* ---------- Titles: a constellation line with a star at each end ---------- */
+[data-theme='midnight-observatory'] .drip {
+  padding-bottom: 12px;
+  background:
+    radial-gradient(circle, #f4c95d 2.5px, transparent 3px) left bottom / 8px 8px no-repeat,
+    radial-gradient(circle, #f4c95d 2.5px, transparent 3px) 55% bottom / 8px 8px no-repeat,
+    radial-gradient(circle, #f4c95d 2.5px, transparent 3px) right bottom / 8px 8px no-repeat,
+    linear-gradient(#f4c95d, #f4c95d) center calc(100% - 3px) / calc(100% - 8px) 1px no-repeat;
+  text-shadow: 0 0 18px rgb(244 201 93 / 0.35);
+}
+
+/* ---------- Buttons: starlight ---------- */
+[data-theme='midnight-observatory'] .btn-primary {
+  box-shadow:
+    0 0 0 1px rgb(244 201 93 / 0.6),
+    0 0 18px rgb(244 201 93 / 0.45);
+}
+[data-theme='midnight-observatory'] .btn-primary:hover:not(:disabled) {
+  box-shadow:
+    0 0 0 1px rgb(244 201 93 / 0.8),
+    0 0 28px rgb(244 201 93 / 0.65);
+}
+[data-theme='midnight-observatory'] .btn-secondary {
+  background: rgb(157 140 255 / 0.1);
+  border-color: #9d8cff;
+}
+
+/* ---------- Covers twinkle on hover ---------- */
+[data-theme='midnight-observatory'] .book-card .cover {
+  transition:
+    transform var(--t-fast) var(--ease),
+    box-shadow 320ms var(--ease);
+}
+
+/* ---------- Hero: a window in the observatory dome ---------- */
+[data-theme='midnight-observatory'] .hero {
+  margin-top: var(--space-4);
+  padding: var(--space-6) var(--space-5);
+  border-radius: 140px 140px 18px 18px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(157 140 255 / 0.18), transparent 60%),
+    rgb(20 27 58 / 0.88);
+  border: 1px solid rgb(244 201 93 / 0.55);
+  box-shadow:
+    0 0 0 6px rgb(20 27 58 / 0.6),
+    0 0 40px rgb(157 140 255 / 0.25);
+}
+@media (min-width: 768px) {
+  [data-theme='midnight-observatory'] .hero {
+    padding: var(--space-7) var(--space-8) var(--space-7);
+  }
+}
+@media (max-width: 767px) {
+  [data-theme='midnight-observatory'] .hero {
+    border-radius: 60px 60px 14px 14px;
+  }
+}
+[data-theme='midnight-observatory'] .hero-title,
+[data-theme='midnight-observatory'] .book-title {
+  font-weight: 700;
+  color: #f4c95d;
+  text-shadow: 0 0 26px rgb(244 201 93 / 0.45);
+}
+[data-theme='midnight-observatory'] .hero-badge::before {
+  content: '★ ' / '';
+}
+[data-theme='midnight-observatory'] .log-item {
+  border-left-color: #2a3566;
+}
+[data-theme='midnight-observatory'] .log-item.is-mine {
+  border-left-color: #f4c95d;
+}
+[data-theme='midnight-observatory'] .chip.active {
+  box-shadow: 0 0 16px rgb(157 140 255 / 0.5);
+}
+[data-theme='midnight-observatory'] .status-art-code {
+  color: #f4c95d;
+  text-shadow: 0 0 34px rgb(244 201 93 / 0.45);
+}

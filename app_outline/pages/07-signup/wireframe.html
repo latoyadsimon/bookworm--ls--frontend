@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sign Up Wireframe</title>
+<link rel="stylesheet" href="../_shared/wireframe.css">
+<style>
+  .form { width: 420px; margin: 4px auto 0; padding: 20px 26px; }
+  .form .h { text-align: center; font-size: 28px; margin-top: 0; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><filter id="wobble">
+  <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/>
+  <feDisplacementMap in="SourceGraphic" scale="3.2"/></filter></svg>
+
+<div class="page-card rough">
+  <div class="page-title rough">7. Sign Up Page <span class="route">Route: /signup</span></div>
+  <div class="layout">
+
+    <div class="side">
+      <div class="box story rough">
+        <h2>User Story</h2>
+        As a new visitor, I want to create an account with a display name, so that I can build a library
+        and write logs that show my name, not my email.
+      </div>
+      <div class="box elements rough">
+        <h2>Key Elements</h2>
+        <ul>
+          <li>Navigation bar (guest)</li>
+          <li>Display name field (2–30 chars)</li>
+          <li>Email field</li>
+          <li>Password field (6+ chars)</li>
+          <li>Inline error under each field</li>
+          <li>Create Account button</li>
+          <li>Link to Log In</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="screen rough">
+      <div class="topnav">
+        <b>BookWorm</b><span>Home</span><span>Genres ▾</span>
+        <span class="search rough">🔍 Search books…</span>
+        <span>Log In</span><span class="sep">|</span><span class="on">Sign Up</span>
+      </div>
+      <div class="screen-body">
+        <div class="form rough">
+          <div class="h">Join BookWorm</div>
+          <div class="label">Display name <span class="muted">(shown on your logs)</span></div>
+          <div class="field rough">BookLover42</div>
+          <div class="label">Email</div>
+          <div class="field rough">you@example.com</div>
+          <div class="err">An account with this email already exists. <u>Log in?</u></div>
+          <div class="label">Password</div>
+          <div class="field rough">•••</div>
+          <div class="err">Password must be at least 6 characters.</div>
+          <span class="btn rough wide" style="margin-top:4px">[ Create Account ]</span>
+          <div class="center muted" style="margin-top:6px">while sending → "Creating account…" (disabled)</div>
+          <div class="center" style="margin-top:12px">Have an account? <u>Log in</u></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="notes">
+      <div class="note yellow">No email confirmation → you're logged in right away</div>
+      <div class="note green">A database trigger creates your profile with your display name automatically</div>
+      <div class="note blue">After sign up → back to the page you came from (or Home)</div>
+      <div class="note red"><b>States</b>
+        <ul>
+          <li>Name missing / not 2–30 chars → "Display name is required (2–30 characters)."</li>
+          <li>Bad email → "Enter a valid email address."</li>
+          <li>Email taken → "…already exists. Try logging in."</li>
+          <li>Short password → "at least 6 characters"</li>
+          <li>Offline / rate limit → friendly message</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

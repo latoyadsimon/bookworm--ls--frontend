@@ -1,0 +1,36 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "react",
+    "oxc"
+  ],
+  "ignorePatterns": [
+    ".claude/**",
+    "app_outline/**",
+    "bookworm--ls/.claude/**",
+    "bookworm--ls/app_outline/**",
+    "dist/**",
+    "prompt-records/**",
+    "playwright-report/**",
+    "test-results/**"
+  ],
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": [
+      "warn",
+      {
+        "allowConstantExport": true
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "tests/e2e/**"
+      ],
+      "rules": {
+        "react/rules-of-hooks": "off"
+      }
+    }
+  ]
+}

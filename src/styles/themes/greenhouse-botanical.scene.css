@@ -1,0 +1,135 @@
+/* 🌿 Greenhouse Botanical scene: transform + opacity only. */
+[data-theme='greenhouse-botanical'] {
+  --texture: none;
+  --reading-panel: rgb(255 255 255 / 0.9);
+  --reading-panel-pad: clamp(16px, 3vw, 32px);
+  --veil-color: rgb(244 241 234 / 0.55);
+  --veil-color-mobile: rgb(244 241 234 / 0.75);
+}
+
+/* Glass panes in a white frame */
+.gb-glass {
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 0.85) 4px, transparent 4px) 0 0 / 24vw 100%,
+    linear-gradient(rgb(255 255 255 / 0.85) 4px, transparent 4px) 0 0 / 100% 28vh,
+    linear-gradient(170deg, #eaf2e6 0%, #f4f1ea 55%, #efe7d8 100%);
+}
+
+/* Sun rays shifting through the glass */
+.gb-ray {
+  top: -30vh;
+  width: 13vw;
+  height: 160vh;
+  background: linear-gradient(90deg, transparent, rgb(255 248 214 / 0.7), transparent);
+  animation: gb-ray var(--t, 16s) infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+}
+.gb-ray-a {
+  left: 8vw;
+}
+.gb-ray-b {
+  left: 40vw;
+  width: 8vw;
+  --t: 21s;
+  animation-delay: -7s;
+}
+.gb-ray-c {
+  left: 74vw;
+  --t: 18s;
+  animation-delay: -12s;
+}
+@keyframes gb-ray {
+  from {
+    transform: rotate(16deg) translateX(-3vw);
+    opacity: 0.45;
+  }
+  to {
+    transform: rotate(16deg) translateX(3vw);
+    opacity: 0.95;
+  }
+}
+
+/* Vines sway from the top corners */
+.gb-vine {
+  top: -12px;
+  width: clamp(56px, 6vw, 84px);
+  transform-origin: top center;
+  animation: gb-sway 8s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+}
+.gb-vine-left {
+  left: 1vw;
+}
+.gb-vine-right {
+  right: 1vw;
+  animation-delay: -4s;
+}
+@keyframes gb-sway {
+  from {
+    transform: rotate(-3deg);
+  }
+  to {
+    transform: rotate(3deg);
+  }
+}
+
+/* Petals drift down, swaying side to side */
+.gb-petal {
+  top: -4vh;
+  left: var(--x);
+  width: 12px;
+  height: 16px;
+  border-radius: 0 80% 0 80%;
+  background: var(--c);
+  box-shadow: inset -2px -2px 0 rgb(0 0 0 / 0.08);
+  animation: gb-fall var(--t) var(--d) infinite linear;
+}
+@keyframes gb-fall {
+  0% {
+    transform: translate(0, 0) rotate(var(--r));
+  }
+  25% {
+    transform: translate(34px, 28vh) rotate(calc(var(--r) + 90deg));
+  }
+  50% {
+    transform: translate(-22px, 56vh) rotate(calc(var(--r) + 180deg));
+  }
+  75% {
+    transform: translate(28px, 84vh) rotate(calc(var(--r) + 270deg));
+  }
+  100% {
+    transform: translate(-8px, 112vh) rotate(calc(var(--r) + 360deg));
+  }
+}
+
+/* Potted plants in the corners, leaves rustling */
+.gb-plant {
+  bottom: 0;
+  width: clamp(64px, 7vw, 104px);
+}
+.gb-plant-left {
+  left: 1vw;
+}
+.gb-plant-right {
+  right: 1vw;
+  scale: -1 1;
+}
+.gb-plant-leaves {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: gb-rustle 5s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+}
+@keyframes gb-rustle {
+  from {
+    transform: rotate(-4deg);
+  }
+  to {
+    transform: rotate(4deg);
+  }
+}
+
+@media (max-width: 767px) {
+  .gb-plant,
+  .gb-vine {
+    width: 48px;
+  }
+}

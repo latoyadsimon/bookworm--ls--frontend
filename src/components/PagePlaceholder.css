@@ -1,0 +1,25 @@
+.placeholder {
+  padding-block: var(--space-6);
+}
+.placeholder-route {
+  margin-top: var(--space-4);
+}
+.placeholder-route code {
+  padding: 2px 8px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+.placeholder-detail {
+  margin-top: var(--space-4);
+  font-size: 1.0625rem;
+}
+.placeholder-note {
+  margin-top: var(--space-6);
+  padding: var(--space-4) var(--space-5);
+  max-width: 560px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-card);
+  color: var(--text-muted);
+}

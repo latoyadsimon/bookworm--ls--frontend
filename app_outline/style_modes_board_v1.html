@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BookWorm Style Modes (v1)</title>
+<!-- Generated board of all 9 BookWorm style modes. Tokens match app_outline/style_guide.md. -->
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=DM+Serif+Display&family=Fraunces:wght@600&family=Fredoka:wght@500;600&family=Inter:wght@400;600&family=Karla:wght@400;700&family=Kalam:wght@700&family=Lexend:wght@400;600&family=Lora:wght@400;600&family=Nunito:wght@400;700&family=Nunito+Sans:wght@400;700&family=Orbitron:wght@600;700&family=Pacifico&family=Permanent+Marker&family=Playfair+Display:wght@600;700&family=Press+Start+2P&family=Rubik+Spray+Paint&family=Shrikhand&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+
+[data-theme="street-royalty"] {
+  --bg:#120F14; --surface:#1E1A22; --surface-hover:#2A2430; --text:#FFFFFF; --text-muted:#BDB3C7;
+  --accent:#FF2E93; --on-accent:#120F14; --accent-2:#FFD23F; --accent-3:#00E5D4;
+  --on-accent-2:#120F14; --on-accent-3:#120F14;
+  --border:#3A3242; --error:#FF6B6B; --success:#3DDC97;
+  --font-display:'Rubik Spray Paint', system-ui; --font-heading:'Permanent Marker', system-ui; --font-body:'Inter', system-ui;
+  --radius-card:6px;
+}
+
+[data-theme="cozy-library"] {
+  --bg:#1F1712; --surface:#2C2119; --surface-hover:#3A2C21; --text:#F3E9D7; --text-muted:#BFAE95;
+  --accent:#C9A227; --on-accent:#1F1712; --accent-2:#2F5D50; --accent-3:#8C2F39;
+  --on-accent-2:#FFFFFF; --on-accent-3:#FFFFFF;
+  --border:#4A3828; --error:#EF8A80; --success:#9CCC65;
+  --font-display:'Playfair Display', system-ui; --font-heading:'Playfair Display', system-ui; --font-body:'Lora', system-ui;
+  --radius-card:2px;
+}
+
+[data-theme="little-cafe"] {
+  --bg:#FBF5EE; --surface:#FFFFFF; --surface-hover:#F3E6D8; --text:#3B2A20; --text-muted:#7A6355;
+  --accent:#8B4A2B; --on-accent:#FFFFFF; --accent-2:#E8B4B8; --accent-3:#9CB59A;
+  --on-accent-2:#111111; --on-accent-3:#111111;
+  --border:#E3D3C3; --error:#B3261E; --success:#3E6B3C;
+  --font-display:'Pacifico', system-ui; --font-heading:'Fraunces', system-ui; --font-body:'Nunito', system-ui;
+  --radius-card:14px;
+}
+
+[data-theme="neon-arcade"] {
+  --bg:#0A0A12; --surface:#141428; --surface-hover:#1F1F3A; --text:#E8F7FF; --text-muted:#8FA3BF;
+  --accent:#00F0FF; --on-accent:#0A0A12; --accent-2:#FF00E5; --accent-3:#B8FF3C;
+  --on-accent-2:#0A0A12; --on-accent-3:#0A0A12;
+  --border:#2E2E5C; --error:#FF4D6D; --success:#B8FF3C;
+  --font-display:'Press Start 2P', system-ui; --font-heading:'Orbitron', system-ui; --font-body:'Inter', system-ui;
+  --radius-card:4px;
+}
+
+[data-theme="midnight-observatory"] {
+  --bg:#0B1026; --surface:#141B3A; --surface-hover:#1E2750; --text:#EEF1FF; --text-muted:#A7B0D6;
+  --accent:#F4C95D; --on-accent:#0B1026; --accent-2:#9D8CFF; --accent-3:#6FD3E8;
+  --on-accent-2:#111111; --on-accent-3:#111111;
+  --border:#2A3566; --error:#FF7A8A; --success:#7FE0B5;
+  --font-display:'Cormorant Garamond', system-ui; --font-heading:'Cormorant Garamond', system-ui; --font-body:'Nunito Sans', system-ui;
+  --radius-card:10px;
+}
+
+[data-theme="greenhouse-botanical"] {
+  --bg:#F4F1EA; --surface:#FFFFFF; --surface-hover:#E8EFE4; --text:#26332A; --text-muted:#5F6F63;
+  --accent:#3F6B4F; --on-accent:#FFFFFF; --accent-2:#C46A4A; --accent-3:#E9D8A6;
+  --on-accent-2:#111111; --on-accent-3:#111111;
+  --border:#D3DBCD; --error:#B3261E; --success:#2F6B3F;
+  --font-display:'DM Serif Display', system-ui; --font-heading:'DM Serif Display', system-ui; --font-body:'Work Sans', system-ui;
+  --radius-card:8px;
+}
+
+[data-theme="retro-paperback"] {
+  --bg:#F5E6C8; --surface:#FFF4DC; --surface-hover:#F0D9AE; --text:#3D2314; --text-muted:#6E4A2F;
+  --accent:#B5461A; --on-accent:#FFFFFF; --accent-2:#E1A730; --accent-3:#6B7A2E;
+  --on-accent-2:#111111; --on-accent-3:#FFFFFF;
+  --border:#D9BC8A; --error:#A4161A; --success:#4F6324;
+  --font-display:'Shrikhand', system-ui; --font-heading:'Shrikhand', system-ui; --font-body:'Karla', system-ui;
+  --radius-card:8px;
+}
+
+[data-theme="comic-panel-pop"] {
+  --bg:#FFFDF5; --surface:#FFFFFF; --surface-hover:#FFF3B0; --text:#111111; --text-muted:#4A4A4A;
+  --accent:#E4002B; --on-accent:#FFFFFF; --accent-2:#FFD400; --accent-3:#0072CE;
+  --on-accent-2:#111111; --on-accent-3:#FFFFFF;
+  --border:#111111; --error:#C8102E; --success:#00853E;
+  --font-display:'Bangers', system-ui; --font-heading:'Bangers', system-ui; --font-body:'Comic Neue', system-ui;
+  --radius-card:0px;
+}
+
+[data-theme="kid-korner"] {
+  --bg:#FFF9E6; --surface:#FFFFFF; --surface-hover:#E6F7FF; --text:#2B2D42; --text-muted:#5C5F7A;
+  --accent:#6C3CE1; --on-accent:#FFFFFF; --accent-2:#FFB703; --accent-3:#2EC4B6;
+  --on-accent-2:#111111; --on-accent-3:#111111;
+  --border:#E4DCC2; --error:#C1121F; --success:#1F7A70;
+  --font-display:'Fredoka', system-ui; --font-heading:'Fredoka', system-ui; --font-body:'Lexend', system-ui;
+  --radius-card:20px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { width: 2160px; padding: 36px 40px 44px; background: #f4f2ee; color: #222; font-family: Inter, system-ui; }
+.title { font-family: Kalam, cursive; font-size: 50px; }
+.sub { color: #666; font-size: 20px; margin: 2px 0 26px; }
+.board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+
+/* ---------- Tile (everything below uses tokens only) ---------- */
+.tile { position: relative; overflow: hidden; background: var(--bg); color: var(--text); font-family: var(--font-body);
+  border-radius: 14px; padding: 22px 24px 24px; min-height: 560px; box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+.tile > *:not(.deco) { position: relative; z-index: 1; }
+.deco { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+header { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
+.icon { font-size: 36px; }
+h2 { font-family: var(--font-display); font-size: 34px; line-height: 1.05; font-weight: 400; }
+.vibe { color: var(--text-muted); font-size: 15px; margin-top: 3px; }
+.swatches { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 18px; }
+.sw { text-align: center; font-size: 11px; line-height: 1.25; }
+.sw span { display: block; height: 44px; border-radius: 8px; border: 1px solid color-mix(in srgb, var(--text) 25%, transparent); margin-bottom: 4px; }
+.sw b { display: block; font-weight: 600; color: var(--text); }
+.sw i { font-style: normal; color: var(--text-muted); font-family: ui-monospace, monospace; font-size: 10.5px; }
+.main { display: flex; gap: 20px; }
+.book { width: 150px; flex: none; }
+.cover { position: relative; height: 225px; border-radius: var(--radius-card); padding: 14px 12px; display: flex; flex-direction: column; justify-content: flex-end;
+  background: linear-gradient(160deg, var(--accent) 0%, var(--accent-3) 100%); color: var(--on-accent); overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,.25); }
+.ctitle { font-family: var(--font-heading); font-size: 22px; line-height: 1.05; }
+.cauthor { font-size: 12px; opacity: .85; margin-top: 4px; }
+.badge { position: absolute; top: 10px; left: 10px; background: var(--accent-2); color: var(--on-accent-2); font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; }
+.btitle { font-weight: 600; font-size: 15px; margin-top: 10px; }
+.bauthor { color: var(--text-muted); font-size: 13px; }
+.right { flex: 1; min-width: 0; }
+.section { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1.1; }
+.fonts { color: var(--text-muted); font-size: 12.5px; margin: 4px 0 8px; }
+.body { font-size: 15px; line-height: 1.5; margin-bottom: 14px; }
+.btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.btn { font-size: 14px; font-weight: 600; padding: 9px 14px; border-radius: calc(var(--radius-card) / 2 + 4px); }
+.btn.primary { background: var(--accent); color: var(--on-accent); }
+.btn.secondary { border: 2px solid var(--border); color: var(--text); background: var(--surface); }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.chip { font-size: 12.5px; padding: 4px 9px; border-radius: 999px; background: var(--surface); border: 1.5px solid var(--border); }
+.chip.on { background: var(--accent-2); color: var(--on-accent-2); border-color: var(--accent-2); font-weight: 700; }
+.msgs { display: grid; gap: 6px; font-size: 13.5px; }
+.msgs span { background: var(--surface); padding: 6px 10px; border-radius: 6px; }
+.ok { color: var(--success); } .bad { color: var(--error); }
+.tile[data-theme="little-cafe"] .ok, .tile[data-theme="greenhouse-botanical"] .ok, .tile[data-theme="kid-korner"] .ok,
+.tile[data-theme="retro-paperback"] .ok, .tile[data-theme="comic-panel-pop"] .ok { background: var(--bg); }
+
+/* ---------- Signature decorations per mode ---------- */
+/* Street Royalty: concrete noise, pink drip under section title, sticker tilt, crown */
+[data-theme="street-royalty"] .deco { background:
+  radial-gradient(circle at 85% 12%, rgba(255,46,147,.22), transparent 38%),
+  radial-gradient(circle at 10% 95%, rgba(0,229,212,.14), transparent 40%),
+  repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 2px, transparent 2px 22px),
+  repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 2px, transparent 2px 46px); }
+[data-theme="street-royalty"] h2 { color: var(--accent); text-shadow: 3px 3px 0 #000; }
+[data-theme="street-royalty"] .section { font-family: var(--font-heading); position: relative; display: inline-block; }
+[data-theme="street-royalty"] .section::after { content: ""; position: absolute; left: 0; right: 0; bottom: -10px; height: 12px;
+  background: radial-gradient(circle at 10% 0, var(--accent) 4px, transparent 5px), radial-gradient(circle at 35% 0, var(--accent) 3px, transparent 4px),
+  radial-gradient(circle at 70% 0, var(--accent) 5px, transparent 6px), linear-gradient(var(--accent), var(--accent)) top/100% 3px no-repeat; }
+[data-theme="street-royalty"] .chip { transform: rotate(-2deg); } [data-theme="street-royalty"] .chip:nth-child(2) { transform: rotate(2deg); }
+[data-theme="street-royalty"] .cover { box-shadow: 0 0 0 2px var(--accent), 0 8px 24px rgba(255,46,147,.4); transform: rotate(-1deg); }
+[data-theme="street-royalty"] .btn.secondary { border-color: var(--accent-2); }
+
+/* Cozy Library: wood grain, lamp glow, shelf line, ribbon */
+[data-theme="cozy-library"] .deco { background:
+  radial-gradient(ellipse at 50% -10%, rgba(255,200,120,.22), transparent 55%),
+  repeating-linear-gradient(92deg, rgba(0,0,0,.12) 0 3px, transparent 3px 17px, rgba(255,255,255,.02) 17px 19px, transparent 19px 31px); }
+[data-theme="cozy-library"] .book { padding-bottom: 10px; border-bottom: 6px solid #4A3828; box-shadow: 0 6px 6px -4px rgba(0,0,0,.6); }
+[data-theme="cozy-library"] .cover { background: linear-gradient(90deg, rgba(0,0,0,.35) 0 8px, transparent 8px), linear-gradient(160deg, #2F5D50, #1c3a32); color: #F3E9D7; transform: rotate(-3deg); }
+[data-theme="cozy-library"] .cover::after { content: ""; position: absolute; top: 0; right: 18px; width: 14px; height: 46px; background: var(--accent-3);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%); }
+[data-theme="cozy-library"] .ctitle { color: var(--accent); }
+
+/* Little Cafe: chalkboard section, steam, notecard */
+[data-theme="little-cafe"] .deco { background: radial-gradient(circle at 92% 88%, transparent 34px, rgba(139,74,43,.10) 35px 39px, transparent 40px),
+  radial-gradient(circle at 8% 10%, rgba(232,180,184,.35), transparent 30%); }
+[data-theme="little-cafe"] .section { background: #3B2A20; color: #FBF5EE; display: inline-block; padding: 4px 14px 8px; border-radius: 8px; border: 4px solid #8B4A2B; font-size: 24px; }
+[data-theme="little-cafe"] .cover { background: linear-gradient(180deg, #E8B4B8, #F3E6D8 70%, #9CB59A); color: #3B2A20; }
+[data-theme="little-cafe"] .cover::before { content: "∿∿"; position: absolute; top: 36px; left: 50%; transform: translateX(-50%) rotate(90deg); font-size: 26px; color: rgba(59,42,32,.35); }
+[data-theme="little-cafe"] .btn { border-radius: 999px; }
+[data-theme="little-cafe"] h2 { color: var(--accent); }
+
+/* Neon Arcade: scanlines, grid horizon, glow */
+[data-theme="neon-arcade"] .deco { background:
+  repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px),
+  linear-gradient(transparent 62%, rgba(255,0,229,.18) 62%, transparent 100%),
+  repeating-linear-gradient(90deg, rgba(0,240,255,.16) 0 1px, transparent 1px 46px) bottom/100% 38% no-repeat,
+  repeating-linear-gradient(0deg, rgba(0,240,255,.16) 0 1px, transparent 1px 22px) bottom/100% 38% no-repeat; }
+[data-theme="neon-arcade"] h2 { font-size: 22px; line-height: 1.35; color: var(--accent); text-shadow: 0 0 10px var(--accent); }
+[data-theme="neon-arcade"] .section { font-family: var(--font-heading); font-weight: 700; color: var(--accent-2); text-shadow: 0 0 10px var(--accent-2); }
+[data-theme="neon-arcade"] .cover { background: linear-gradient(160deg, #141428, #1F1F3A); color: var(--accent); border: 2px solid var(--accent); box-shadow: 0 0 16px var(--accent), inset 0 0 18px rgba(0,240,255,.25); }
+[data-theme="neon-arcade"] .ctitle { font-family: var(--font-display); font-size: 15px; line-height: 1.4; text-shadow: 0 0 8px var(--accent); }
+[data-theme="neon-arcade"] .badge { font-family: var(--font-display); font-size: 8px; padding: 5px 7px; }
+[data-theme="neon-arcade"] .btn.primary { box-shadow: 0 0 14px var(--accent); }
+[data-theme="neon-arcade"] .btn.secondary { border-color: var(--accent-2); }
+
+/* Midnight Observatory: starfield, moon, constellation */
+[data-theme="midnight-observatory"] .deco { background:
+  radial-gradient(1.5px 1.5px at 12% 18%, #fff, transparent), radial-gradient(1px 1px at 30% 8%, #fff, transparent),
+  radial-gradient(1.5px 1.5px at 55% 22%, #F4C95D, transparent), radial-gradient(1px 1px at 72% 12%, #fff, transparent),
+  radial-gradient(2px 2px at 88% 30%, #fff, transparent), radial-gradient(1px 1px at 20% 70%, #fff, transparent),
+  radial-gradient(1.5px 1.5px at 45% 90%, #9D8CFF, transparent), radial-gradient(1px 1px at 80% 80%, #fff, transparent),
+  radial-gradient(1px 1px at 65% 55%, #fff, transparent), radial-gradient(1.5px 1.5px at 6% 45%, #F4C95D, transparent),
+  radial-gradient(circle at 90% 8%, rgba(244,201,93,.18), transparent 22%); }
+[data-theme="midnight-observatory"] h2, [data-theme="midnight-observatory"] .section { font-weight: 700; color: var(--accent); }
+[data-theme="midnight-observatory"] h2 { font-size: 38px; }
+[data-theme="midnight-observatory"] .cover { background: radial-gradient(circle at 68% 42%, #F4C95D 0 16px, transparent 17px), linear-gradient(180deg, #1E2750, #9D8CFF); color: #0B1026; }
+[data-theme="midnight-observatory"] .cover::after { content: ""; position: absolute; top: 72px; left: 54%; width: 22px; height: 22px; border-radius: 50%; background: #1E2750; }
+[data-theme="midnight-observatory"] .ctitle { font-family: var(--font-display); font-weight: 700; font-size: 25px; }
+[data-theme="midnight-observatory"] .cover { box-shadow: 0 0 22px rgba(244,201,93,.35); }
+
+/* Greenhouse Botanical: arched cover, leaves */
+[data-theme="greenhouse-botanical"] .deco { background:
+  radial-gradient(ellipse 60px 26px at 96% 6%, rgba(63,107,79,.22), transparent 70%),
+  radial-gradient(ellipse 26px 60px at 92% 14%, rgba(63,107,79,.16), transparent 70%),
+  radial-gradient(ellipse 70px 28px at 4% 96%, rgba(196,106,74,.18), transparent 70%); }
+[data-theme="greenhouse-botanical"] .cover { border-radius: 75px 75px 8px 8px; background: linear-gradient(180deg, #E8EFE4, #9CB59A 60%, #3F6B4F); color: #FFFFFF; border: 4px solid #FFFFFF; outline: 2px solid #3F6B4F; }
+[data-theme="greenhouse-botanical"] .badge { top: 54px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+[data-theme="greenhouse-botanical"] h2 { color: var(--accent); }
+[data-theme="greenhouse-botanical"] .btn.secondary { border-color: var(--accent-2); }
+
+/* Retro Paperback: rainbow stripes, sunburst, price tag */
+[data-theme="retro-paperback"] .deco { background:
+  linear-gradient(180deg, transparent 0 calc(100% - 30px), #B5461A calc(100% - 30px) calc(100% - 20px), #E1A730 calc(100% - 20px) calc(100% - 10px), #6E4A2F calc(100% - 10px)),
+  repeating-conic-gradient(from 0deg at 100% 0%, rgba(225,167,48,.14) 0 6deg, transparent 6deg 12deg); }
+[data-theme="retro-paperback"] h2 { color: var(--accent); text-shadow: 2px 2px 0 #E1A730; }
+[data-theme="retro-paperback"] .cover { background: linear-gradient(180deg, #FFF4DC 0 45%, #B5461A 45% 60%, #E1A730 60% 75%, #6B7A2E 75%); color: #3D2314; justify-content: flex-start; padding-top: 40px; }
+[data-theme="retro-paperback"] .badge { left: auto; right: 8px; background: #A4161A; color: #FFF; border-radius: 50%; width: 40px; height: 40px; display: grid; place-items: center; transform: rotate(12deg); }
+[data-theme="retro-paperback"] .btn { border-radius: 999px; }
+[data-theme="retro-paperback"] .cover { transform: perspective(500px) rotateY(8deg); }
+
+/* Comic Panel Pop: ink borders, hard shadows, halftone, caption box, speech bubble */
+[data-theme="comic-panel-pop"] { border: 4px solid #111; }
+[data-theme="comic-panel-pop"] .deco { background: radial-gradient(rgba(0,114,206,.22) 1.6px, transparent 2px) 0 0/12px 12px;
+  -webkit-mask: linear-gradient(135deg, #000 0 22%, transparent 45%); mask: linear-gradient(135deg, #000 0 22%, transparent 45%); }
+[data-theme="comic-panel-pop"] h2 { letter-spacing: 1.5px; color: var(--accent); -webkit-text-stroke: 1px #111; text-shadow: 3px 3px 0 #111; }
+[data-theme="comic-panel-pop"] .section { background: var(--accent-2); border: 3px solid #111; display: inline-block; padding: 2px 12px; letter-spacing: 1px; }
+[data-theme="comic-panel-pop"] .cover { border: 3px solid #111; box-shadow: 6px 6px 0 #111; background: radial-gradient(rgba(0,0,0,.18) 1.5px, transparent 2px) 0 0/8px 8px, linear-gradient(160deg, #E4002B, #0072CE); color: #FFF; }
+[data-theme="comic-panel-pop"] .ctitle { font-size: 30px; letter-spacing: 1px; -webkit-text-stroke: 1px #111; }
+[data-theme="comic-panel-pop"] .btn, [data-theme="comic-panel-pop"] .chip, [data-theme="comic-panel-pop"] .sw span { border: 3px solid #111; box-shadow: 3px 3px 0 #111; border-radius: 0; }
+[data-theme="comic-panel-pop"] .btn.primary { font-family: var(--font-display); font-weight: 400; font-size: 18px; letter-spacing: 1px; padding: 6px 14px; }
+[data-theme="comic-panel-pop"] .msgs .ok { border: 2px solid #111; border-radius: 16px; position: relative; }
+[data-theme="comic-panel-pop"] .badge { border: 2px solid #111; border-radius: 0; transform: rotate(-6deg); }
+
+/* Kid Korner: confetti, chunky rounded borders, mascot, star sticker */
+[data-theme="kid-korner"] .deco { background:
+  radial-gradient(circle at 16% 3%, #FF6B9A 5px, transparent 6px), radial-gradient(circle at 92% 20%, #2EC4B6 6px, transparent 7px),
+  radial-gradient(circle at 85% 92%, #FFB703 7px, transparent 8px), radial-gradient(circle at 3% 56%, #6C3CE1 4px, transparent 5px),
+  radial-gradient(circle at 50% 4%, #FFB703 4px, transparent 5px), radial-gradient(circle at 60% 96%, #FF6B9A 4px, transparent 5px); }
+[data-theme="kid-korner"] { font-size: 17px; }
+[data-theme="kid-korner"] h2 { font-weight: 600; color: var(--accent); }
+[data-theme="kid-korner"] .section { font-weight: 600; text-decoration: underline wavy var(--accent-4, #FF6B9A); text-underline-offset: 6px; margin-bottom: 14px; }
+[data-theme="kid-korner"] .cover { border: 4px solid var(--accent-2); background: linear-gradient(160deg, #2EC4B6, #6C3CE1); color: #FFF; }
+[data-theme="kid-korner"] .cover::after { content: "🐛"; position: absolute; right: 8px; bottom: 50px; font-size: 34px; transform: scaleX(-1); }
+[data-theme="kid-korner"] .btn { min-height: 44px; display: inline-flex; align-items: center; border-radius: 16px; font-size: 15px; }
+[data-theme="kid-korner"] .btn.secondary { border: 3px solid var(--accent-2); }
+[data-theme="kid-korner"] .chip { border-width: 2.5px; }
+</style>
+</head>
+<body>
+<div class="title">BookWorm — Style Modes</div>
+<div class="sub">9 rooms to browse in · same layout + components, different tokens · every palette passes WCAG AA · picked from the 🎨 button in the nav</div>
+<div class="board">
+
+<section class="tile" data-theme="street-royalty">
+  <div class="deco" aria-hidden="true"></div>
+  <header><span class="icon">👑</span><div><h2>1. Street Royalty</h2><p class="vibe">Graffiti wall meets princess power · DEFAULT</p></div></header>
+  <div class="swatches"><div class="sw"><span style="background:#120F14"></span><b>bg</b><i>#120F14</i></div><div class="sw"><span style="background:#1E1A22"></span><b>surface</b><i>#1E1A22</i></div><div class="sw"><span style="background:#FFFFFF"></span><b>text</b><i>#FFFFFF</i></div><div class="sw"><span style="background:#BDB3C7"></span><b>muted</b><i>#BDB3C7</i></div><div class="sw"><span style="background:#FF2E93"></span><b>accent</b><i>#FF2E93</i></div><div class="sw"><span style="background:#FFD23F"></span><b>accent 2</b><i>#FFD23F</i></div><div class="sw"><span style="background:#00E5D4"></span><b>accent 3</b><i>#00E5D4</i></div></div>
+  <div class="main">
+    <div class="book">
+      <div class="cover"><span class="badge">Queen's Pick</span><span class="ctitle">QUEEN OF CODE</span><span class="cauthor">A. Writer</span></div>
+      <div class="btitle">QUEEN OF CODE</div><div class="bauthor">by A. Writer</div>
+    </div>
+    <div class="right">
+      <h3 class="section">Programming</h3>
+      <p class="fonts">Rubik Spray Paint · Permanent Marker · Inter</p>
+      <p class="body">Discover books, read real readers' logs, and build your own library.</p>
+      <div class="btns"><span class="btn primary">+ Add to Library</span><span class="btn secondary">View Details</span></div>
+      <div class="chips"><span class="chip">✨ Want to Read</span><span class="chip on">🎨 Reading</span><span class="chip">👑 Finished</span></div>
+      <div class="msgs"><span class="ok">✓ Crowned! Added to your library.</span><span class="bad">⚠ Couldn't load books. Retry</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tile" data-theme="cozy-library">
+  <div class="deco" aria-hidden="true"></div>
+  <header><span class="icon">🕯️</span><div><h2>2. Cozy Library</h2><p class="vibe">Lamp-lit reading room, leather + walnut</p></div></header>
+  <div class="swatches"><div class="sw"><span style="background:#1F1712"></span><b>bg</b><i>#1F1712</i></div><div class="sw"><span style="background:#2C2119"></span><b>surface</b><i>#2C2119</i></div><div class="sw"><span style="background:#F3E9D7"></span><b>text</b><i>#F3E9D7</i></div><div class="sw"><span style="background:#BFAE95"></span><b>muted</b><i>#BFAE95</i></div><div class="sw"><span style="background:#C9A227"></span><b>accent</b><i>#C9A227</i></div><div class="sw"><span style="background:#2F5D50"></span><b>accent 2</b><i>#2F5D50</i></div><div class="sw"><span style="background:#8C2F39"></span><b>accent 3</b><i>#8C2F39</i></div></div>
+  <div class="main">
+    <div class="book">
+      <div class="cover"><span class="badge">Staff Pick</span><span class="ctitle">The Quiet Shelf</span><span class="cauthor">A. Writer</span></div>
+      <div class="btitle">The Quiet Shelf</div><div class="bauthor">by A. Writer</div>
+    </div>
+    <div class="right">
+      <h3 class="section">Programming</h3>
+      <p class="fonts">Playfair Display · Lora</p>
+      <p class="body">Discover books, read real readers' logs, and build your own library.</p>
+      <div class="btns"><span class="btn primary">+ Add to Library</span><span class="btn secondary">View Details</span></div>
+      <div class="chips"><span class="chip">🔖 Want to Read</span><span class="chip on">📖 Reading</span><span class="chip">📚 Finished</span></div>
+      <div class="msgs"><span class="ok">✓ Shelved.</span><span class="bad">⚠ Couldn't load books. Retry</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tile" data-theme="little-cafe">
+  <div class="deco" aria-hidden="true"></div>
+  <header><span class="icon">☕</span><div><h2>3. Little Cafe</h2><p class="vibe">Sweet corner cafe, foam + strawberry milk</p></div></header>
+  <div class="swatches"><div class="sw"><span style="background:#FBF5EE"></span><b>bg</b><i>#FBF5EE</i></div><div class="sw"><span style="background:#FFFFFF"></span><b>surface</b><i>#FFFFFF</i></div><div class="sw"><span style="background:#3B2A20"></span><b>text</b><i>#3B2A20</i></div><div class="sw"><span style="background:#7A6355"></span><b>muted</b><i>#7A6355</i></div><div class="sw"><span style="background:#8B4A2B"></span><b>accent</b><i>#8B4A2B</i></div><div class="sw"><span style="background:#E8B4B8"></span><b>accent 2</b><i>#E8B4B8</i></div><div class="sw"><span style="background:#9CB59A"></span><b>accent 3</b><i>#9CB59A</i></div></div>
+  <div class="main">
+    <div class="book">
+      <div class="cover"><span class="badge">Today's Special</span><span class="ctitle">Latte Logic</span><span class="cauthor">A. Writer</span></div>
+      <div class="btitle">Latte Logic</div><div class="bauthor">by A. Writer</div>
+    </div>
+    <div class="right">
+      <h3 class="section">Programming</h3>
+      <p class="fonts">Pacifico · Fraunces · Nunito</p>
+      <p class="body">Discover books, read real readers' logs, and build your own library.</p>
+      <div class="btns"><span class="btn primary">+ Add to Library</span><span class="btn secondary">View Details</span></div>
+      <div class="chips"><span class="chip">🧁 Want to Read</span><span class="chip on">☕ Reading</span><span class="chip">🍰 Finished</span></div>
+      <div class="msgs"><span class="ok">✓ Added to your order!</span><span class="bad">⚠ Couldn't load books. Retry</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tile" data-theme="neon-arcade">
+  <div class="deco" aria-hidden="true"></div>
+  <header><span class="icon">🕹️</span><div><h2>4. Neon Arcade</h2><p class="vibe">Futuristic tech arcade, CRT + synthwave</p></div></header>
+  <div class="swatches"><div class="sw"><span style="background:#0A0A12"></span><b>bg</b><i>#0A0A12</i></div><div class="sw"><span style="background:#141428"></span><b>surface</b><i>#141428</i></div><div class="sw"><span style="background:#E8F7FF"></span><b>text</b><i>#E8F7FF</i></div><div class="sw"><span style="background:#8FA3BF"></span><b>muted</b><i>#8FA3BF</i></div><div class="sw"><span style="background:#00F0FF"></span><b>accent</b><i>#00F0FF</i></div><div class="sw"><span style="background:#FF00E5"></span><b>accent 2</b><i>#FF00E5</i></div><div class="sw"><span style="background:#B8FF3C"></span><b>accent 3</b><i>#B8FF3C</i></div></div>
+  <div class="main">
+    <div class="book">
+      <div class="cover"><span class="badge">HIGH SCORE</span><span class="ctitle">NEURAL NETS</span><span class="cauthor">A. Writer</span></div>
+      <div class="btitle">NEURAL NETS</div><div class="bauthor">by A. Writer</div>
+    </div>
+    <div class="right">
+      <h3 class="section">Programming</h3>
+      <p class="fonts">Press Start 2P · Orbitron · Inter</p>
+      <p class="body">Discover books, read real readers' logs, and build your own library.</p>
+      <div class="btns"><span class="btn primary">+ Add to Library</span><span class="btn secondary">View Details</span></div>
+      <div class="chips"><span class="chip">🎯 Want to Read</span><span class="chip on">🎮 Reading</span><span class="chip">🏆 Finished</span></div>
+      <div class="msgs"><span class="ok">✓ Item acquired!</span><span class="bad">⚠ Couldn't load books. Retry</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tile" data-theme="midnight-observatory">
+  <div class="deco" aria-hidden="true"></div>
+  <header><span class="icon">🌙</span><div><h2>5. Midnight Observatory</h2><p class="vibe">Stargazing night reads, dreamy + calm</p></div></header>
+  <div class="swatches"><div class="sw"><span style="background:#0B1026"></span><b>bg</b><i>#0B1026</i></div><div class="sw"><span style="background:#141B3A"></span><b>surface</b><i>#141B3A</i></div><div class="sw"><span style="background:#EEF1FF"></span><b>text</b><i>#EEF1FF</i></div><div class="sw"><span style="background:#A7B0D6"></span><b>muted</b><i>#A7B0D6</i></div><div class="sw"><span style="background:#F4C95D"></span><b>accent</b><i>#F4C95D</i></div><div class="sw"><span style="background:#9D8CFF"></span><b>accent 2</b><i>#9D8CFF</i></div><div class="sw"><span style="background:#6FD3E8"></span><b>accent 3</b><i>#6FD3E8</i></div></div>
+  <div class="main">
+    <div class="book">
+      <div class="cover"><span class="badge">Brightest Star</span><span class="ctitle">Starlight Code</span><span class="cauthor">A. Writer</span></div>
+      <div class="btitle">Starlight Code</div><div class="bauthor">by A. Writer</div>
+    </div>
+    <div class="right">
+      <h3 class="section">Programming</h3>
+      <p class="fonts">Cormorant Garamond · Nunito Sans</p>
+      <p class="body">Discover books, read real readers' logs, and build your own library.</p>
+      <div class="btns"><span class="btn primary">+ Add to Library</span><span class="btn secondary">View Details</span></div>
+      <div class="chips"><span class="chip">🌑 Want to Read</span><span class="chip on">🌓 Reading</span><span class="chip">🌕 Finished</span></div>
+      <div class="msgs"><span class="ok">✓ Added to your sky.</span><span class="bad">⚠ Couldn't load books. Retry</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tile" data-theme="greenhouse-botanical">
+  <div class="deco" aria-hidden="true"></div>
+  <header><span class="icon">🌿</span><div><h2>6. Greenhouse Botanical</h2><p class="vibe">Airy plant shop, ferns + terracotta</p></div></header>
+  <div class="swatches"><div class="sw"><span style="background:#F4F1EA"></span><b>bg</b><i>#F4F1EA</i></div><div class="sw"><span style="background:#FFFFFF"></span><b>surface</b><i>#FFFFFF</i></div><div class="sw"><span style="background:#26332A"></span><b>text</b><i>#26332A</i></div><div class="sw"><span style="background:#5F6F63"></span><b>muted</b><i>#5F6F63</i></div><div class="sw"><span style="background:#3F6B4F"></span><b>accent</b><i>#3F6B4F</i></div><div class="sw"><span style="background:#C46A4A"></span><b>accent 2</b><i>#C46A4A</i></div><div class="sw"><span style="background:#E9D8A6"></span><b>accent 3</b><i>#E9D8A6</i></div></div>
+  <div class="main">
+    <div class="book">
+      <div class="cover"><span class="badge">Fresh Pick</span><span class="ctitle">Growing Code</span><span class="cauthor">A. Writer</span></div>
+      <div class="btitle">Growing Code</div><div class="bauthor">by A. Writer</div>
+    </div>
+    <div class="right">
+      <h3 class="section">Programming</h3>
+      <p class="fonts">DM Serif Display · Work Sans</p>
+      <p class="body">Discover books, read real readers' logs, and build your own library.</p>
+      <div class="btns"><span class="btn primary">+ Add to Library</span><span class="btn secondary">View Details</span></div>
+      <div class="chips"><span class="chip">🌱 Want to Read</span><span class="chip on">🌿 Reading</span><span class="chip">🌸 Finished</span></div>
+      <div class="msgs"><span class="ok">✓ Planted in your library.</span><span class="bad">⚠ Couldn't load books. Retry</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tile" data-theme="retro-paperback">
+  <div class="deco" aria-hidden="true"></div>
+  <header><span class="icon">🕺</span><div><h2>7. Retro Paperback '70s</h2><p class="vibe">Groovy pulp paperback spinner rack</p></div></header>
+  <div class="swatches"><div class="sw"><span style="background:#F5E6C8"></span><b>bg</b><i>#F5E6C8</i></div><div class="sw"><span style="background:#FFF4DC"></span><b>surface</b><i>#FFF4DC</i></div><div class="sw"><span style="background:#3D2314"></span><b>text</b><i>#3D2314</i></div><div class="sw"><span style="background:#6E4A2F"></span><b>muted</b><i>#6E4A2F</i></div><div class="sw"><span style="background:#B5461A"></span><b>accent</b><i>#B5461A</i></div><div class="sw"><span style="background:#E1A730"></span><b>accent 2</b><i>#E1A730</i></div><div class="sw"><span style="background:#6B7A2E"></span><b>accent 3</b><i>#6B7A2E</i></div></div>
+  <div class="main">
+    <div class="book">
+      <div class="cover"><span class="badge">95¢</span><span class="ctitle">Far Out Data</span><span class="cauthor">A. Writer</span></div>
+      <div class="btitle">Far Out Data</div><div class="bauthor">by A. Writer</div>
+    </div>
+    <div class="right">
+      <h3 class="section">Programming</h3>
+      <p class="fonts">Shrikhand · Karla</p>
+      <p class="body">Discover books, read real readers' logs, and build your own library.</p>
+      <div class="btns"><span class="btn primary">+ Add to Library</span><span class="btn secondary">View Details</span></div>
+      <div class="chips"><span class="chip">🌼 Want to Read</span><span class="chip on">📻 Reading</span><span class="chip">🌈 Finished</span></div>
+      <div class="msgs"><span class="ok">✓ Far out! Added.</span><span class="bad">⚠ Couldn't load books. Retry</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tile" data-theme="comic-panel-pop">
+  <div class="deco" aria-hidden="true"></div>
+  <header><span class="icon">💥</span><div><h2>8. Comic Panel Pop</h2><p class="vibe">Loud, playful comic + manga panels</p></div></header>
+  <div class="swatches"><div class="sw"><span style="background:#FFFDF5"></span><b>bg</b><i>#FFFDF5</i></div><div class="sw"><span style="background:#FFFFFF"></span><b>surface</b><i>#FFFFFF</i></div><div class="sw"><span style="background:#111111"></span><b>text</b><i>#111111</i></div><div class="sw"><span style="background:#4A4A4A"></span><b>muted</b><i>#4A4A4A</i></div><div class="sw"><span style="background:#E4002B"></span><b>accent</b><i>#E4002B</i></div><div class="sw"><span style="background:#FFD400"></span><b>accent 2</b><i>#FFD400</i></div><div class="sw"><span style="background:#0072CE"></span><b>accent 3</b><i>#0072CE</i></div></div>
+  <div class="main">
+    <div class="book">
+      <div class="cover"><span class="badge">NEW!</span><span class="ctitle">CODE HERO!</span><span class="cauthor">A. Writer</span></div>
+      <div class="btitle">CODE HERO!</div><div class="bauthor">by A. Writer</div>
+    </div>
+    <div class="right">
+      <h3 class="section">Programming</h3>
+      <p class="fonts">Bangers · Comic Neue</p>
+      <p class="body">Discover books, read real readers' logs, and build your own library.</p>
+      <div class="btns"><span class="btn primary">+ Add to Library</span><span class="btn secondary">View Details</span></div>
+      <div class="chips"><span class="chip">💭 Want to Read</span><span class="chip on">💬 Reading</span><span class="chip">💥 Finished</span></div>
+      <div class="msgs"><span class="ok">✓ KA-CHUNK! Added!</span><span class="bad">⚠ Couldn't load books. Retry</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tile" data-theme="kid-korner">
+  <div class="deco" aria-hidden="true"></div>
+  <header><span class="icon">🧒</span><div><h2>9. Kid Korner</h2><p class="vibe">Bright + friendly for school-age readers · mature books filtered</p></div></header>
+  <div class="swatches"><div class="sw"><span style="background:#FFF9E6"></span><b>bg</b><i>#FFF9E6</i></div><div class="sw"><span style="background:#FFFFFF"></span><b>surface</b><i>#FFFFFF</i></div><div class="sw"><span style="background:#2B2D42"></span><b>text</b><i>#2B2D42</i></div><div class="sw"><span style="background:#5C5F7A"></span><b>muted</b><i>#5C5F7A</i></div><div class="sw"><span style="background:#6C3CE1"></span><b>accent</b><i>#6C3CE1</i></div><div class="sw"><span style="background:#FFB703"></span><b>accent 2</b><i>#FFB703</i></div><div class="sw"><span style="background:#2EC4B6"></span><b>accent 3</b><i>#2EC4B6</i></div></div>
+  <div class="main">
+    <div class="book">
+      <div class="cover"><span class="badge">Star Pick</span><span class="ctitle">Robo Pals</span><span class="cauthor">A. Writer</span></div>
+      <div class="btitle">Robo Pals</div><div class="bauthor">by A. Writer</div>
+    </div>
+    <div class="right">
+      <h3 class="section">Programming</h3>
+      <p class="fonts">Fredoka · Lexend · 18px base</p>
+      <p class="body">Discover books, read real readers' logs, and build your own library.</p>
+      <div class="btns"><span class="btn primary">+ Add to Library</span><span class="btn secondary">View Details</span></div>
+      <div class="chips"><span class="chip">⭐ Want to Read</span><span class="chip on">🐛 Reading</span><span class="chip">🏅 Finished</span></div>
+      <div class="msgs"><span class="ok">✓ Yay! You saved this book!</span><span class="bad">⚠ Couldn't load books. Retry</span></div>
+    </div>
+  </div>
+</section>
+</div>
+</body>
+</html>
