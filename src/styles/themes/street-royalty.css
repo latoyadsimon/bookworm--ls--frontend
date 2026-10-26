@@ -19,8 +19,9 @@
   --success: #3ddc97;
 
   --font-display: 'Rubik Spray Paint', 'Permanent Marker', system-ui, sans-serif;
-  /* The hero headline: block signage letters stay readable at a glance; spray paint stays on the logo */
-  --font-hero: 'Bungee', 'Permanent Marker', system-ui, sans-serif;
+  /* Hero and book page titles: block signage letters stay readable at a glance; spray paint stays on the logo */
+  --font-title: 'Bungee', 'Permanent Marker', system-ui, sans-serif;
+  --book-title-leading: 1.15; /* room for the stacked title shadow between wrapped lines */
   --font-heading: 'Permanent Marker', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 

@@ -104,7 +104,7 @@ Each palette below passed a WCAG AA contrast check:
 | Error | Coral red | `#FF6B6B` |
 | Success | Mint tag | `#3DDC97` |
 
-- **Fonts:** display **Rubik Spray Paint** (logo only) · hero title **Bungee** (block signage letters, readable under the stacked shadow) · headings **Permanent Marker** · body **Inter**.
+- **Fonts:** display **Rubik Spray Paint** (logo only) · hero and book page titles **Bungee** (block signage letters, readable under the stacked shadow) · headings **Permanent Marker** · body **Inter**.
 - **Decorations:** a spray **drip** under section titles (pink, pure CSS) · a 👑 **crown** above the active nav link · hero badge **"Queen's Pick"** · genre chips as **sticker tags**, each tilted ±2° · faint concrete-noise texture on the background.
 - **Cards:** radius 6px. Hover → lift 4px, pink glow (`0 0 0 2px #FF2E93, 0 8px 24px rgba(255,46,147,.35)`), tilt 1°.
 - **Buttons:** primary hot pink with dark text and a slight marker-stroke underline. Secondary is transparent with a gold border.
